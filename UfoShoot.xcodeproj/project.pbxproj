@@ -59,137 +59,6 @@
 		AB0BF16F1FEA5C4C00D290DE /* ufo_lights_5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1601FEA5C4C00D290DE /* ufo_lights_5.png */; };
 		AB0BF1701FEA5C4C00D290DE /* ufo_lights_6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1611FEA5C4C00D290DE /* ufo_lights_6.png */; };
 		AB0BF1711FEA5C4C00D290DE /* ufo_lights_7.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1621FEA5C4C00D290DE /* ufo_lights_7.png */; };
-		AB0BF1741FED818F00D290DE /* LearnScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BF1731FED818F00D290DE /* LearnScene.swift */; };
-		AB0BF1FF1FED81EB00D290DE /* coloring_view_4_item_0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1791FED81EB00D290DE /* coloring_view_4_item_0.png */; };
-		AB0BF2001FED81EB00D290DE /* coloring_view_4_item_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF17A1FED81EB00D290DE /* coloring_view_4_item_1.png */; };
-		AB0BF2011FED81EB00D290DE /* coloring_view_4_item_10.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF17B1FED81EB00D290DE /* coloring_view_4_item_10.png */; };
-		AB0BF2021FED81EB00D290DE /* coloring_view_4_item_11.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF17C1FED81EB00D290DE /* coloring_view_4_item_11.png */; };
-		AB0BF2031FED81EB00D290DE /* coloring_view_4_item_12.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF17D1FED81EB00D290DE /* coloring_view_4_item_12.png */; };
-		AB0BF2041FED81EB00D290DE /* coloring_view_4_item_13.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF17E1FED81EB00D290DE /* coloring_view_4_item_13.png */; };
-		AB0BF2051FED81EB00D290DE /* coloring_view_4_item_14.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF17F1FED81EB00D290DE /* coloring_view_4_item_14.png */; };
-		AB0BF2061FED81EB00D290DE /* coloring_view_4_item_15.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1801FED81EB00D290DE /* coloring_view_4_item_15.png */; };
-		AB0BF2071FED81EB00D290DE /* coloring_view_4_item_16.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1811FED81EB00D290DE /* coloring_view_4_item_16.png */; };
-		AB0BF2081FED81EB00D290DE /* coloring_view_4_item_17.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1821FED81EB00D290DE /* coloring_view_4_item_17.png */; };
-		AB0BF2091FED81EB00D290DE /* coloring_view_4_item_18.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1831FED81EB00D290DE /* coloring_view_4_item_18.png */; };
-		AB0BF20A1FED81EB00D290DE /* coloring_view_4_item_19.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1841FED81EB00D290DE /* coloring_view_4_item_19.png */; };
-		AB0BF20B1FED81EB00D290DE /* coloring_view_4_item_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1851FED81EB00D290DE /* coloring_view_4_item_2.png */; };
-		AB0BF20C1FED81EB00D290DE /* coloring_view_4_item_20.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1861FED81EB00D290DE /* coloring_view_4_item_20.png */; };
-		AB0BF20D1FED81EB00D290DE /* coloring_view_4_item_21.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1871FED81EB00D290DE /* coloring_view_4_item_21.png */; };
-		AB0BF20E1FED81EB00D290DE /* coloring_view_4_item_22.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1881FED81EB00D290DE /* coloring_view_4_item_22.png */; };
-		AB0BF20F1FED81EB00D290DE /* coloring_view_4_item_23.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1891FED81EB00D290DE /* coloring_view_4_item_23.png */; };
-		AB0BF2101FED81EB00D290DE /* coloring_view_4_item_24.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF18A1FED81EB00D290DE /* coloring_view_4_item_24.png */; };
-		AB0BF2111FED81EB00D290DE /* coloring_view_4_item_25.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF18B1FED81EB00D290DE /* coloring_view_4_item_25.png */; };
-		AB0BF2121FED81EB00D290DE /* coloring_view_4_item_3.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF18C1FED81EB00D290DE /* coloring_view_4_item_3.png */; };
-		AB0BF2131FED81EB00D290DE /* coloring_view_4_item_4.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF18D1FED81EB00D290DE /* coloring_view_4_item_4.png */; };
-		AB0BF2141FED81EB00D290DE /* coloring_view_4_item_5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF18E1FED81EB00D290DE /* coloring_view_4_item_5.png */; };
-		AB0BF2151FED81EB00D290DE /* coloring_view_4_item_6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF18F1FED81EB00D290DE /* coloring_view_4_item_6.png */; };
-		AB0BF2161FED81EB00D290DE /* coloring_view_4_item_7.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1901FED81EB00D290DE /* coloring_view_4_item_7.png */; };
-		AB0BF2171FED81EB00D290DE /* coloring_view_4_item_8.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1911FED81EB00D290DE /* coloring_view_4_item_8.png */; };
-		AB0BF2181FED81EB00D290DE /* coloring_view_4_item_9.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1921FED81EB00D290DE /* coloring_view_4_item_9.png */; };
-		AB0BF2191FED81EB00D290DE /* view_4_item_0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1941FED81EB00D290DE /* view_4_item_0.png */; };
-		AB0BF21A1FED81EB00D290DE /* view_4_item_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1951FED81EB00D290DE /* view_4_item_1.png */; };
-		AB0BF21B1FED81EB00D290DE /* view_4_item_10.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1961FED81EB00D290DE /* view_4_item_10.png */; };
-		AB0BF21C1FED81EB00D290DE /* view_4_item_11.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1971FED81EB00D290DE /* view_4_item_11.png */; };
-		AB0BF21D1FED81EB00D290DE /* view_4_item_12.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1981FED81EB00D290DE /* view_4_item_12.png */; };
-		AB0BF21E1FED81EB00D290DE /* view_4_item_13.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1991FED81EB00D290DE /* view_4_item_13.png */; };
-		AB0BF21F1FED81EB00D290DE /* view_4_item_14.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF19A1FED81EB00D290DE /* view_4_item_14.png */; };
-		AB0BF2201FED81EB00D290DE /* view_4_item_15.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF19B1FED81EB00D290DE /* view_4_item_15.png */; };
-		AB0BF2211FED81EB00D290DE /* view_4_item_16.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF19C1FED81EB00D290DE /* view_4_item_16.png */; };
-		AB0BF2221FED81EB00D290DE /* view_4_item_17.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF19D1FED81EB00D290DE /* view_4_item_17.png */; };
-		AB0BF2231FED81EB00D290DE /* view_4_item_18.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF19E1FED81EB00D290DE /* view_4_item_18.png */; };
-		AB0BF2241FED81EB00D290DE /* view_4_item_19.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF19F1FED81EB00D290DE /* view_4_item_19.png */; };
-		AB0BF2251FED81EB00D290DE /* view_4_item_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A01FED81EB00D290DE /* view_4_item_2.png */; };
-		AB0BF2261FED81EB00D290DE /* view_4_item_20.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A11FED81EB00D290DE /* view_4_item_20.png */; };
-		AB0BF2271FED81EB00D290DE /* view_4_item_21.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A21FED81EB00D290DE /* view_4_item_21.png */; };
-		AB0BF2281FED81EB00D290DE /* view_4_item_22.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A31FED81EB00D290DE /* view_4_item_22.png */; };
-		AB0BF2291FED81EB00D290DE /* view_4_item_23.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A41FED81EB00D290DE /* view_4_item_23.png */; };
-		AB0BF22A1FED81EB00D290DE /* view_4_item_24.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A51FED81EB00D290DE /* view_4_item_24.png */; };
-		AB0BF22B1FED81EB00D290DE /* view_4_item_25.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A61FED81EB00D290DE /* view_4_item_25.png */; };
-		AB0BF22C1FED81EB00D290DE /* view_4_item_3.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A71FED81EB00D290DE /* view_4_item_3.png */; };
-		AB0BF22D1FED81EB00D290DE /* view_4_item_4.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A81FED81EB00D290DE /* view_4_item_4.png */; };
-		AB0BF22E1FED81EB00D290DE /* view_4_item_5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1A91FED81EB00D290DE /* view_4_item_5.png */; };
-		AB0BF22F1FED81EB00D290DE /* view_4_item_6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1AA1FED81EB00D290DE /* view_4_item_6.png */; };
-		AB0BF2301FED81EB00D290DE /* view_4_item_7.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1AB1FED81EB00D290DE /* view_4_item_7.png */; };
-		AB0BF2311FED81EB00D290DE /* view_4_item_8.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1AC1FED81EB00D290DE /* view_4_item_8.png */; };
-		AB0BF2321FED81EB00D290DE /* view_4_item_9.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1AD1FED81EB00D290DE /* view_4_item_9.png */; };
-		AB0BF2331FED81EB00D290DE /* puzzle_view_4_item_0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1AF1FED81EB00D290DE /* puzzle_view_4_item_0.jpg */; };
-		AB0BF2341FED81EB00D290DE /* puzzle_view_4_item_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B01FED81EB00D290DE /* puzzle_view_4_item_1.jpg */; };
-		AB0BF2351FED81EB00D290DE /* puzzle_view_4_item_10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B11FED81EB00D290DE /* puzzle_view_4_item_10.jpg */; };
-		AB0BF2361FED81EC00D290DE /* puzzle_view_4_item_11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B21FED81EB00D290DE /* puzzle_view_4_item_11.jpg */; };
-		AB0BF2371FED81EC00D290DE /* puzzle_view_4_item_12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B31FED81EB00D290DE /* puzzle_view_4_item_12.jpg */; };
-		AB0BF2381FED81EC00D290DE /* puzzle_view_4_item_13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B41FED81EB00D290DE /* puzzle_view_4_item_13.jpg */; };
-		AB0BF2391FED81EC00D290DE /* puzzle_view_4_item_14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B51FED81EB00D290DE /* puzzle_view_4_item_14.jpg */; };
-		AB0BF23A1FED81EC00D290DE /* puzzle_view_4_item_15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B61FED81EB00D290DE /* puzzle_view_4_item_15.jpg */; };
-		AB0BF23B1FED81EC00D290DE /* puzzle_view_4_item_16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B71FED81EB00D290DE /* puzzle_view_4_item_16.jpg */; };
-		AB0BF23C1FED81EC00D290DE /* puzzle_view_4_item_17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B81FED81EB00D290DE /* puzzle_view_4_item_17.jpg */; };
-		AB0BF23D1FED81EC00D290DE /* puzzle_view_4_item_18.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1B91FED81EB00D290DE /* puzzle_view_4_item_18.jpg */; };
-		AB0BF23E1FED81EC00D290DE /* puzzle_view_4_item_19.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1BA1FED81EB00D290DE /* puzzle_view_4_item_19.jpg */; };
-		AB0BF23F1FED81EC00D290DE /* puzzle_view_4_item_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1BB1FED81EB00D290DE /* puzzle_view_4_item_2.jpg */; };
-		AB0BF2401FED81EC00D290DE /* puzzle_view_4_item_20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1BC1FED81EB00D290DE /* puzzle_view_4_item_20.jpg */; };
-		AB0BF2411FED81EC00D290DE /* puzzle_view_4_item_21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1BD1FED81EB00D290DE /* puzzle_view_4_item_21.jpg */; };
-		AB0BF2421FED81EC00D290DE /* puzzle_view_4_item_22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1BE1FED81EB00D290DE /* puzzle_view_4_item_22.jpg */; };
-		AB0BF2431FED81EC00D290DE /* puzzle_view_4_item_23.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1BF1FED81EB00D290DE /* puzzle_view_4_item_23.jpg */; };
-		AB0BF2441FED81EC00D290DE /* puzzle_view_4_item_24.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C01FED81EB00D290DE /* puzzle_view_4_item_24.jpg */; };
-		AB0BF2451FED81EC00D290DE /* puzzle_view_4_item_25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C11FED81EB00D290DE /* puzzle_view_4_item_25.jpg */; };
-		AB0BF2461FED81EC00D290DE /* puzzle_view_4_item_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C21FED81EB00D290DE /* puzzle_view_4_item_3.jpg */; };
-		AB0BF2471FED81EC00D290DE /* puzzle_view_4_item_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C31FED81EB00D290DE /* puzzle_view_4_item_4.jpg */; };
-		AB0BF2481FED81EC00D290DE /* puzzle_view_4_item_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C41FED81EB00D290DE /* puzzle_view_4_item_5.jpg */; };
-		AB0BF2491FED81EC00D290DE /* puzzle_view_4_item_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C51FED81EB00D290DE /* puzzle_view_4_item_6.jpg */; };
-		AB0BF24A1FED81EC00D290DE /* puzzle_view_4_item_7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C61FED81EB00D290DE /* puzzle_view_4_item_7.jpg */; };
-		AB0BF24B1FED81EC00D290DE /* puzzle_view_4_item_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C71FED81EB00D290DE /* puzzle_view_4_item_8.jpg */; };
-		AB0BF24C1FED81EC00D290DE /* puzzle_view_4_item_9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1C81FED81EB00D290DE /* puzzle_view_4_item_9.jpg */; };
-		AB0BF24D1FED81EC00D290DE /* menu_puzzle_view_4_item_0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1CA1FED81EB00D290DE /* menu_puzzle_view_4_item_0.jpg */; };
-		AB0BF24E1FED81EC00D290DE /* menu_puzzle_view_4_item_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1CB1FED81EB00D290DE /* menu_puzzle_view_4_item_1.jpg */; };
-		AB0BF24F1FED81EC00D290DE /* menu_puzzle_view_4_item_10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1CC1FED81EB00D290DE /* menu_puzzle_view_4_item_10.jpg */; };
-		AB0BF2501FED81EC00D290DE /* menu_puzzle_view_4_item_11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1CD1FED81EB00D290DE /* menu_puzzle_view_4_item_11.jpg */; };
-		AB0BF2511FED81EC00D290DE /* menu_puzzle_view_4_item_12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1CE1FED81EB00D290DE /* menu_puzzle_view_4_item_12.jpg */; };
-		AB0BF2521FED81EC00D290DE /* menu_puzzle_view_4_item_13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1CF1FED81EB00D290DE /* menu_puzzle_view_4_item_13.jpg */; };
-		AB0BF2531FED81EC00D290DE /* menu_puzzle_view_4_item_14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D01FED81EB00D290DE /* menu_puzzle_view_4_item_14.jpg */; };
-		AB0BF2541FED81EC00D290DE /* menu_puzzle_view_4_item_15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D11FED81EB00D290DE /* menu_puzzle_view_4_item_15.jpg */; };
-		AB0BF2551FED81EC00D290DE /* menu_puzzle_view_4_item_16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D21FED81EB00D290DE /* menu_puzzle_view_4_item_16.jpg */; };
-		AB0BF2561FED81EC00D290DE /* menu_puzzle_view_4_item_17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D31FED81EB00D290DE /* menu_puzzle_view_4_item_17.jpg */; };
-		AB0BF2571FED81EC00D290DE /* menu_puzzle_view_4_item_18.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D41FED81EB00D290DE /* menu_puzzle_view_4_item_18.jpg */; };
-		AB0BF2581FED81EC00D290DE /* menu_puzzle_view_4_item_19.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D51FED81EB00D290DE /* menu_puzzle_view_4_item_19.jpg */; };
-		AB0BF2591FED81EC00D290DE /* menu_puzzle_view_4_item_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D61FED81EB00D290DE /* menu_puzzle_view_4_item_2.jpg */; };
-		AB0BF25A1FED81EC00D290DE /* menu_puzzle_view_4_item_20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D71FED81EB00D290DE /* menu_puzzle_view_4_item_20.jpg */; };
-		AB0BF25B1FED81EC00D290DE /* menu_puzzle_view_4_item_21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D81FED81EB00D290DE /* menu_puzzle_view_4_item_21.jpg */; };
-		AB0BF25C1FED81EC00D290DE /* menu_puzzle_view_4_item_22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1D91FED81EB00D290DE /* menu_puzzle_view_4_item_22.jpg */; };
-		AB0BF25D1FED81EC00D290DE /* menu_puzzle_view_4_item_23.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1DA1FED81EB00D290DE /* menu_puzzle_view_4_item_23.jpg */; };
-		AB0BF25E1FED81EC00D290DE /* menu_puzzle_view_4_item_24.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1DB1FED81EB00D290DE /* menu_puzzle_view_4_item_24.jpg */; };
-		AB0BF25F1FED81EC00D290DE /* menu_puzzle_view_4_item_25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1DC1FED81EB00D290DE /* menu_puzzle_view_4_item_25.jpg */; };
-		AB0BF2601FED81EC00D290DE /* menu_puzzle_view_4_item_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1DD1FED81EB00D290DE /* menu_puzzle_view_4_item_3.jpg */; };
-		AB0BF2611FED81EC00D290DE /* menu_puzzle_view_4_item_4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1DE1FED81EB00D290DE /* menu_puzzle_view_4_item_4.jpg */; };
-		AB0BF2621FED81EC00D290DE /* menu_puzzle_view_4_item_5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1DF1FED81EB00D290DE /* menu_puzzle_view_4_item_5.jpg */; };
-		AB0BF2631FED81EC00D290DE /* menu_puzzle_view_4_item_6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E01FED81EB00D290DE /* menu_puzzle_view_4_item_6.jpg */; };
-		AB0BF2641FED81EC00D290DE /* menu_puzzle_view_4_item_7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E11FED81EB00D290DE /* menu_puzzle_view_4_item_7.jpg */; };
-		AB0BF2651FED81EC00D290DE /* menu_puzzle_view_4_item_8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E21FED81EB00D290DE /* menu_puzzle_view_4_item_8.jpg */; };
-		AB0BF2661FED81EC00D290DE /* menu_puzzle_view_4_item_9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E31FED81EB00D290DE /* menu_puzzle_view_4_item_9.jpg */; };
-		AB0BF2671FED81EC00D290DE /* white_view_4_item_0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E51FED81EB00D290DE /* white_view_4_item_0.png */; };
-		AB0BF2681FED81EC00D290DE /* white_view_4_item_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E61FED81EB00D290DE /* white_view_4_item_1.png */; };
-		AB0BF2691FED81EC00D290DE /* white_view_4_item_10.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E71FED81EB00D290DE /* white_view_4_item_10.png */; };
-		AB0BF26A1FED81EC00D290DE /* white_view_4_item_11.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E81FED81EB00D290DE /* white_view_4_item_11.png */; };
-		AB0BF26B1FED81EC00D290DE /* white_view_4_item_12.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1E91FED81EB00D290DE /* white_view_4_item_12.png */; };
-		AB0BF26C1FED81EC00D290DE /* white_view_4_item_13.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1EA1FED81EB00D290DE /* white_view_4_item_13.png */; };
-		AB0BF26D1FED81EC00D290DE /* white_view_4_item_14.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1EB1FED81EB00D290DE /* white_view_4_item_14.png */; };
-		AB0BF26E1FED81EC00D290DE /* white_view_4_item_15.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1EC1FED81EB00D290DE /* white_view_4_item_15.png */; };
-		AB0BF26F1FED81EC00D290DE /* white_view_4_item_16.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1ED1FED81EB00D290DE /* white_view_4_item_16.png */; };
-		AB0BF2701FED81EC00D290DE /* white_view_4_item_17.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1EE1FED81EB00D290DE /* white_view_4_item_17.png */; };
-		AB0BF2711FED81EC00D290DE /* white_view_4_item_18.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1EF1FED81EB00D290DE /* white_view_4_item_18.png */; };
-		AB0BF2721FED81EC00D290DE /* white_view_4_item_19.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F01FED81EB00D290DE /* white_view_4_item_19.png */; };
-		AB0BF2731FED81EC00D290DE /* white_view_4_item_2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F11FED81EB00D290DE /* white_view_4_item_2.png */; };
-		AB0BF2741FED81EC00D290DE /* white_view_4_item_20.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F21FED81EB00D290DE /* white_view_4_item_20.png */; };
-		AB0BF2751FED81EC00D290DE /* white_view_4_item_21.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F31FED81EB00D290DE /* white_view_4_item_21.png */; };
-		AB0BF2761FED81EC00D290DE /* white_view_4_item_22.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F41FED81EB00D290DE /* white_view_4_item_22.png */; };
-		AB0BF2771FED81EC00D290DE /* white_view_4_item_23.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F51FED81EB00D290DE /* white_view_4_item_23.png */; };
-		AB0BF2781FED81EC00D290DE /* white_view_4_item_24.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F61FED81EB00D290DE /* white_view_4_item_24.png */; };
-		AB0BF2791FED81EC00D290DE /* white_view_4_item_25.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F71FED81EB00D290DE /* white_view_4_item_25.png */; };
-		AB0BF27A1FED81EC00D290DE /* white_view_4_item_3.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F81FED81EB00D290DE /* white_view_4_item_3.png */; };
-		AB0BF27B1FED81EC00D290DE /* white_view_4_item_4.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1F91FED81EB00D290DE /* white_view_4_item_4.png */; };
-		AB0BF27C1FED81EC00D290DE /* white_view_4_item_5.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1FA1FED81EB00D290DE /* white_view_4_item_5.png */; };
-		AB0BF27D1FED81EC00D290DE /* white_view_4_item_6.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1FB1FED81EB00D290DE /* white_view_4_item_6.png */; };
-		AB0BF27E1FED81EC00D290DE /* white_view_4_item_7.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1FC1FED81EB00D290DE /* white_view_4_item_7.png */; };
-		AB0BF27F1FED81EC00D290DE /* white_view_4_item_8.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1FD1FED81EB00D290DE /* white_view_4_item_8.png */; };
-		AB0BF2801FED81EC00D290DE /* white_view_4_item_9.png in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF1FE1FED81EB00D290DE /* white_view_4_item_9.png */; };
 		AB0BF29E1FED820C00D290DE /* view_4_item_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF2841FED820C00D290DE /* view_4_item_0.mp3 */; };
 		AB0BF29F1FED820C00D290DE /* view_4_item_1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF2851FED820C00D290DE /* view_4_item_1.mp3 */; };
 		AB0BF2A01FED820C00D290DE /* view_4_item_10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AB0BF2861FED820C00D290DE /* view_4_item_10.mp3 */; };
@@ -459,137 +328,6 @@
 		AB0BF1601FEA5C4C00D290DE /* ufo_lights_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_lights_5.png; sourceTree = "<group>"; };
 		AB0BF1611FEA5C4C00D290DE /* ufo_lights_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_lights_6.png; sourceTree = "<group>"; };
 		AB0BF1621FEA5C4C00D290DE /* ufo_lights_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_lights_7.png; sourceTree = "<group>"; };
-		AB0BF1731FED818F00D290DE /* LearnScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnScene.swift; sourceTree = "<group>"; };
-		AB0BF1791FED81EB00D290DE /* coloring_view_4_item_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_0.png; sourceTree = "<group>"; };
-		AB0BF17A1FED81EB00D290DE /* coloring_view_4_item_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_1.png; sourceTree = "<group>"; };
-		AB0BF17B1FED81EB00D290DE /* coloring_view_4_item_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_10.png; sourceTree = "<group>"; };
-		AB0BF17C1FED81EB00D290DE /* coloring_view_4_item_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_11.png; sourceTree = "<group>"; };
-		AB0BF17D1FED81EB00D290DE /* coloring_view_4_item_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_12.png; sourceTree = "<group>"; };
-		AB0BF17E1FED81EB00D290DE /* coloring_view_4_item_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_13.png; sourceTree = "<group>"; };
-		AB0BF17F1FED81EB00D290DE /* coloring_view_4_item_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_14.png; sourceTree = "<group>"; };
-		AB0BF1801FED81EB00D290DE /* coloring_view_4_item_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_15.png; sourceTree = "<group>"; };
-		AB0BF1811FED81EB00D290DE /* coloring_view_4_item_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_16.png; sourceTree = "<group>"; };
-		AB0BF1821FED81EB00D290DE /* coloring_view_4_item_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_17.png; sourceTree = "<group>"; };
-		AB0BF1831FED81EB00D290DE /* coloring_view_4_item_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_18.png; sourceTree = "<group>"; };
-		AB0BF1841FED81EB00D290DE /* coloring_view_4_item_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_19.png; sourceTree = "<group>"; };
-		AB0BF1851FED81EB00D290DE /* coloring_view_4_item_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_2.png; sourceTree = "<group>"; };
-		AB0BF1861FED81EB00D290DE /* coloring_view_4_item_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_20.png; sourceTree = "<group>"; };
-		AB0BF1871FED81EB00D290DE /* coloring_view_4_item_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_21.png; sourceTree = "<group>"; };
-		AB0BF1881FED81EB00D290DE /* coloring_view_4_item_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_22.png; sourceTree = "<group>"; };
-		AB0BF1891FED81EB00D290DE /* coloring_view_4_item_23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_23.png; sourceTree = "<group>"; };
-		AB0BF18A1FED81EB00D290DE /* coloring_view_4_item_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_24.png; sourceTree = "<group>"; };
-		AB0BF18B1FED81EB00D290DE /* coloring_view_4_item_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_25.png; sourceTree = "<group>"; };
-		AB0BF18C1FED81EB00D290DE /* coloring_view_4_item_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_3.png; sourceTree = "<group>"; };
-		AB0BF18D1FED81EB00D290DE /* coloring_view_4_item_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_4.png; sourceTree = "<group>"; };
-		AB0BF18E1FED81EB00D290DE /* coloring_view_4_item_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_5.png; sourceTree = "<group>"; };
-		AB0BF18F1FED81EB00D290DE /* coloring_view_4_item_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_6.png; sourceTree = "<group>"; };
-		AB0BF1901FED81EB00D290DE /* coloring_view_4_item_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_7.png; sourceTree = "<group>"; };
-		AB0BF1911FED81EB00D290DE /* coloring_view_4_item_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_8.png; sourceTree = "<group>"; };
-		AB0BF1921FED81EB00D290DE /* coloring_view_4_item_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coloring_view_4_item_9.png; sourceTree = "<group>"; };
-		AB0BF1941FED81EB00D290DE /* view_4_item_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_0.png; sourceTree = "<group>"; };
-		AB0BF1951FED81EB00D290DE /* view_4_item_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_1.png; sourceTree = "<group>"; };
-		AB0BF1961FED81EB00D290DE /* view_4_item_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_10.png; sourceTree = "<group>"; };
-		AB0BF1971FED81EB00D290DE /* view_4_item_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_11.png; sourceTree = "<group>"; };
-		AB0BF1981FED81EB00D290DE /* view_4_item_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_12.png; sourceTree = "<group>"; };
-		AB0BF1991FED81EB00D290DE /* view_4_item_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_13.png; sourceTree = "<group>"; };
-		AB0BF19A1FED81EB00D290DE /* view_4_item_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_14.png; sourceTree = "<group>"; };
-		AB0BF19B1FED81EB00D290DE /* view_4_item_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_15.png; sourceTree = "<group>"; };
-		AB0BF19C1FED81EB00D290DE /* view_4_item_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_16.png; sourceTree = "<group>"; };
-		AB0BF19D1FED81EB00D290DE /* view_4_item_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_17.png; sourceTree = "<group>"; };
-		AB0BF19E1FED81EB00D290DE /* view_4_item_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_18.png; sourceTree = "<group>"; };
-		AB0BF19F1FED81EB00D290DE /* view_4_item_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_19.png; sourceTree = "<group>"; };
-		AB0BF1A01FED81EB00D290DE /* view_4_item_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_2.png; sourceTree = "<group>"; };
-		AB0BF1A11FED81EB00D290DE /* view_4_item_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_20.png; sourceTree = "<group>"; };
-		AB0BF1A21FED81EB00D290DE /* view_4_item_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_21.png; sourceTree = "<group>"; };
-		AB0BF1A31FED81EB00D290DE /* view_4_item_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_22.png; sourceTree = "<group>"; };
-		AB0BF1A41FED81EB00D290DE /* view_4_item_23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_23.png; sourceTree = "<group>"; };
-		AB0BF1A51FED81EB00D290DE /* view_4_item_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_24.png; sourceTree = "<group>"; };
-		AB0BF1A61FED81EB00D290DE /* view_4_item_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_25.png; sourceTree = "<group>"; };
-		AB0BF1A71FED81EB00D290DE /* view_4_item_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_3.png; sourceTree = "<group>"; };
-		AB0BF1A81FED81EB00D290DE /* view_4_item_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_4.png; sourceTree = "<group>"; };
-		AB0BF1A91FED81EB00D290DE /* view_4_item_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_5.png; sourceTree = "<group>"; };
-		AB0BF1AA1FED81EB00D290DE /* view_4_item_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_6.png; sourceTree = "<group>"; };
-		AB0BF1AB1FED81EB00D290DE /* view_4_item_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_7.png; sourceTree = "<group>"; };
-		AB0BF1AC1FED81EB00D290DE /* view_4_item_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_8.png; sourceTree = "<group>"; };
-		AB0BF1AD1FED81EB00D290DE /* view_4_item_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_4_item_9.png; sourceTree = "<group>"; };
-		AB0BF1AF1FED81EB00D290DE /* puzzle_view_4_item_0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_0.jpg; sourceTree = "<group>"; };
-		AB0BF1B01FED81EB00D290DE /* puzzle_view_4_item_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_1.jpg; sourceTree = "<group>"; };
-		AB0BF1B11FED81EB00D290DE /* puzzle_view_4_item_10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_10.jpg; sourceTree = "<group>"; };
-		AB0BF1B21FED81EB00D290DE /* puzzle_view_4_item_11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_11.jpg; sourceTree = "<group>"; };
-		AB0BF1B31FED81EB00D290DE /* puzzle_view_4_item_12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_12.jpg; sourceTree = "<group>"; };
-		AB0BF1B41FED81EB00D290DE /* puzzle_view_4_item_13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_13.jpg; sourceTree = "<group>"; };
-		AB0BF1B51FED81EB00D290DE /* puzzle_view_4_item_14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_14.jpg; sourceTree = "<group>"; };
-		AB0BF1B61FED81EB00D290DE /* puzzle_view_4_item_15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_15.jpg; sourceTree = "<group>"; };
-		AB0BF1B71FED81EB00D290DE /* puzzle_view_4_item_16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_16.jpg; sourceTree = "<group>"; };
-		AB0BF1B81FED81EB00D290DE /* puzzle_view_4_item_17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_17.jpg; sourceTree = "<group>"; };
-		AB0BF1B91FED81EB00D290DE /* puzzle_view_4_item_18.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_18.jpg; sourceTree = "<group>"; };
-		AB0BF1BA1FED81EB00D290DE /* puzzle_view_4_item_19.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_19.jpg; sourceTree = "<group>"; };
-		AB0BF1BB1FED81EB00D290DE /* puzzle_view_4_item_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_2.jpg; sourceTree = "<group>"; };
-		AB0BF1BC1FED81EB00D290DE /* puzzle_view_4_item_20.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_20.jpg; sourceTree = "<group>"; };
-		AB0BF1BD1FED81EB00D290DE /* puzzle_view_4_item_21.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_21.jpg; sourceTree = "<group>"; };
-		AB0BF1BE1FED81EB00D290DE /* puzzle_view_4_item_22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_22.jpg; sourceTree = "<group>"; };
-		AB0BF1BF1FED81EB00D290DE /* puzzle_view_4_item_23.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_23.jpg; sourceTree = "<group>"; };
-		AB0BF1C01FED81EB00D290DE /* puzzle_view_4_item_24.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_24.jpg; sourceTree = "<group>"; };
-		AB0BF1C11FED81EB00D290DE /* puzzle_view_4_item_25.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_25.jpg; sourceTree = "<group>"; };
-		AB0BF1C21FED81EB00D290DE /* puzzle_view_4_item_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_3.jpg; sourceTree = "<group>"; };
-		AB0BF1C31FED81EB00D290DE /* puzzle_view_4_item_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_4.jpg; sourceTree = "<group>"; };
-		AB0BF1C41FED81EB00D290DE /* puzzle_view_4_item_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_5.jpg; sourceTree = "<group>"; };
-		AB0BF1C51FED81EB00D290DE /* puzzle_view_4_item_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_6.jpg; sourceTree = "<group>"; };
-		AB0BF1C61FED81EB00D290DE /* puzzle_view_4_item_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_7.jpg; sourceTree = "<group>"; };
-		AB0BF1C71FED81EB00D290DE /* puzzle_view_4_item_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_8.jpg; sourceTree = "<group>"; };
-		AB0BF1C81FED81EB00D290DE /* puzzle_view_4_item_9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = puzzle_view_4_item_9.jpg; sourceTree = "<group>"; };
-		AB0BF1CA1FED81EB00D290DE /* menu_puzzle_view_4_item_0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_0.jpg; sourceTree = "<group>"; };
-		AB0BF1CB1FED81EB00D290DE /* menu_puzzle_view_4_item_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_1.jpg; sourceTree = "<group>"; };
-		AB0BF1CC1FED81EB00D290DE /* menu_puzzle_view_4_item_10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_10.jpg; sourceTree = "<group>"; };
-		AB0BF1CD1FED81EB00D290DE /* menu_puzzle_view_4_item_11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_11.jpg; sourceTree = "<group>"; };
-		AB0BF1CE1FED81EB00D290DE /* menu_puzzle_view_4_item_12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_12.jpg; sourceTree = "<group>"; };
-		AB0BF1CF1FED81EB00D290DE /* menu_puzzle_view_4_item_13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_13.jpg; sourceTree = "<group>"; };
-		AB0BF1D01FED81EB00D290DE /* menu_puzzle_view_4_item_14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_14.jpg; sourceTree = "<group>"; };
-		AB0BF1D11FED81EB00D290DE /* menu_puzzle_view_4_item_15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_15.jpg; sourceTree = "<group>"; };
-		AB0BF1D21FED81EB00D290DE /* menu_puzzle_view_4_item_16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_16.jpg; sourceTree = "<group>"; };
-		AB0BF1D31FED81EB00D290DE /* menu_puzzle_view_4_item_17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_17.jpg; sourceTree = "<group>"; };
-		AB0BF1D41FED81EB00D290DE /* menu_puzzle_view_4_item_18.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_18.jpg; sourceTree = "<group>"; };
-		AB0BF1D51FED81EB00D290DE /* menu_puzzle_view_4_item_19.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_19.jpg; sourceTree = "<group>"; };
-		AB0BF1D61FED81EB00D290DE /* menu_puzzle_view_4_item_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_2.jpg; sourceTree = "<group>"; };
-		AB0BF1D71FED81EB00D290DE /* menu_puzzle_view_4_item_20.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_20.jpg; sourceTree = "<group>"; };
-		AB0BF1D81FED81EB00D290DE /* menu_puzzle_view_4_item_21.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_21.jpg; sourceTree = "<group>"; };
-		AB0BF1D91FED81EB00D290DE /* menu_puzzle_view_4_item_22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_22.jpg; sourceTree = "<group>"; };
-		AB0BF1DA1FED81EB00D290DE /* menu_puzzle_view_4_item_23.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_23.jpg; sourceTree = "<group>"; };
-		AB0BF1DB1FED81EB00D290DE /* menu_puzzle_view_4_item_24.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_24.jpg; sourceTree = "<group>"; };
-		AB0BF1DC1FED81EB00D290DE /* menu_puzzle_view_4_item_25.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_25.jpg; sourceTree = "<group>"; };
-		AB0BF1DD1FED81EB00D290DE /* menu_puzzle_view_4_item_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_3.jpg; sourceTree = "<group>"; };
-		AB0BF1DE1FED81EB00D290DE /* menu_puzzle_view_4_item_4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_4.jpg; sourceTree = "<group>"; };
-		AB0BF1DF1FED81EB00D290DE /* menu_puzzle_view_4_item_5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_5.jpg; sourceTree = "<group>"; };
-		AB0BF1E01FED81EB00D290DE /* menu_puzzle_view_4_item_6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_6.jpg; sourceTree = "<group>"; };
-		AB0BF1E11FED81EB00D290DE /* menu_puzzle_view_4_item_7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_7.jpg; sourceTree = "<group>"; };
-		AB0BF1E21FED81EB00D290DE /* menu_puzzle_view_4_item_8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_8.jpg; sourceTree = "<group>"; };
-		AB0BF1E31FED81EB00D290DE /* menu_puzzle_view_4_item_9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = menu_puzzle_view_4_item_9.jpg; sourceTree = "<group>"; };
-		AB0BF1E51FED81EB00D290DE /* white_view_4_item_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_0.png; sourceTree = "<group>"; };
-		AB0BF1E61FED81EB00D290DE /* white_view_4_item_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_1.png; sourceTree = "<group>"; };
-		AB0BF1E71FED81EB00D290DE /* white_view_4_item_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_10.png; sourceTree = "<group>"; };
-		AB0BF1E81FED81EB00D290DE /* white_view_4_item_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_11.png; sourceTree = "<group>"; };
-		AB0BF1E91FED81EB00D290DE /* white_view_4_item_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_12.png; sourceTree = "<group>"; };
-		AB0BF1EA1FED81EB00D290DE /* white_view_4_item_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_13.png; sourceTree = "<group>"; };
-		AB0BF1EB1FED81EB00D290DE /* white_view_4_item_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_14.png; sourceTree = "<group>"; };
-		AB0BF1EC1FED81EB00D290DE /* white_view_4_item_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_15.png; sourceTree = "<group>"; };
-		AB0BF1ED1FED81EB00D290DE /* white_view_4_item_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_16.png; sourceTree = "<group>"; };
-		AB0BF1EE1FED81EB00D290DE /* white_view_4_item_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_17.png; sourceTree = "<group>"; };
-		AB0BF1EF1FED81EB00D290DE /* white_view_4_item_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_18.png; sourceTree = "<group>"; };
-		AB0BF1F01FED81EB00D290DE /* white_view_4_item_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_19.png; sourceTree = "<group>"; };
-		AB0BF1F11FED81EB00D290DE /* white_view_4_item_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_2.png; sourceTree = "<group>"; };
-		AB0BF1F21FED81EB00D290DE /* white_view_4_item_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_20.png; sourceTree = "<group>"; };
-		AB0BF1F31FED81EB00D290DE /* white_view_4_item_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_21.png; sourceTree = "<group>"; };
-		AB0BF1F41FED81EB00D290DE /* white_view_4_item_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_22.png; sourceTree = "<group>"; };
-		AB0BF1F51FED81EB00D290DE /* white_view_4_item_23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_23.png; sourceTree = "<group>"; };
-		AB0BF1F61FED81EB00D290DE /* white_view_4_item_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_24.png; sourceTree = "<group>"; };
-		AB0BF1F71FED81EB00D290DE /* white_view_4_item_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_25.png; sourceTree = "<group>"; };
-		AB0BF1F81FED81EB00D290DE /* white_view_4_item_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_3.png; sourceTree = "<group>"; };
-		AB0BF1F91FED81EB00D290DE /* white_view_4_item_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_4.png; sourceTree = "<group>"; };
-		AB0BF1FA1FED81EB00D290DE /* white_view_4_item_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_5.png; sourceTree = "<group>"; };
-		AB0BF1FB1FED81EB00D290DE /* white_view_4_item_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_6.png; sourceTree = "<group>"; };
-		AB0BF1FC1FED81EB00D290DE /* white_view_4_item_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_7.png; sourceTree = "<group>"; };
-		AB0BF1FD1FED81EB00D290DE /* white_view_4_item_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_8.png; sourceTree = "<group>"; };
-		AB0BF1FE1FED81EB00D290DE /* white_view_4_item_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_view_4_item_9.png; sourceTree = "<group>"; };
 		AB0BF2841FED820C00D290DE /* view_4_item_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = view_4_item_0.mp3; sourceTree = "<group>"; };
 		AB0BF2851FED820C00D290DE /* view_4_item_1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = view_4_item_1.mp3; sourceTree = "<group>"; };
 		AB0BF2861FED820C00D290DE /* view_4_item_10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = view_4_item_10.mp3; sourceTree = "<group>"; };
@@ -837,7 +575,6 @@
 			isa = PBXGroup;
 			children = (
 				AB0BF0F81FE3FE9E00D290DE /* Common */,
-				AB0BF1721FED816700D290DE /* LearnScene */,
 				ABD459A5200A763900FE8212 /* MapScene */,
 				AB0BF2D31FF1C8B400D290DE /* GameScene */,
 				AB0BF0F31FE3FB8500D290DE /* MainScene */,
@@ -978,14 +715,6 @@
 			path = ufo_lights;
 			sourceTree = "<group>";
 		};
-		AB0BF1721FED816700D290DE /* LearnScene */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1731FED818F00D290DE /* LearnScene.swift */,
-			);
-			path = LearnScene;
-			sourceTree = "<group>";
-		};
 		AB0BF1751FED81B200D290DE /* graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -993,194 +722,8 @@
 				ABED9D922005A2C4004E13D8 /* status_bars */,
 				AB7113C420004BE40095DCFF /* space_coin.png */,
 				AB0BF2BC1FED835600D290DE /* buttons */,
-				AB0BF1761FED81EB00D290DE /* items */,
 			);
 			path = graphics;
-			sourceTree = "<group>";
-		};
-		AB0BF1761FED81EB00D290DE /* items */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1771FED81EB00D290DE /* view_4 */,
-			);
-			path = items;
-			sourceTree = "<group>";
-		};
-		AB0BF1771FED81EB00D290DE /* view_4 */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1781FED81EB00D290DE /* coloring_pages */,
-				AB0BF1931FED81EB00D290DE /* normal_items */,
-				AB0BF1AE1FED81EB00D290DE /* puzzle_items */,
-				AB0BF1C91FED81EB00D290DE /* puzzle_menu_items */,
-				AB0BF1E41FED81EB00D290DE /* white_items */,
-			);
-			path = view_4;
-			sourceTree = "<group>";
-		};
-		AB0BF1781FED81EB00D290DE /* coloring_pages */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1791FED81EB00D290DE /* coloring_view_4_item_0.png */,
-				AB0BF17A1FED81EB00D290DE /* coloring_view_4_item_1.png */,
-				AB0BF17B1FED81EB00D290DE /* coloring_view_4_item_10.png */,
-				AB0BF17C1FED81EB00D290DE /* coloring_view_4_item_11.png */,
-				AB0BF17D1FED81EB00D290DE /* coloring_view_4_item_12.png */,
-				AB0BF17E1FED81EB00D290DE /* coloring_view_4_item_13.png */,
-				AB0BF17F1FED81EB00D290DE /* coloring_view_4_item_14.png */,
-				AB0BF1801FED81EB00D290DE /* coloring_view_4_item_15.png */,
-				AB0BF1811FED81EB00D290DE /* coloring_view_4_item_16.png */,
-				AB0BF1821FED81EB00D290DE /* coloring_view_4_item_17.png */,
-				AB0BF1831FED81EB00D290DE /* coloring_view_4_item_18.png */,
-				AB0BF1841FED81EB00D290DE /* coloring_view_4_item_19.png */,
-				AB0BF1851FED81EB00D290DE /* coloring_view_4_item_2.png */,
-				AB0BF1861FED81EB00D290DE /* coloring_view_4_item_20.png */,
-				AB0BF1871FED81EB00D290DE /* coloring_view_4_item_21.png */,
-				AB0BF1881FED81EB00D290DE /* coloring_view_4_item_22.png */,
-				AB0BF1891FED81EB00D290DE /* coloring_view_4_item_23.png */,
-				AB0BF18A1FED81EB00D290DE /* coloring_view_4_item_24.png */,
-				AB0BF18B1FED81EB00D290DE /* coloring_view_4_item_25.png */,
-				AB0BF18C1FED81EB00D290DE /* coloring_view_4_item_3.png */,
-				AB0BF18D1FED81EB00D290DE /* coloring_view_4_item_4.png */,
-				AB0BF18E1FED81EB00D290DE /* coloring_view_4_item_5.png */,
-				AB0BF18F1FED81EB00D290DE /* coloring_view_4_item_6.png */,
-				AB0BF1901FED81EB00D290DE /* coloring_view_4_item_7.png */,
-				AB0BF1911FED81EB00D290DE /* coloring_view_4_item_8.png */,
-				AB0BF1921FED81EB00D290DE /* coloring_view_4_item_9.png */,
-			);
-			path = coloring_pages;
-			sourceTree = "<group>";
-		};
-		AB0BF1931FED81EB00D290DE /* normal_items */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1941FED81EB00D290DE /* view_4_item_0.png */,
-				AB0BF1951FED81EB00D290DE /* view_4_item_1.png */,
-				AB0BF1961FED81EB00D290DE /* view_4_item_10.png */,
-				AB0BF1971FED81EB00D290DE /* view_4_item_11.png */,
-				AB0BF1981FED81EB00D290DE /* view_4_item_12.png */,
-				AB0BF1991FED81EB00D290DE /* view_4_item_13.png */,
-				AB0BF19A1FED81EB00D290DE /* view_4_item_14.png */,
-				AB0BF19B1FED81EB00D290DE /* view_4_item_15.png */,
-				AB0BF19C1FED81EB00D290DE /* view_4_item_16.png */,
-				AB0BF19D1FED81EB00D290DE /* view_4_item_17.png */,
-				AB0BF19E1FED81EB00D290DE /* view_4_item_18.png */,
-				AB0BF19F1FED81EB00D290DE /* view_4_item_19.png */,
-				AB0BF1A01FED81EB00D290DE /* view_4_item_2.png */,
-				AB0BF1A11FED81EB00D290DE /* view_4_item_20.png */,
-				AB0BF1A21FED81EB00D290DE /* view_4_item_21.png */,
-				AB0BF1A31FED81EB00D290DE /* view_4_item_22.png */,
-				AB0BF1A41FED81EB00D290DE /* view_4_item_23.png */,
-				AB0BF1A51FED81EB00D290DE /* view_4_item_24.png */,
-				AB0BF1A61FED81EB00D290DE /* view_4_item_25.png */,
-				AB0BF1A71FED81EB00D290DE /* view_4_item_3.png */,
-				AB0BF1A81FED81EB00D290DE /* view_4_item_4.png */,
-				AB0BF1A91FED81EB00D290DE /* view_4_item_5.png */,
-				AB0BF1AA1FED81EB00D290DE /* view_4_item_6.png */,
-				AB0BF1AB1FED81EB00D290DE /* view_4_item_7.png */,
-				AB0BF1AC1FED81EB00D290DE /* view_4_item_8.png */,
-				AB0BF1AD1FED81EB00D290DE /* view_4_item_9.png */,
-			);
-			path = normal_items;
-			sourceTree = "<group>";
-		};
-		AB0BF1AE1FED81EB00D290DE /* puzzle_items */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1AF1FED81EB00D290DE /* puzzle_view_4_item_0.jpg */,
-				AB0BF1B01FED81EB00D290DE /* puzzle_view_4_item_1.jpg */,
-				AB0BF1B11FED81EB00D290DE /* puzzle_view_4_item_10.jpg */,
-				AB0BF1B21FED81EB00D290DE /* puzzle_view_4_item_11.jpg */,
-				AB0BF1B31FED81EB00D290DE /* puzzle_view_4_item_12.jpg */,
-				AB0BF1B41FED81EB00D290DE /* puzzle_view_4_item_13.jpg */,
-				AB0BF1B51FED81EB00D290DE /* puzzle_view_4_item_14.jpg */,
-				AB0BF1B61FED81EB00D290DE /* puzzle_view_4_item_15.jpg */,
-				AB0BF1B71FED81EB00D290DE /* puzzle_view_4_item_16.jpg */,
-				AB0BF1B81FED81EB00D290DE /* puzzle_view_4_item_17.jpg */,
-				AB0BF1B91FED81EB00D290DE /* puzzle_view_4_item_18.jpg */,
-				AB0BF1BA1FED81EB00D290DE /* puzzle_view_4_item_19.jpg */,
-				AB0BF1BB1FED81EB00D290DE /* puzzle_view_4_item_2.jpg */,
-				AB0BF1BC1FED81EB00D290DE /* puzzle_view_4_item_20.jpg */,
-				AB0BF1BD1FED81EB00D290DE /* puzzle_view_4_item_21.jpg */,
-				AB0BF1BE1FED81EB00D290DE /* puzzle_view_4_item_22.jpg */,
-				AB0BF1BF1FED81EB00D290DE /* puzzle_view_4_item_23.jpg */,
-				AB0BF1C01FED81EB00D290DE /* puzzle_view_4_item_24.jpg */,
-				AB0BF1C11FED81EB00D290DE /* puzzle_view_4_item_25.jpg */,
-				AB0BF1C21FED81EB00D290DE /* puzzle_view_4_item_3.jpg */,
-				AB0BF1C31FED81EB00D290DE /* puzzle_view_4_item_4.jpg */,
-				AB0BF1C41FED81EB00D290DE /* puzzle_view_4_item_5.jpg */,
-				AB0BF1C51FED81EB00D290DE /* puzzle_view_4_item_6.jpg */,
-				AB0BF1C61FED81EB00D290DE /* puzzle_view_4_item_7.jpg */,
-				AB0BF1C71FED81EB00D290DE /* puzzle_view_4_item_8.jpg */,
-				AB0BF1C81FED81EB00D290DE /* puzzle_view_4_item_9.jpg */,
-			);
-			path = puzzle_items;
-			sourceTree = "<group>";
-		};
-		AB0BF1C91FED81EB00D290DE /* puzzle_menu_items */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1CA1FED81EB00D290DE /* menu_puzzle_view_4_item_0.jpg */,
-				AB0BF1CB1FED81EB00D290DE /* menu_puzzle_view_4_item_1.jpg */,
-				AB0BF1CC1FED81EB00D290DE /* menu_puzzle_view_4_item_10.jpg */,
-				AB0BF1CD1FED81EB00D290DE /* menu_puzzle_view_4_item_11.jpg */,
-				AB0BF1CE1FED81EB00D290DE /* menu_puzzle_view_4_item_12.jpg */,
-				AB0BF1CF1FED81EB00D290DE /* menu_puzzle_view_4_item_13.jpg */,
-				AB0BF1D01FED81EB00D290DE /* menu_puzzle_view_4_item_14.jpg */,
-				AB0BF1D11FED81EB00D290DE /* menu_puzzle_view_4_item_15.jpg */,
-				AB0BF1D21FED81EB00D290DE /* menu_puzzle_view_4_item_16.jpg */,
-				AB0BF1D31FED81EB00D290DE /* menu_puzzle_view_4_item_17.jpg */,
-				AB0BF1D41FED81EB00D290DE /* menu_puzzle_view_4_item_18.jpg */,
-				AB0BF1D51FED81EB00D290DE /* menu_puzzle_view_4_item_19.jpg */,
-				AB0BF1D61FED81EB00D290DE /* menu_puzzle_view_4_item_2.jpg */,
-				AB0BF1D71FED81EB00D290DE /* menu_puzzle_view_4_item_20.jpg */,
-				AB0BF1D81FED81EB00D290DE /* menu_puzzle_view_4_item_21.jpg */,
-				AB0BF1D91FED81EB00D290DE /* menu_puzzle_view_4_item_22.jpg */,
-				AB0BF1DA1FED81EB00D290DE /* menu_puzzle_view_4_item_23.jpg */,
-				AB0BF1DB1FED81EB00D290DE /* menu_puzzle_view_4_item_24.jpg */,
-				AB0BF1DC1FED81EB00D290DE /* menu_puzzle_view_4_item_25.jpg */,
-				AB0BF1DD1FED81EB00D290DE /* menu_puzzle_view_4_item_3.jpg */,
-				AB0BF1DE1FED81EB00D290DE /* menu_puzzle_view_4_item_4.jpg */,
-				AB0BF1DF1FED81EB00D290DE /* menu_puzzle_view_4_item_5.jpg */,
-				AB0BF1E01FED81EB00D290DE /* menu_puzzle_view_4_item_6.jpg */,
-				AB0BF1E11FED81EB00D290DE /* menu_puzzle_view_4_item_7.jpg */,
-				AB0BF1E21FED81EB00D290DE /* menu_puzzle_view_4_item_8.jpg */,
-				AB0BF1E31FED81EB00D290DE /* menu_puzzle_view_4_item_9.jpg */,
-			);
-			path = puzzle_menu_items;
-			sourceTree = "<group>";
-		};
-		AB0BF1E41FED81EB00D290DE /* white_items */ = {
-			isa = PBXGroup;
-			children = (
-				AB0BF1E51FED81EB00D290DE /* white_view_4_item_0.png */,
-				AB0BF1E61FED81EB00D290DE /* white_view_4_item_1.png */,
-				AB0BF1E71FED81EB00D290DE /* white_view_4_item_10.png */,
-				AB0BF1E81FED81EB00D290DE /* white_view_4_item_11.png */,
-				AB0BF1E91FED81EB00D290DE /* white_view_4_item_12.png */,
-				AB0BF1EA1FED81EB00D290DE /* white_view_4_item_13.png */,
-				AB0BF1EB1FED81EB00D290DE /* white_view_4_item_14.png */,
-				AB0BF1EC1FED81EB00D290DE /* white_view_4_item_15.png */,
-				AB0BF1ED1FED81EB00D290DE /* white_view_4_item_16.png */,
-				AB0BF1EE1FED81EB00D290DE /* white_view_4_item_17.png */,
-				AB0BF1EF1FED81EB00D290DE /* white_view_4_item_18.png */,
-				AB0BF1F01FED81EB00D290DE /* white_view_4_item_19.png */,
-				AB0BF1F11FED81EB00D290DE /* white_view_4_item_2.png */,
-				AB0BF1F21FED81EB00D290DE /* white_view_4_item_20.png */,
-				AB0BF1F31FED81EB00D290DE /* white_view_4_item_21.png */,
-				AB0BF1F41FED81EB00D290DE /* white_view_4_item_22.png */,
-				AB0BF1F51FED81EB00D290DE /* white_view_4_item_23.png */,
-				AB0BF1F61FED81EB00D290DE /* white_view_4_item_24.png */,
-				AB0BF1F71FED81EB00D290DE /* white_view_4_item_25.png */,
-				AB0BF1F81FED81EB00D290DE /* white_view_4_item_3.png */,
-				AB0BF1F91FED81EB00D290DE /* white_view_4_item_4.png */,
-				AB0BF1FA1FED81EB00D290DE /* white_view_4_item_5.png */,
-				AB0BF1FB1FED81EB00D290DE /* white_view_4_item_6.png */,
-				AB0BF1FC1FED81EB00D290DE /* white_view_4_item_7.png */,
-				AB0BF1FD1FED81EB00D290DE /* white_view_4_item_8.png */,
-				AB0BF1FE1FED81EB00D290DE /* white_view_4_item_9.png */,
-			);
-			path = white_items;
 			sourceTree = "<group>";
 		};
 		AB0BF2811FED820C00D290DE /* items */ = {
@@ -1749,65 +1292,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB0BF26E1FED81EC00D290DE /* white_view_4_item_15.png in Resources */,
 				AB8546B3201A8E9E00267830 /* bullet_4_2.png in Resources */,
 				AB7113A11FFD37A30095DCFF /* ufo_top_base_5.png in Resources */,
 				AB8546C9201A8E9E00267830 /* bullet_8_4.png in Resources */,
 				AB0BF2B51FED820C00D290DE /* view_4_item_7.mp3 in Resources */,
 				AB0BF29F1FED820C00D290DE /* view_4_item_1.mp3 in Resources */,
-				AB0BF2481FED81EC00D290DE /* puzzle_view_4_item_5.jpg in Resources */,
 				ABD459D4200BD34F00FE8212 /* planet_2_0.png in Resources */,
 				ABED9DB12005A2D4004E13D8 /* pop_up_button.png in Resources */,
 				AB8546BA201A8E9E00267830 /* bullet_5_4.png in Resources */,
 				AB8546C5201A8E9E00267830 /* bullet_8_0.png in Resources */,
 				AB0BF2DA1FF1CD9400D290DE /* Assets.xcassets in Resources */,
 				ABD459D7200BD34F00FE8212 /* planet_2_3.png in Resources */,
-				AB0BF2701FED81EC00D290DE /* white_view_4_item_17.png in Resources */,
 				ABD459CE200BD34F00FE8212 /* map_root_1.png in Resources */,
-				AB0BF23D1FED81EC00D290DE /* puzzle_view_4_item_18.jpg in Resources */,
 				AB0BF1641FEA5C4C00D290DE /* alien_0_1.png in Resources */,
 				AB8546AF201A8E9E00267830 /* bullet_3_3.png in Resources */,
-				AB0BF2441FED81EC00D290DE /* puzzle_view_4_item_24.jpg in Resources */,
 				AB0BF2AB1FED820C00D290DE /* view_4_item_20.mp3 in Resources */,
 				AB0BF12A1FE8FE2100D290DE /* bg_music.m4a in Resources */,
 				AB8546CD201A8E9E00267830 /* bullet_9_3.png in Resources */,
-				AB0BF21C1FED81EB00D290DE /* view_4_item_11.png in Resources */,
-				AB0BF2491FED81EC00D290DE /* puzzle_view_4_item_6.jpg in Resources */,
-				AB0BF24B1FED81EC00D290DE /* puzzle_view_4_item_8.jpg in Resources */,
-				AB0BF2111FED81EB00D290DE /* coloring_view_4_item_25.png in Resources */,
 				AB0BF2AF1FED820C00D290DE /* view_4_item_24.mp3 in Resources */,
 				AB1F925B1FF6805E00E0BBCD /* enemy_1.png in Resources */,
 				ABD459DA200BD34F00FE8212 /* planet_3_2.png in Resources */,
-				AB0BF2261FED81EB00D290DE /* view_4_item_20.png in Resources */,
-				AB0BF2401FED81EC00D290DE /* puzzle_view_4_item_20.jpg in Resources */,
 				AB7113A41FFD37A30095DCFF /* ufo_top_base_8.png in Resources */,
 				AB0BF2AD1FED820C00D290DE /* view_4_item_22.mp3 in Resources */,
-				AB0BF2501FED81EC00D290DE /* menu_puzzle_view_4_item_11.jpg in Resources */,
-				AB0BF2711FED81EC00D290DE /* white_view_4_item_18.png in Resources */,
 				AB0BF2A81FED820C00D290DE /* view_4_item_18.mp3 in Resources */,
 				AB8546BB201A8E9E00267830 /* bullet_6_0.png in Resources */,
 				ABD459ED200BD34F00FE8212 /* planet_8_2.png in Resources */,
-				AB0BF2051FED81EB00D290DE /* coloring_view_4_item_14.png in Resources */,
-				AB0BF2781FED81EC00D290DE /* white_view_4_item_24.png in Resources */,
-				AB0BF1FF1FED81EB00D290DE /* coloring_view_4_item_0.png in Resources */,
 				AB0BF1261FE83DBC00D290DE /* squize.mp3 in Resources */,
 				AB7113A71FFD37A30095DCFF /* ufo_top_lights_1.png in Resources */,
-				AB0BF25A1FED81EC00D290DE /* menu_puzzle_view_4_item_20.jpg in Resources */,
 				ABD459A2200A0F2F00FE8212 /* map_button.png in Resources */,
 				ABD459E9200BD34F00FE8212 /* planet_7_1.png in Resources */,
 				AB7113B01FFD37A30095DCFF /* ufo_top_lights_6.png in Resources */,
-				AB0BF2791FED81EC00D290DE /* white_view_4_item_25.png in Resources */,
 				ABD459D8200BD34F00FE8212 /* planet_3_0.png in Resources */,
-				AB0BF22B1FED81EB00D290DE /* view_4_item_25.png in Resources */,
-				AB0BF2661FED81EC00D290DE /* menu_puzzle_view_4_item_9.jpg in Resources */,
-				AB0BF25C1FED81EC00D290DE /* menu_puzzle_view_4_item_22.jpg in Resources */,
 				AB0BF16F1FEA5C4C00D290DE /* ufo_lights_5.png in Resources */,
-				AB0BF2651FED81EC00D290DE /* menu_puzzle_view_4_item_8.jpg in Resources */,
 				AB0BF2D01FED835700D290DE /* trash_button.png in Resources */,
-				AB0BF2311FED81EB00D290DE /* view_4_item_8.png in Resources */,
-				AB0BF21E1FED81EB00D290DE /* view_4_item_13.png in Resources */,
-				AB0BF2671FED81EC00D290DE /* white_view_4_item_0.png in Resources */,
-				AB0BF2001FED81EB00D290DE /* coloring_view_4_item_1.png in Resources */,
 				AB0BF1671FEA5C4C00D290DE /* ufo_base.png in Resources */,
 				AB8546B8201A8E9E00267830 /* bullet_5_2.png in Resources */,
 				AB85468D201A8E9E00267830 /* bullet_0_4.png in Resources */,
@@ -1816,29 +1333,17 @@
 				ABD459E5200BD34F00FE8212 /* planet_6_1.png in Resources */,
 				AB0BF1491FE9948600D290DE /* ufo_pass.mp3 in Resources */,
 				AB0BF2A41FED820C00D290DE /* view_4_item_14.mp3 in Resources */,
-				AB0BF2471FED81EC00D290DE /* puzzle_view_4_item_4.jpg in Resources */,
-				AB0BF2061FED81EB00D290DE /* coloring_view_4_item_15.png in Resources */,
-				AB0BF2801FED81EC00D290DE /* white_view_4_item_9.png in Resources */,
 				ABD459CF200BD34F00FE8212 /* map_root_2.png in Resources */,
 				AB0BF2CF1FED835700D290DE /* tilt_disable_button.png in Resources */,
 				AB0BF11A1FE83DBC00D290DE /* cheers.mp3 in Resources */,
-				AB0BF22F1FED81EB00D290DE /* view_4_item_6.png in Resources */,
-				AB0BF27B1FED81EC00D290DE /* white_view_4_item_4.png in Resources */,
-				AB0BF25D1FED81EC00D290DE /* menu_puzzle_view_4_item_23.jpg in Resources */,
 				AB8546A8201A8E9E00267830 /* bullet_2_1.png in Resources */,
 				AB7113761FFD20EE0095DCFF /* stars.png in Resources */,
 				AB0BF2A21FED820C00D290DE /* view_4_item_12.mp3 in Resources */,
 				AB0BF1691FEA5C4C00D290DE /* ufo_hood.png in Resources */,
 				ABD459E1200BD34F00FE8212 /* planet_5_1.png in Resources */,
-				AB0BF2181FED81EB00D290DE /* coloring_view_4_item_9.png in Resources */,
 				ABD459A1200A0F2F00FE8212 /* pause_button.png in Resources */,
-				AB0BF2381FED81EC00D290DE /* puzzle_view_4_item_13.jpg in Resources */,
 				ABD459D3200BD34F00FE8212 /* planet_1_3.png in Resources */,
-				AB0BF2751FED81EC00D290DE /* white_view_4_item_21.png in Resources */,
 				AB0BF2F01FF2761C00D290DE /* obstacle_0.png in Resources */,
-				AB0BF2731FED81EC00D290DE /* white_view_4_item_2.png in Resources */,
-				AB0BF2321FED81EB00D290DE /* view_4_item_9.png in Resources */,
-				AB0BF2741FED81EC00D290DE /* white_view_4_item_20.png in Resources */,
 				ABD459E4200BD34F00FE8212 /* planet_6_0.png in Resources */,
 				AB0BF1461FE9948600D290DE /* laser_short.mp3 in Resources */,
 				ABD459EE200BD34F00FE8212 /* planet_8_3.png in Resources */,
@@ -1846,27 +1351,20 @@
 				AB0BF1181FE83DBC00D290DE /* bells_chimes.mp3 in Resources */,
 				ABD459E2200BD34F00FE8212 /* planet_5_2.png in Resources */,
 				AB7113AE1FFD37A30095DCFF /* ufo_top_lights_4.png in Resources */,
-				AB0BF2201FED81EB00D290DE /* view_4_item_15.png in Resources */,
-				AB0BF22D1FED81EB00D290DE /* view_4_item_4.png in Resources */,
 				ABED9DAB2005A2C4004E13D8 /* score_bar_bg.png in Resources */,
-				AB0BF2391FED81EC00D290DE /* puzzle_view_4_item_14.jpg in Resources */,
 				AB8546AC201A8E9E00267830 /* bullet_3_0.png in Resources */,
 				AB0BF2CA1FED835700D290DE /* help_button_hide.png in Resources */,
-				AB0BF24F1FED81EC00D290DE /* menu_puzzle_view_4_item_10.jpg in Resources */,
 				AB0BF1271FE83DBC00D290DE /* throw.mp3 in Resources */,
 				AB8546B1201A8E9E00267830 /* bullet_4_0.png in Resources */,
 				AB7113A51FFD37A30095DCFF /* ufo_top_base_9.png in Resources */,
 				AB0BF1651FEA5C4C00D290DE /* alien_1_0.png in Resources */,
 				AB8546CC201A8E9E00267830 /* bullet_9_2.png in Resources */,
 				AB0BF2B11FED820C00D290DE /* view_4_item_3.mp3 in Resources */,
-				AB0BF22A1FED81EB00D290DE /* view_4_item_24.png in Resources */,
 				AB8546B2201A8E9E00267830 /* bullet_4_1.png in Resources */,
-				AB0BF2361FED81EC00D290DE /* puzzle_view_4_item_11.jpg in Resources */,
 				AB8546CE201A8E9E00267830 /* bullet_9_4.png in Resources */,
 				AB7113CA20014E140095DCFF /* blow_particles.sks in Resources */,
 				ABED9DB32005A591004E13D8 /* pop_up_close_button.png in Resources */,
 				AB0BF2CB1FED835700D290DE /* home_button.png in Resources */,
-				AB0BF2431FED81EC00D290DE /* puzzle_view_4_item_23.jpg in Resources */,
 				AB0BF16B1FEA5C4C00D290DE /* ufo_lights_1.png in Resources */,
 				ABED9DB02005A2D4004E13D8 /* pop_up_bg.png in Resources */,
 				AB0BF2FB1FF2DA3000D290DE /* bg_anim_sunset.jpg in Resources */,
@@ -1874,41 +1372,28 @@
 				AB8546B5201A8E9E00267830 /* bullet_4_4.png in Resources */,
 				AB0BF11E1FE83DBC00D290DE /* gift_miss.mp3 in Resources */,
 				AB0BF0C91FE288DC00D290DE /* Assets.xcassets in Resources */,
-				AB0BF2101FED81EB00D290DE /* coloring_view_4_item_24.png in Resources */,
 				AB854690201A8E9E00267830 /* bullet_1_2.png in Resources */,
 				AB0BF16C1FEA5C4C00D290DE /* ufo_lights_2.png in Resources */,
 				AB0BF2B61FED820C00D290DE /* view_4_item_8.mp3 in Resources */,
 				AB0BF16A1FEA5C4C00D290DE /* ufo_lights_0.png in Resources */,
-				AB0BF2721FED81EC00D290DE /* white_view_4_item_19.png in Resources */,
 				AB7113A21FFD37A30095DCFF /* ufo_top_base_6.png in Resources */,
-				AB0BF2011FED81EB00D290DE /* coloring_view_4_item_10.png in Resources */,
 				AB0BF1661FEA5C4C00D290DE /* alien_1_1.png in Resources */,
 				AB7113B21FFD37A30095DCFF /* ufo_top_lights_8.png in Resources */,
 				AB0BF2CD1FED835700D290DE /* reset_button.png in Resources */,
-				AB0BF2151FED81EB00D290DE /* coloring_view_4_item_6.png in Resources */,
 				AB85469E201A8E9E00267830 /* bullet_12_1.png in Resources */,
-				AB0BF21B1FED81EB00D290DE /* view_4_item_10.png in Resources */,
 				AB0BF2A71FED820C00D290DE /* view_4_item_17.mp3 in Resources */,
-				AB0BF2281FED81EB00D290DE /* view_4_item_22.png in Resources */,
 				AB0BF1221FE83DBC00D290DE /* kid_laugh_1.mp3 in Resources */,
-				AB0BF2221FED81EB00D290DE /* view_4_item_17.png in Resources */,
 				ABD459E8200BD34F00FE8212 /* planet_7_0.png in Resources */,
 				ABED9DAA2005A2C4004E13D8 /* life_bar_bg.png in Resources */,
-				AB0BF23C1FED81EC00D290DE /* puzzle_view_4_item_17.jpg in Resources */,
 				AB854692201A8E9E00267830 /* bullet_1_4.png in Resources */,
-				AB0BF2571FED81EC00D290DE /* menu_puzzle_view_4_item_18.jpg in Resources */,
 				ABD459A4200A16BC00FE8212 /* play_button.png in Resources */,
 				ABD459E6200BD34F00FE8212 /* planet_6_2.png in Resources */,
 				AB0BF2AC1FED820C00D290DE /* view_4_item_21.mp3 in Resources */,
-				AB0BF2191FED81EB00D290DE /* view_4_item_0.png in Resources */,
 				AB854691201A8E9E00267830 /* bullet_1_3.png in Resources */,
 				ABD459D1200BD34F00FE8212 /* planet_1_1.png in Resources */,
 				AB0BF11D1FE83DBC00D290DE /* gift_burns.mp3 in Resources */,
 				AB854695201A8E9E00267830 /* bullet_10_2.png in Resources */,
-				AB0BF2081FED81EB00D290DE /* coloring_view_4_item_17.png in Resources */,
 				AB0BF29E1FED820C00D290DE /* view_4_item_0.mp3 in Resources */,
-				AB0BF27D1FED81EC00D290DE /* white_view_4_item_6.png in Resources */,
-				AB0BF24D1FED81EC00D290DE /* menu_puzzle_view_4_item_0.jpg in Resources */,
 				AB71139C1FFD37A30095DCFF /* ufo_top_base_12.png in Resources */,
 				AB0BF1631FEA5C4C00D290DE /* alien_0_0.png in Resources */,
 				AB0BF0F71FE3FBA500D290DE /* MainScene.xcassets in Resources */,
@@ -1919,19 +1404,13 @@
 				AB8546C8201A8E9E00267830 /* bullet_8_3.png in Resources */,
 				AB85468B201A8E9E00267830 /* bullet_0_2.png in Resources */,
 				AB8546B4201A8E9E00267830 /* bullet_4_3.png in Resources */,
-				AB0BF22C1FED81EB00D290DE /* view_4_item_3.png in Resources */,
 				AB7113A81FFD37A30095DCFF /* ufo_top_lights_10.png in Resources */,
 				AB8546BC201A8E9E00267830 /* bullet_6_1.png in Resources */,
 				AB8546A6201A8E9E00267830 /* bullet_13_4.png in Resources */,
 				AB8546A7201A8E9E00267830 /* bullet_2_0.png in Resources */,
 				AB854694201A8E9E00267830 /* bullet_10_1.png in Resources */,
-				AB0BF2371FED81EC00D290DE /* puzzle_view_4_item_12.jpg in Resources */,
-				AB0BF2161FED81EB00D290DE /* coloring_view_4_item_7.png in Resources */,
-				AB0BF24A1FED81EC00D290DE /* puzzle_view_4_item_7.jpg in Resources */,
 				AB0BF2B21FED820C00D290DE /* view_4_item_4.mp3 in Resources */,
-				AB0BF2041FED81EB00D290DE /* coloring_view_4_item_13.png in Resources */,
 				AB1F925A1FF6805E00E0BBCD /* enemy_0.png in Resources */,
-				AB0BF25B1FED81EC00D290DE /* menu_puzzle_view_4_item_21.jpg in Resources */,
 				AB8546C7201A8E9E00267830 /* bullet_8_2.png in Resources */,
 				AB0BF2A91FED820C00D290DE /* view_4_item_19.mp3 in Resources */,
 				AB0BF11F1FE83DBC00D290DE /* gun_pressd.mp3 in Resources */,
@@ -1939,9 +1418,6 @@
 				AB0BF2C81FED835700D290DE /* camera_button.png in Resources */,
 				AB8546A4201A8E9E00267830 /* bullet_13_2.png in Resources */,
 				AB85469B201A8E9E00267830 /* bullet_11_3.png in Resources */,
-				AB0BF21A1FED81EB00D290DE /* view_4_item_1.png in Resources */,
-				AB0BF25E1FED81EC00D290DE /* menu_puzzle_view_4_item_24.jpg in Resources */,
-				AB0BF27E1FED81EC00D290DE /* white_view_4_item_7.png in Resources */,
 				AB0BF2E71FF275C600D290DE /* bg_anim_0.png in Resources */,
 				AB0BF1481FE9948600D290DE /* ufo_hit_sfx.mp3 in Resources */,
 				AB0BF1171FE83DBC00D290DE /* arrow_fx.mp3 in Resources */,
@@ -1951,90 +1427,57 @@
 				AB7113AF1FFD37A30095DCFF /* ufo_top_lights_5.png in Resources */,
 				ABD459D6200BD34F00FE8212 /* planet_2_2.png in Resources */,
 				AB0BF1251FE83DBC00D290DE /* spring_short_fx.mp3 in Resources */,
-				AB0BF2631FED81EC00D290DE /* menu_puzzle_view_4_item_6.jpg in Resources */,
 				AB0BF2FA1FF2DA3000D290DE /* bg_anim_dark.jpg in Resources */,
-				AB0BF2411FED81EC00D290DE /* puzzle_view_4_item_21.jpg in Resources */,
 				ABD459EA200BD34F00FE8212 /* planet_7_2.png in Resources */,
 				AB854698201A8E9E00267830 /* bullet_11_0.png in Resources */,
-				AB0BF2601FED81EC00D290DE /* menu_puzzle_view_4_item_3.jpg in Resources */,
 				ABD459E3200BD34F00FE8212 /* planet_5_3.png in Resources */,
-				AB0BF2511FED81EC00D290DE /* menu_puzzle_view_4_item_12.jpg in Resources */,
 				AB7113AD1FFD37A30095DCFF /* ufo_top_lights_3.png in Resources */,
 				AB0BF1211FE83DBC00D290DE /* kid_laugh_0.mp3 in Resources */,
-				AB0BF2541FED81EC00D290DE /* menu_puzzle_view_4_item_15.jpg in Resources */,
-				AB0BF2231FED81EB00D290DE /* view_4_item_18.png in Resources */,
-				AB0BF20B1FED81EB00D290DE /* coloring_view_4_item_2.png in Resources */,
 				ABD459E0200BD34F00FE8212 /* planet_5_0.png in Resources */,
-				AB0BF2331FED81EB00D290DE /* puzzle_view_4_item_0.jpg in Resources */,
-				AB0BF26C1FED81EC00D290DE /* white_view_4_item_13.png in Resources */,
 				AB0BF1441FE9948600D290DE /* alien_scared.mp3 in Resources */,
 				AB0BF2DE1FF1D17D00D290DE /* MagicParticle.sks in Resources */,
 				ABD459D9200BD34F00FE8212 /* planet_3_1.png in Resources */,
-				AB0BF2771FED81EC00D290DE /* white_view_4_item_23.png in Resources */,
 				AB0BF2A31FED820C00D290DE /* view_4_item_13.mp3 in Resources */,
-				AB0BF2341FED81EB00D290DE /* puzzle_view_4_item_1.jpg in Resources */,
 				AB0BF11C1FE83DBC00D290DE /* dragon.mp3 in Resources */,
 				AB8546AD201A8E9E00267830 /* bullet_3_1.png in Resources */,
 				ABD459DE200BD34F00FE8212 /* planet_4_2.png in Resources */,
 				AB7113B11FFD37A30095DCFF /* ufo_top_lights_7.png in Resources */,
-				AB0BF2031FED81EB00D290DE /* coloring_view_4_item_12.png in Resources */,
-				AB0BF2451FED81EC00D290DE /* puzzle_view_4_item_25.jpg in Resources */,
 				ABD459D0200BD34F00FE8212 /* planet_1_0.png in Resources */,
 				AB0BF2C71FED835700D290DE /* back_button.png in Resources */,
 				AB8546B9201A8E9E00267830 /* bullet_5_3.png in Resources */,
 				ABED9DA92005A2C4004E13D8 /* life_bar.png in Resources */,
-				AB0BF27A1FED81EC00D290DE /* white_view_4_item_3.png in Resources */,
 				AB0BF2A01FED820C00D290DE /* view_4_item_10.mp3 in Resources */,
-				AB0BF25F1FED81EC00D290DE /* menu_puzzle_view_4_item_25.jpg in Resources */,
 				ABD459DF200BD34F00FE8212 /* planet_4_3.png in Resources */,
 				AB8546AB201A8E9E00267830 /* bullet_2_4.png in Resources */,
 				AB8546BE201A8E9E00267830 /* bullet_6_3.png in Resources */,
 				AB71139B1FFD37A30095DCFF /* ufo_top_base_11.png in Resources */,
-				AB0BF22E1FED81EB00D290DE /* view_4_item_5.png in Resources */,
 				AB8546A1201A8E9E00267830 /* bullet_12_4.png in Resources */,
 				ABD459CD200BD34F00FE8212 /* map_root_0.png in Resources */,
-				AB0BF20C1FED81EB00D290DE /* coloring_view_4_item_20.png in Resources */,
-				AB0BF2681FED81EC00D290DE /* white_view_4_item_1.png in Resources */,
-				AB0BF2071FED81EB00D290DE /* coloring_view_4_item_16.png in Resources */,
 				AB7113AC1FFD37A30095DCFF /* ufo_top_lights_2.png in Resources */,
-				AB0BF2691FED81EC00D290DE /* white_view_4_item_10.png in Resources */,
-				AB0BF20A1FED81EB00D290DE /* coloring_view_4_item_19.png in Resources */,
 				AB0BF1451FE9948600D290DE /* Laser_sfx.mp3 in Resources */,
 				AB0BF1681FEA5C4C00D290DE /* ufo_base_back.png in Resources */,
 				AB71139D1FFD37A30095DCFF /* ufo_top_base_13.png in Resources */,
 				AB8546B7201A8E9E00267830 /* bullet_5_1.png in Resources */,
 				AB0BF2B41FED820C00D290DE /* view_4_item_6.mp3 in Resources */,
 				AB71139A1FFD37A30095DCFF /* ufo_top_base_10.png in Resources */,
-				AB0BF2131FED81EB00D290DE /* coloring_view_4_item_4.png in Resources */,
 				AB8546C1201A8E9E00267830 /* bullet_7_1.png in Resources */,
 				ABD459EB200BD34F00FE8212 /* planet_8_0.png in Resources */,
-				AB0BF2241FED81EB00D290DE /* view_4_item_19.png in Resources */,
 				AB7113BD1FFE1F700095DCFF /* menu_left_button.png in Resources */,
 				AB0BF2B01FED820C00D290DE /* view_4_item_25.mp3 in Resources */,
-				AB0BF20D1FED81EB00D290DE /* coloring_view_4_item_21.png in Resources */,
 				AB7113C72000FC030095DCFF /* wide_jet_particles.sks in Resources */,
 				ABD459D5200BD34F00FE8212 /* planet_2_1.png in Resources */,
 				AB0BF2F21FF2761C00D290DE /* obstacle_1.png in Resources */,
-				AB0BF2121FED81EB00D290DE /* coloring_view_4_item_3.png in Resources */,
-				AB0BF26F1FED81EC00D290DE /* white_view_4_item_16.png in Resources */,
-				AB0BF27C1FED81EC00D290DE /* white_view_4_item_5.png in Resources */,
-				AB0BF2581FED81EC00D290DE /* menu_puzzle_view_4_item_19.jpg in Resources */,
 				AB0BF2A51FED820C00D290DE /* view_4_item_15.mp3 in Resources */,
-				AB0BF2291FED81EB00D290DE /* view_4_item_23.png in Resources */,
 				AB8546B0201A8E9E00267830 /* bullet_3_4.png in Resources */,
 				ABD459E7200BD34F00FE8212 /* planet_6_3.png in Resources */,
 				AB0BF2DC1FF1D15F00D290DE /* FirefliesParticle.sks in Resources */,
-				AB0BF26A1FED81EC00D290DE /* white_view_4_item_11.png in Resources */,
 				AB8546A0201A8E9E00267830 /* bullet_12_3.png in Resources */,
-				AB0BF20E1FED81EB00D290DE /* coloring_view_4_item_22.png in Resources */,
 				ABD459D2200BD34F00FE8212 /* planet_1_2.png in Resources */,
 				AB7113981FFD37A30095DCFF /* ufo_top_base_0.png in Resources */,
-				AB0BF2171FED81EB00D290DE /* coloring_view_4_item_8.png in Resources */,
 				AB85469F201A8E9E00267830 /* bullet_12_2.png in Resources */,
 				ABD459DB200BD34F00FE8212 /* planet_3_3.png in Resources */,
 				AB0BF1281FE83DBC00D290DE /* witch_laugh.mp3 in Resources */,
 				AB7113CB20014E140095DCFF /* coins_particles.sks in Resources */,
-				AB0BF20F1FED81EB00D290DE /* coloring_view_4_item_23.png in Resources */,
 				AB8546C0201A8E9E00267830 /* bullet_7_0.png in Resources */,
 				AB8546C3201A8E9E00267830 /* bullet_7_3.png in Resources */,
 				AB854628201A89B400267830 /* enemy_bullet_0.png in Resources */,
@@ -2043,17 +1486,12 @@
 				ABD459DD200BD34F00FE8212 /* planet_4_1.png in Resources */,
 				AB8546A5201A8E9E00267830 /* bullet_13_3.png in Resources */,
 				AB0BF1201FE83DBC00D290DE /* gun_shot.mp3 in Resources */,
-				AB0BF23B1FED81EC00D290DE /* puzzle_view_4_item_16.jpg in Resources */,
-				AB0BF2211FED81EB00D290DE /* view_4_item_16.png in Resources */,
 				AB854693201A8E9E00267830 /* bullet_10_0.png in Resources */,
 				AB0BF1701FEA5C4C00D290DE /* ufo_lights_6.png in Resources */,
 				AB0BF1191FE83DBC00D290DE /* camera_button.mp3 in Resources */,
 				AB0BF2A11FED820C00D290DE /* view_4_item_11.mp3 in Resources */,
 				AB85468E201A8E9E00267830 /* bullet_1_0.png in Resources */,
 				AB0BF1471FE9948600D290DE /* ufo_button_sfx.mp3 in Resources */,
-				AB0BF2421FED81EC00D290DE /* puzzle_view_4_item_22.jpg in Resources */,
-				AB0BF2461FED81EC00D290DE /* puzzle_view_4_item_3.jpg in Resources */,
-				AB0BF2351FED81EB00D290DE /* puzzle_view_4_item_10.jpg in Resources */,
 				AB8546A9201A8E9E00267830 /* bullet_2_2.png in Resources */,
 				AB7113A01FFD37A30095DCFF /* ufo_top_base_4.png in Resources */,
 				ABD459EC200BD34F00FE8212 /* planet_8_1.png in Resources */,
@@ -2064,39 +1502,22 @@
 				AB7113C520004BE50095DCFF /* space_coin.png in Resources */,
 				AB854689201A8E9E00267830 /* bullet_0_0.png in Resources */,
 				AB7113AB1FFD37A30095DCFF /* ufo_top_lights_13.png in Resources */,
-				AB0BF2591FED81EC00D290DE /* menu_puzzle_view_4_item_2.jpg in Resources */,
-				AB0BF2531FED81EC00D290DE /* menu_puzzle_view_4_item_14.jpg in Resources */,
-				AB0BF26B1FED81EC00D290DE /* white_view_4_item_12.png in Resources */,
-				AB0BF23F1FED81EC00D290DE /* puzzle_view_4_item_2.jpg in Resources */,
-				AB0BF2561FED81EC00D290DE /* menu_puzzle_view_4_item_17.jpg in Resources */,
 				AB8546A2201A8E9E00267830 /* bullet_13_0.png in Resources */,
-				AB0BF2641FED81EC00D290DE /* menu_puzzle_view_4_item_7.jpg in Resources */,
 				AB85468A201A8E9E00267830 /* bullet_0_1.png in Resources */,
-				AB0BF2271FED81EB00D290DE /* view_4_item_21.png in Resources */,
 				AB0BF2D91FF1CD9400D290DE /* center_jet_particles.sks in Resources */,
 				AB71139E1FFD37A30095DCFF /* ufo_top_base_2.png in Resources */,
 				AB0BF2C91FED835700D290DE /* help_button.png in Resources */,
-				AB0BF27F1FED81EC00D290DE /* white_view_4_item_8.png in Resources */,
 				AB8546C2201A8E9E00267830 /* bullet_7_2.png in Resources */,
 				AB0BF2AE1FED820C00D290DE /* view_4_item_23.mp3 in Resources */,
 				AB7113AA1FFD37A30095DCFF /* ufo_top_lights_12.png in Resources */,
-				AB0BF23A1FED81EC00D290DE /* puzzle_view_4_item_15.jpg in Resources */,
 				AB0BF2AA1FED820C00D290DE /* view_4_item_2.mp3 in Resources */,
-				AB0BF2141FED81EB00D290DE /* coloring_view_4_item_5.png in Resources */,
 				AB854697201A8E9E00267830 /* bullet_10_4.png in Resources */,
-				AB0BF2621FED81EC00D290DE /* menu_puzzle_view_4_item_5.jpg in Resources */,
-				AB0BF24C1FED81EC00D290DE /* puzzle_view_4_item_9.jpg in Resources */,
 				AB71139F1FFD37A30095DCFF /* ufo_top_base_3.png in Resources */,
 				AB85468F201A8E9E00267830 /* bullet_1_1.png in Resources */,
-				AB0BF2301FED81EB00D290DE /* view_4_item_7.png in Resources */,
-				AB0BF23E1FED81EC00D290DE /* puzzle_view_4_item_19.jpg in Resources */,
-				AB0BF2551FED81EC00D290DE /* menu_puzzle_view_4_item_16.jpg in Resources */,
 				AB7113B31FFD37A30095DCFF /* ufo_top_lights_9.png in Resources */,
 				AB85469A201A8E9E00267830 /* bullet_11_2.png in Resources */,
-				AB0BF2611FED81EC00D290DE /* menu_puzzle_view_4_item_4.jpg in Resources */,
 				AB0BF1241FE83DBC00D290DE /* splash_fx.mp3 in Resources */,
 				AB7113991FFD37A30095DCFF /* ufo_top_base_1.png in Resources */,
-				AB0BF21F1FED81EB00D290DE /* view_4_item_14.png in Resources */,
 				AB0BF3231FF4135B00D290DE /* bg_transparent.png in Resources */,
 				AB8546BD201A8E9E00267830 /* bullet_6_2.png in Resources */,
 				ABD4599E2008F57500FE8212 /* pop_up_rewarded_button.png in Resources */,
@@ -2106,22 +1527,14 @@
 				AB854699201A8E9E00267830 /* bullet_11_1.png in Resources */,
 				AB0BF11B1FE83DBC00D290DE /* cheers_short.mp3 in Resources */,
 				AB7113A91FFD37A30095DCFF /* ufo_top_lights_11.png in Resources */,
-				AB0BF24E1FED81EC00D290DE /* menu_puzzle_view_4_item_1.jpg in Resources */,
-				AB0BF2021FED81EB00D290DE /* coloring_view_4_item_11.png in Resources */,
-				AB0BF2251FED81EB00D290DE /* view_4_item_2.png in Resources */,
 				AB1F925D1FF6E0F800E0BBCD /* ProjectData.rtf in Resources */,
 				AB0BF16D1FEA5C4C00D290DE /* ufo_lights_3.png in Resources */,
-				AB0BF21D1FED81EB00D290DE /* view_4_item_12.png in Resources */,
 				AB8546A3201A8E9E00267830 /* bullet_13_1.png in Resources */,
-				AB0BF26D1FED81EC00D290DE /* white_view_4_item_14.png in Resources */,
 				ABD459DC200BD34F00FE8212 /* planet_4_0.png in Resources */,
-				AB0BF2761FED81EC00D290DE /* white_view_4_item_22.png in Resources */,
-				AB0BF2521FED81EC00D290DE /* menu_puzzle_view_4_item_13.jpg in Resources */,
 				AB8546BF201A8E9E00267830 /* bullet_6_4.png in Resources */,
 				AB0BF2CC1FED835700D290DE /* next_button.png in Resources */,
 				AB0BF1711FEA5C4C00D290DE /* ufo_lights_7.png in Resources */,
 				AB7113A61FFD37A30095DCFF /* ufo_top_lights_0.png in Resources */,
-				AB0BF2091FED81EB00D290DE /* coloring_view_4_item_18.png in Resources */,
 				AB0BF2EA1FF275C600D290DE /* bg_anim_front.png in Resources */,
 				AB0BF2B31FED820C00D290DE /* view_4_item_5.mp3 in Resources */,
 			);
@@ -2137,7 +1550,6 @@
 				AB0BF0FE1FE3FF6900D290DE /* KTFSoundEngine.swift in Sources */,
 				AB0BF1021FE43A0300D290DE /* KTFAdsSupport.swift in Sources */,
 				AB0BF0CE1FE288DC00D290DE /* GameViewController.swift in Sources */,
-				AB0BF1741FED818F00D290DE /* LearnScene.swift in Sources */,
 				AB0BF0F51FE3FB8500D290DE /* MainScene.swift in Sources */,
 				ABD459A7200A769B00FE8212 /* MapScene.swift in Sources */,
 				AB7113BF1FFF714C0095DCFF /* KTFStatusBar.swift in Sources */,
