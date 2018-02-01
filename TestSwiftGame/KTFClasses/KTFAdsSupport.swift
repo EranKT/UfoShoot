@@ -143,6 +143,7 @@ class KTF_Ads_Banner_Support: SKNode, GADBannerViewDelegate {
 //////////////////////////////////////////////<< INTER ADS CODE ////////////////////////////////////////////
 protocol KTF_Ads_Inter_SupportDelegate: class{
     func interAdClosed()
+    func didNotReceiveInterAd()
 }
 
 class KTF_Ads_Inter_Support: SKNode, GADInterstitialDelegate {
@@ -151,7 +152,7 @@ class KTF_Ads_Inter_Support: SKNode, GADInterstitialDelegate {
     static var interAdsPointer: KTF_Ads_Inter_Support!
     static var adInterView: GADInterstitial!
     weak var delegate: KTF_Ads_Inter_SupportDelegate?
-
+    static var didReceiveInterAd = false
 
     func preloadInterAds(myView: UIViewController) {
         
@@ -168,24 +169,37 @@ class KTF_Ads_Inter_Support: SKNode, GADInterstitialDelegate {
         KTF_Ads_Inter_Support.adInterView.load(KTF_Ads_Sub_Class().loadAdRequest())
     }
     
-    func presentInterAds()
+    func presentInterAds() -> KTF_Ads_Inter_Support
     {
-        KTF_Ads_Inter_Support.adInterView.present(fromRootViewController: KTF_Ads_Inter_Support.myInterViewController)
+        if KTF_Ads_Inter_Support.didReceiveInterAd
+        {
+            KTF_Ads_Inter_Support.adInterView.present(fromRootViewController: KTF_Ads_Inter_Support.myInterViewController)
+        }
+        else
+        {
+            print("NO INTER TO SHOW")
+            delegate?.didNotReceiveInterAd()
+        }
+        
+        return KTF_Ads_Inter_Support.interAdsPointer
     }
 
     func interstitialWillDismissScreen(_ ad: GADInterstitial)
     {
         print("INTER - will close")
-        let tempviewController = KTF_Ads_Inter_Support.myInterViewController
+        delegate?.interAdClosed()
+       let tempviewController = KTF_Ads_Inter_Support.myInterViewController
         KTF_Ads_Inter_Support.myInterViewController = nil
         KTF_Ads_Inter_Support.interAdsPointer = nil
         KTF_Ads_Inter_Support.adInterView = nil
-        KTF_Ads_Inter_Support().preloadInterAds(myView: tempviewController!)
-        delegate?.interAdClosed()
+        KTF_Ads_Inter_Support.didReceiveInterAd = false
+      KTF_Ads_Inter_Support().preloadInterAds(myView: tempviewController!)
   }
     func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        KTF_Ads_Inter_Support.didReceiveInterAd = true
         print("INTER - received ad")
     }
+
 }
 //////////////////////////////////////////////>> INTER ADS CODE ////////////////////////////////////////////
 
@@ -193,23 +207,25 @@ class KTF_Ads_Inter_Support: SKNode, GADInterstitialDelegate {
 
 //////////////////////////////////////////////<< REWARDED ADS CODE ////////////////////////////////////////////
 
-protocol KTF_Ads_Rewarded_SupportDelegate: class{
+ protocol KTF_Ads_Rewarded_SupportDelegate: class{
     func rewardedFinishSuccessfuly()
     func rewardedAdClosed()
+    func thereIsNoAdToPresent()
 }
-class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate {
 
+class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate, KTF_Ads_Inter_SupportDelegate {
     
     
     static var myRewardedViewController: GameViewController!
-    static var rewardedAdsPointer: KTF_Ads_Rewarded_Support!
+    static var rewardedAdsPointer: KTF_Ads_Rewarded_Support?
     static var adRewardedView: GADRewardBasedVideoAd!
     static var _scene: SKScene!
     weak var delegate: KTF_Ads_Rewarded_SupportDelegate?
-    
+    var interAd: KTF_Ads_Inter_Support!
+
 
     func preloadRewardAds(myView: UIViewController) {
-        
+    
         KTF_Ads_Rewarded_Support.rewardedAdsPointer = KTF_Ads_Rewarded_Support.init(myView: myView)
     }
     
@@ -223,22 +239,37 @@ class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate {
         KTF_Ads_Rewarded_Support.adRewardedView.load(KTF_Ads_Sub_Class().loadAdRequest(), withAdUnitID: KTF_Ads_Sub_Class().getAdUnitID(adsType: KTF_Ads_Type.KTF_Ads_Type_Rewarded))
     }
 
-    func presentRewardAdFor(scene:SKScene)
+    func presentRewardAdFor(scene:SKScene) -> KTF_Ads_Rewarded_Support
     {
-        if KTF_Ads_Rewarded_Support.adRewardedView.isReady
+       if KTF_Ads_Rewarded_Support.adRewardedView.isReady
         {
             KTF_Ads_Rewarded_Support.adRewardedView.present(fromRootViewController: KTF_Ads_Rewarded_Support.myRewardedViewController)
-        }
+       }
         else
         {
-            KTF_Ads_Rewarded_Support.rewardedAdsPointer.reloadRewardedAd()
-            KTF_Ads_Inter_Support().presentInterAds()
+            KTF_Ads_Rewarded_Support.rewardedAdsPointer?.reloadRewardedAd()
+            interAd = KTF_Ads_Inter_Support().presentInterAds()
+            interAd.delegate = self
         }
+        return KTF_Ads_Rewarded_Support.rewardedAdsPointer!
     }
  
+    func interAdClosed()
+    {
+        // need to act like reward received  TODO: still didnt get here maybe to move the inter option to game scene also
+        delegate?.rewardedFinishSuccessfuly()
+        delegate?.rewardedAdClosed()
+    }
+    
+    func didNotReceiveInterAd() {
+        // act like rewarded failed TODO: still didnt get here
+        print("THERE IS NO ADS")
+        delegate?.thereIsNoAdToPresent()
+    }
+    
     func reloadRewardedAd()
     {
-        let tempView = KTF_Ads_Rewarded_Support.myRewardedViewController
+      let tempView = KTF_Ads_Rewarded_Support.myRewardedViewController
         KTF_Ads_Rewarded_Support.myRewardedViewController = nil
         KTF_Ads_Rewarded_Support.rewardedAdsPointer = nil
         KTF_Ads_Rewarded_Support.adRewardedView = nil
@@ -247,29 +278,28 @@ class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate {
     
     //OVERRIDE METHODS
    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didFailToLoadWithError error: Error) {
-        print("REWARD - FAIL TO LOAD")
+       print("REWARD - FAIL TO LOAD")
 
     }
     func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("REWARD - RECEIVE AD")
+       print("REWARD - RECEIVE AD")
 
     }
     func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("REWARD - AD OPEN")
+       print("REWARD - AD OPEN")
 
     }
     func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-        print("REWARD - AD START PLAY")
+  print("REWARD - AD START PLAY")
 
     }
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
-     delegate?.rewardedFinishSuccessfuly()
-        print("USER RECEIVED REWARD")
+        delegate?.rewardedFinishSuccessfuly()
+   print("USER RECEIVED REWARD")
     }
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
-      delegate?.rewardedAdClosed()
+       delegate?.rewardedAdClosed()
         print("REWARD - AD CLOSED")
-
     }
 }
     

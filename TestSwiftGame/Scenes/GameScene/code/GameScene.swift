@@ -42,7 +42,8 @@ let RUSH_SCENE_POS = [
 
 ]
 
-class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_SupportDelegate {
+class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
+    
     
     var _animatedBG: AnimatedBg!
     let _homeButton = KTF_Sprite(imageNamed: "pause_button")
@@ -77,13 +78,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     var _ufoNumberOfBullets: Int!
     var _enemyShipNumberOfBullets = 4
     
-    private let rewardedAd = KTF_Ads_Rewarded_Support()
-    private let interAd = KTF_Ads_Inter_Support()
-  
+    var rewardedAd: KTF_Ads_Rewarded_Support!  
     
     override func didMove(to view: SKView) {
-        rewardedAd.delegate = self
-        interAd.delegate = self
+    
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
        
    //     physicsWorld.gravity = CGVector(dx: 0, dy: -1)
@@ -1196,10 +1194,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
  
     print("presenting Rewarded Ad")
     _popUpWindow.removeFromParent()
-    rewardedAd.presentRewardAdFor(scene: self)
-    }
+    rewardedAd = KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self)
+    rewardedAd.delegate = self
+}
  
     func rewardedFinishSuccessfuly() {
+
         _ufoSprite._life = 0
        print("rewardedFinishSuccessfuly")
     }
@@ -1223,11 +1223,13 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         }
     }
 
-    func interAdClosed() {
-        print("inter ads closed")
-        self.resumeGame()
+    func thereIsNoAdToPresent()
+    {
+        print("GO HOME - no ads")
+        self.homeButtonAction()
     }
-    // HOME BUTTON PRESSED
+    
+   // HOME BUTTON PRESSED
    @objc func homeButtonAction() {
      
     self.clearScene()

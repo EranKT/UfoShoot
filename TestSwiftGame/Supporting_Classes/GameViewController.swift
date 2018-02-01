@@ -27,12 +27,11 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        
      
         //LOAD BANNER ADS
         KTF_Ads_Banner_Support().showAds(myView: self, atPos:KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         //PRELOAD REWARD AND INTER ADS
-        KTF_Ads_Rewarded_Support().preloadRewardAds(myView: self)
+       KTF_Ads_Rewarded_Support().preloadRewardAds(myView: self)
         KTF_Ads_Inter_Support().preloadInterAds(myView: self)
         
         let scene:SKScene = MainScene(size: UIScreen.main.bounds.size)
@@ -47,6 +46,7 @@ class GameViewController: UIViewController {
             view.ignoresSiblingOrder = true
 }
         }
+
 
    /*
     override func viewWillLayoutSubviews() {

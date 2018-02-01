@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 private var myGameControllerPointer_: UIViewController!
 
@@ -32,6 +33,9 @@ class AppDelegate: UIResponder ,UIApplicationDelegate {
  
         myGameControllerPointer_ = gameController
         
+        // Initialize the Google Mobile Ads SDK.
+        GADMobileAds.configure(withApplicationID: AdmobKeys().APP_ID())
+
         //make window visible
         window!.makeKeyAndVisible()
 
