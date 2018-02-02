@@ -210,10 +210,10 @@ class KTF_Ads_Inter_Support: SKNode, GADInterstitialDelegate {
  protocol KTF_Ads_Rewarded_SupportDelegate: class{
     func rewardedFinishSuccessfuly()
     func rewardedAdClosed()
-    func thereIsNoAdToPresent()
+ //   func thereIsNoRewardAdToPresent()
 }
 
-class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate, KTF_Ads_Inter_SupportDelegate {
+class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate {
     
     
     static var myRewardedViewController: GameViewController!
@@ -249,24 +249,11 @@ class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate, KTF_Ads_I
         {
             KTF_Ads_Rewarded_Support.rewardedAdsPointer?.reloadRewardedAd()
             interAd = KTF_Ads_Inter_Support().presentInterAds()
-            interAd.delegate = self
+            interAd.delegate = scene as? KTF_Ads_Inter_SupportDelegate
         }
         return KTF_Ads_Rewarded_Support.rewardedAdsPointer!
     }
- 
-    func interAdClosed()
-    {
-        // need to act like reward received  TODO: still didnt get here maybe to move the inter option to game scene also
-        delegate?.rewardedFinishSuccessfuly()
-        delegate?.rewardedAdClosed()
-    }
-    
-    func didNotReceiveInterAd() {
-        // act like rewarded failed TODO: still didnt get here
-        print("THERE IS NO ADS")
-        delegate?.thereIsNoAdToPresent()
-    }
-    
+     
     func reloadRewardedAd()
     {
       let tempView = KTF_Ads_Rewarded_Support.myRewardedViewController
@@ -295,7 +282,7 @@ class KTF_Ads_Rewarded_Support: SKNode, GADRewardBasedVideoAdDelegate, KTF_Ads_I
     }
     func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd, didRewardUserWith reward: GADAdReward) {
         delegate?.rewardedFinishSuccessfuly()
-   print("USER RECEIVED REWARD")
+        print("USER RECEIVED REWARD")
     }
     func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
        delegate?.rewardedAdClosed()

@@ -42,8 +42,7 @@ let RUSH_SCENE_POS = [
 
 ]
 
-class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
-    
+class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_SupportDelegate {
     
     var _animatedBG: AnimatedBg!
     let _homeButton = KTF_Sprite(imageNamed: "pause_button")
@@ -61,7 +60,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
     var _countDownToNextEnemyShipBullet = -1
     var _numberOfEnemyShipBullets = -1
     var _isEnemyShipShoot = false
-    
+    var _needToShowInterAds = false
     
     var isGamePaused = true
     var _isStageDone = false
@@ -78,8 +77,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
     var _ufoNumberOfBullets: Int!
     var _enemyShipNumberOfBullets = 4
     
-    var rewardedAd: KTF_Ads_Rewarded_Support!  
-    
+    var _rewardedAd: KTF_Ads_Rewarded_Support!
+    var _interAd: KTF_Ads_Inter_Support!
+    let _bgPlayer = KTF_MusicPlayer.sharedInstance()
+
     override func didMove(to view: SKView) {
     
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
@@ -824,27 +825,30 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
         // animate ufo show back in screen
         self.stopTick()
         
-        var openPopup: SKAction
+      //  var openPopup: SKAction
         
         if _ufoSprite._life == 1
         {
             //open watch
-            openPopup = SKAction.run {self.setPopUpWindow(type: 0)}
+           /* openPopup = SKAction.run {*/self.setPopUpWindow(type: 0)//}
         }
         else
         {
             if gameCoins_ >= 2000
             {
         // pay to continue game
-                openPopup = SKAction.run {self.setPopUpWindow(type: 1)}
+             /*   openPopup = SKAction.run {*/self.setPopUpWindow(type: 1)//}
             }
             else
             {
                 // go to home screen
-              openPopup = SKAction.run(self.homeButtonAction)
+                _needToShowInterAds = true
+                _interAd = KTF_Ads_Inter_Support().presentInterAds()
+                _interAd.delegate = self
+                //  openPopup = SKAction.run(self.homeButtonAction)
             }
         }
-        _ufoSprite.run(openPopup)
+      //  _ufoSprite.run(openPopup)
     }
     
     func reloadUfoToScreen() {
@@ -1048,7 +1052,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
     func setPopUpWindow(type:Int){
         if _popUpWindow != nil  {return}
 
-        //TODO: ADD CLOSE BUTTON ACTION
         ////IF DEAD FIRST TIME
         var windowSize = POPUP_WINDOW_SIZE.middle_size
         var closeButtonSel = "homeButtonAction"
@@ -1189,46 +1192,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
        self.reloadUfoToScreen()
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
     }
-   
-   @objc func presentRewardedAd() {
- 
-    print("presenting Rewarded Ad")
-    _popUpWindow.removeFromParent()
-    rewardedAd = KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self)
-    rewardedAd.delegate = self
-}
- 
-    func rewardedFinishSuccessfuly() {
-
-        _ufoSprite._life = 0
-       print("rewardedFinishSuccessfuly")
-    }
-    
-    func rewardedAdClosed() {
-        print("rewardedAdClosed")
-        if _isStageDone
-        {
-            self.mapButtonAction()
-            print("GO TO MAP SCENE")
-        }
-        else if _ufoSprite._life == 0
-        {
-            print("CONTINUE GAME")
-            self.resumeGame()
-        }
-        else
-        {
-            print("GO HOME")
-            self.homeButtonAction()
-        }
-    }
-
-    func thereIsNoAdToPresent()
-    {
-        print("GO HOME - no ads")
-        self.homeButtonAction()
-    }
-    
+  
    // HOME BUTTON PRESSED
    @objc func homeButtonAction() {
      
@@ -1278,6 +1242,75 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate {
             _popUpWindow.removeFromParent()
         }
     }
+    
+  //////////////////////////////////////<< ADS HANDLING ////////////////////////////////////////
+    
+    @objc func presentRewardedAd() {
+        
+        print("presenting Rewarded Ad")
+     _bgPlayer.setMusicVolume(volume: 0.01)
+        _popUpWindow.removeFromParent()
+        _rewardedAd = KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self)
+        _rewardedAd.delegate = self
+    }
+    
+    
+    func rewardedFinishSuccessfuly() {
+        
+        _ufoSprite._life = 0
+        print("rewardedFinishSuccessfuly")
+    }
+    
+    func rewardedAdClosed() {
+        print("rewardedAdClosed")
+        _bgPlayer.setMusicVolume(volume: 0.1)
+        _rewardedAd.reloadRewardedAd()
+        
+        if _isStageDone
+        {
+            // TODO: add coins for watching rewarded ad
+            self.mapButtonAction()
+            print("GO TO MAP SCENE")
+        }
+        else if _ufoSprite._life == 0
+        {
+            print("CONTINUE GAME")
+            self.resumeGame()
+        }
+        else
+        {
+            print("GO HOME")
+            self.homeButtonAction()
+        }
+    }
+    
+    func interAdClosed()
+    {
+     print("INTER ADS SHOWED SUCCESSFULY")
+        _bgPlayer.setMusicVolume(volume: 0.1)
+       // need to act like reward received
+        if _needToShowInterAds
+        {
+            self.homeButtonAction()
+            _rewardedAd.reloadRewardedAd()
+        }
+        else
+        {
+        self.rewardedFinishSuccessfuly()
+        self.rewardedAdClosed()
+        }
+        
+    }
+
+    func didNotReceiveInterAd() {
+        print("GO HOME - no ads")
+        _bgPlayer.setMusicVolume(volume: 0.1)
+        _rewardedAd.reloadRewardedAd()
+        self.homeButtonAction()
+    }
+    
+//////////////////////////////////////>> ADS HANDLING ////////////////////////////////////////
+
     
 }
 
