@@ -272,6 +272,7 @@
 		ABED9DB02005A2D4004E13D8 /* pop_up_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = ABED9DAE2005A2D4004E13D8 /* pop_up_bg.png */; };
 		ABED9DB12005A2D4004E13D8 /* pop_up_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ABED9DAF2005A2D4004E13D8 /* pop_up_button.png */; };
 		ABED9DB32005A591004E13D8 /* pop_up_close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ABED9DB22005A591004E13D8 /* pop_up_close_button.png */; };
+		ABFFBD5A202875C600C5229A /* lock_image.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD59202875C600C5229A /* lock_image.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -542,6 +543,7 @@
 		ABED9DAE2005A2D4004E13D8 /* pop_up_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_up_bg.png; sourceTree = "<group>"; };
 		ABED9DAF2005A2D4004E13D8 /* pop_up_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_up_button.png; sourceTree = "<group>"; };
 		ABED9DB22005A591004E13D8 /* pop_up_close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_up_close_button.png; sourceTree = "<group>"; };
+		ABFFBD59202875C600C5229A /* lock_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_image.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,6 +780,7 @@
 		AB0BF2BC1FED835600D290DE /* buttons */ = {
 			isa = PBXGroup;
 			children = (
+				ABFFBD59202875C600C5229A /* lock_image.png */,
 				AB7113BC1FFE1F700095DCFF /* menu_left_button.png */,
 				AB7113BA1FFE1BAD0095DCFF /* menu_right_button.png */,
 				AB0BF2BD1FED835600D290DE /* back_button.png */,
@@ -1362,6 +1365,7 @@
 				AB0BF2B11FED820C00D290DE /* view_4_item_3.mp3 in Resources */,
 				AB8546B2201A8E9E00267830 /* bullet_4_1.png in Resources */,
 				AB8546CE201A8E9E00267830 /* bullet_9_4.png in Resources */,
+				ABFFBD5A202875C600C5229A /* lock_image.png in Resources */,
 				AB7113CA20014E140095DCFF /* blow_particles.sks in Resources */,
 				ABED9DB32005A591004E13D8 /* pop_up_close_button.png in Resources */,
 				AB0BF2CB1FED835700D290DE /* home_button.png in Resources */,

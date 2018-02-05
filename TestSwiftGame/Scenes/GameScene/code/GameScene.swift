@@ -46,14 +46,14 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     var _animatedBG: AnimatedBg!
     let _homeButton = KTF_Sprite(imageNamed: "pause_button")
-   
+    
     var _gameRound = 1
     var _statusBar: KTF_StatusBar!
     var _score = 0
     var _coins = 0
     
     var _popUpWindow: KTF_POPUP!
-
+    
     var _timer: Timer!
     var _countDownToNextObstacle: CGFloat!
     var _countDownToNextUfoBullet: Int!
@@ -64,7 +64,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     var isGamePaused = true
     var _isStageDone = false
-
+    
     
     var _enemiesSpritesArray: [EnemySprite] = [EnemySprite]()
     var _obstaclesSpritesArray: [ObstacleSprite] = [ObstacleSprite]()
@@ -80,29 +80,29 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     var _rewardedAd: KTF_Ads_Rewarded_Support!
     var _interAd: KTF_Ads_Inter_Support!
     let _bgPlayer = KTF_MusicPlayer.sharedInstance()
-
-    override func didMove(to view: SKView) {
     
+    override func didMove(to view: SKView) {
+        
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
-       
-   //     physicsWorld.gravity = CGVector(dx: 0, dy: -1)
-
+        
+        //     physicsWorld.gravity = CGVector(dx: 0, dy: -1)
+        
         self.initAnimatedBg()
         self.addHomeButton()
- 
+        
         _ufoNumberOfBullets = 1
         
         _statusBar = KTF_StatusBar().initStatusBar(scene: self, posIsTop: true)
         _statusBar.populateStatusBar(includeSavedScore:false)
-    
+        
         self.initUfo()
         self.startGame()
-  }
+    }
     
     override func sceneDidLoad()
     {
-     //   print("GAME SCENE sceneDidLoad")
-
+        //   print("GAME SCENE sceneDidLoad")
+        
     }
     
     /////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  INITIAL SETTINGS
@@ -114,11 +114,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.addChild(_animatedBG)
         _animatedBG.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
         KTF_SCALE().ScaleMyNode(nodeToScale: _animatedBG)
-
+        
         _animatedBG.initScrollElements()
         _animatedBG.setScrollSpeedByPRC(speedPRC: 100)
         _animatedBG.startScrolling()
-  }
+    }
     
     // ADD LEARN BUTTON
     func addHomeButton()
@@ -131,46 +131,46 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     
     func initUfo() {
-
+        
         _ufoSprite.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.UFO.rawValue][0]),
                                                  PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.UFO.rawValue][1]))
         self.addChild(_ufoSprite)
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _ufoSprite)
         _ufoSprite.zPosition = rush_scene_z_pos.rush_scene_z_ufo.rawValue;
         _ufoSprite.isEnabled = false
-}
+    }
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  INITIAL SETTINGS
-   
+    
     
     
     
     
     /////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  GAME PROCESS
-    func startGame()
+    @objc func startGame()
     {
         if !isGamePaused {return}
         isGamePaused = false
-   if gameSelectedStage_ < stagesPerLevel_
-   {
-    self.presentRoundLabel()
+        if gameSelectedStage_ < stagesPerLevel_
+        {
+            self.presentRoundLabel()
         }
         else
-   {
-    self.initRound()
+        {
+            self.initRound()
         }
     }
-  
+    
     func presentRoundLabel() {
         //COINS LABEL
         let round = _gameRound
-       let roundLabel = SKLabelNode(fontNamed: "Avenir-Black")
+        let roundLabel = SKLabelNode(fontNamed: "Avenir-Black")
         roundLabel.text = "ROUND " + String(round) + "/" + String(roundsPerStage_)
         roundLabel.colorBlendFactor = 1.0
         roundLabel.color = UIColor.red
         roundLabel.fontSize = 180
-
+        
         roundLabel.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ROUND_LABEL.rawValue][0]),
-                                                  PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ROUND_LABEL.rawValue][1]))
+                                                 PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ROUND_LABEL.rawValue][1]))
         roundLabel.name = "roundLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: roundLabel)
         roundLabel.zPosition = statusBarZpos_ + 3
@@ -240,11 +240,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         else
         {
             self.initEnemyShip()
-       _countDownToNextEnemyShipBullet = 50//maxLevelsInGame_ + 1 - gameSelectedLevel_
-        _isEnemyShipShoot = true
+            _countDownToNextEnemyShipBullet = 50//maxLevelsInGame_ + 1 - gameSelectedLevel_
+            _isEnemyShipShoot = true
             _numberOfEnemyShipBullets = gameSelectedLevel_ * 3
             _ufoSprite.isEnabled = true
- }
+        }
         //<< if last stage
         // SET ENEMY SHOOTS
         // SET ENEMY LIFE BAR
@@ -255,8 +255,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
         
     }
-
-  
+    
+    
     //<< UFO BULLETS
     func addBulletToUFO() {
         
@@ -266,38 +266,38 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             if _ufoNumberOfBullets > 0
             {
                 if index == _ufoNumberOfBullets{break}
-               realBulletIndexForPos = index + 1
+                realBulletIndexForPos = index + 1
             }
             let bulletPrefix = "bullet_" + String(KTF_DISK().getInt(forKey: SAVED_GAME_UFO)) + "_"
-
-        let bulletFilesCount = KTF_FILES_COUNT().countGroupOfFiles(prefix: bulletPrefix,
-                                                                   sufix: "png",
-                                                                   firstNumber: 0);
-        
-        let bulletIndex = Int(arc4random()%UInt32(bulletFilesCount))
-        
-        let fileName = bulletPrefix + String(bulletIndex)+".png"
-        
-        let bullet = KTF_Sprite(imageNamed:fileName)
-        self.addChild(bullet)
-        KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
-        bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
-        bullet.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)//CGPoint(x: _ufoSprite.position.x, y: _ufoSprite.position.y + _ufoSprite.size.height/2)
-        bullet.tag = 0
-        _ufoBulletsArray.append(bullet)
-        self.ufoShootBullet(bullet: bullet, typeIndex: realBulletIndexForPos)
+            
+            let bulletFilesCount = KTF_FILES_COUNT().countGroupOfFiles(prefix: bulletPrefix,
+                                                                       sufix: "png",
+                                                                       firstNumber: 0);
+            
+            let bulletIndex = Int(arc4random()%UInt32(bulletFilesCount))
+            
+            let fileName = bulletPrefix + String(bulletIndex)+".png"
+            
+            let bullet = KTF_Sprite(imageNamed:fileName)
+            self.addChild(bullet)
+            KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
+            bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
+            bullet.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)//CGPoint(x: _ufoSprite.position.x, y: _ufoSprite.position.y + _ufoSprite.size.height/2)
+            bullet.tag = 0
+            _ufoBulletsArray.append(bullet)
+            self.ufoShootBullet(bullet: bullet, typeIndex: realBulletIndexForPos)
         }
         
     }
     
     func ufoShootBullet(bullet:KTF_Sprite, typeIndex:Int) {
         
-       // KTF_Sound_Engine().playSound(fileName: "laser_short")
+        // KTF_Sound_Engine().playSound(fileName: "laser_short")
         KTF_Sound_Engine().playSoundWithVolume(fileName: "laser_short", volume: 0.3)
         let bulletEndPoint = _ufoSprite.getBulletEndPosPerType(index: typeIndex)
         bullet.run(SKAction.sequence(
             [SKAction.move(to: bulletEndPoint,//CGPoint(x:bullet.position.x, y:self.size.height),
-                           duration: 1.0),
+                duration: 1.0),
              SKAction.run{ self.removeUfoBullet(bullet: bullet)  }
             ]))
         
@@ -306,9 +306,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     func removeUfoBullet(bullet:KTF_Sprite) {
         
         let bulletIndex = _ufoBulletsArray.index(of: bullet)
-
+        
         if bulletIndex != nil{
-        _ufoBulletsArray.remove(at: bulletIndex!)
+            _ufoBulletsArray.remove(at: bulletIndex!)
         }
         bullet.removeAllActions()
         bullet.removeFromParent()
@@ -318,7 +318,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     
     //<< ENEMIES
-
+    
     func addEnemies(amount:Int, type:Int, withLife:Int, canShoot:Bool) {
         
         var enemy:EnemySprite
@@ -332,7 +332,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: enemy)
             enemy.zPosition = rush_scene_z_pos.rush_scene_z_enemy.rawValue
             _enemiesSpritesArray.append(enemy)
-      //      enemy.tag = i
+            //      enemy.tag = i
             enemy.animateEnemyToPlace(itemTag: i, amountIndex: amount, withLife: withLife, canShoot: canShoot)
         }
     }
@@ -385,7 +385,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         if _enemyShipSprite != nil {return}
         
         _enemyShipSprite = EnemySpaceShip().initEnemyShip(enemyShipIndex: gameSelectedLevel_)
-
+        
         _enemyShipSprite.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ENEMY.rawValue][0]),
                                                        PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ENEMY.rawValue][1]))
         self.addChild(_enemyShipSprite)
@@ -396,7 +396,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _enemyShipSprite.isEnabled = false
     }
     /////>> ENEMY SPACE SHIP
-
+    
     //<< ENEMY SPACE SHIP BULLETS
     func addBulletToEnemyShip() {
         
@@ -457,9 +457,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     //>> ENEMY SPACE SHIP BULLETS
     
     //>> ENEMIES
-
+    
     //<<  OBSTACLES
-
+    
     func addObstacle() {
         let obstacleSprite = ObstacleSprite(imageNamed:ObstacleSprite().getFileName())
         self.addChild(obstacleSprite)
@@ -469,9 +469,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _obstaclesSpritesArray.append(obstacleSprite)
     }
     //>> OBSTACLES
-
+    
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  GAME PROCESS
-
+    
     
     
     
@@ -491,19 +491,19 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     {
                         _popUpWindow.touchesBegan(touches, with: event)
                     }
-                  return
+                    return
                 }
             }
         }
         
         for touch in touches {
             let location = touch.location(in: self)
-
+            
             if !_homeButton.contains(location)
             {
                 _ufoSprite.position = location
             }
-
+            
         }
     }
     
@@ -517,7 +517,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             }
         }
     }
-
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         for touch in touches {
@@ -538,21 +538,21 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         }
     }
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HANDLE TOUCHES
- 
+    
     
     
     @objc func tick()
     {
         // continue to check collecting coins after enemies finished
         self.checkIfUfoCollectedCoin()
-
+        
         if isGamePaused {return}
-
+        
         self.checkIfUfoWasHit()
-
+        
         self.HandleEnemyActions()
         self.checkIfObstacleWasShoot()
-//NEXT OBSTACLE
+        //NEXT OBSTACLE
         if _countDownToNextObstacle <= 0 {
             _countDownToNextObstacle = 5 * 60
             self.addObstacle()
@@ -567,19 +567,19 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             self.addBulletToUFO()
         } else
         { _countDownToNextUfoBullet = _countDownToNextUfoBullet - 1}
-    
+        
         //NEXT SPACE SHIP BULLET
         if _numberOfEnemyShipBullets == 0
         {
-           if _isEnemyShipShoot
-           {
-            _isEnemyShipShoot = false
-            _numberOfEnemyShipBullets = (maxLevelsInGame_ - gameSelectedLevel_) * 3
+            if _isEnemyShipShoot
+            {
+                _isEnemyShipShoot = false
+                _numberOfEnemyShipBullets = (maxLevelsInGame_ - gameSelectedLevel_) * 3
             }
             else
-           {
-            _isEnemyShipShoot = true
-            _numberOfEnemyShipBullets = gameSelectedLevel_ * 2
+            {
+                _isEnemyShipShoot = true
+                _numberOfEnemyShipBullets = gameSelectedLevel_ * 2
             }
         }
         else
@@ -597,102 +597,102 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             _countDownToNextEnemyShipBullet -= 1
         }
     }
-
-    func HandleEnemyActions() {
     
+    func HandleEnemyActions() {
+        
         if gameSelectedStage_ < stagesPerLevel_
         {
-        for enemy in _enemiesSpritesArray {
-            
-            if _enemiesSpritesArray.count <= 0 {return}
-            if enemy.isActive_ == false {return}
-            
-            //<< CHECK IF ENEMY TIME TO SHOOT
-            if enemy.canShoot_
-            {
-                if enemy.countDownToNextEnemyShoot_ <= 0
+            for enemy in _enemiesSpritesArray {
+                
+                if _enemiesSpritesArray.count <= 0 {return}
+                if enemy.isActive_ == false {return}
+                
+                //<< CHECK IF ENEMY TIME TO SHOOT
+                if enemy.canShoot_
                 {
-                    self.addBulletToEnemy(enemy: enemy)
-                    let shootTimeFactor = UInt32(60*(maxLevelsInGame_ - gameSelectedLevel_) + 60*3)
-                    enemy.countDownToNextEnemyShoot_ = Int(arc4random()%shootTimeFactor)
-                }
-                else
-                {
-                    enemy.countDownToNextEnemyShoot_ = enemy.countDownToNextEnemyShoot_ - 1
-                }
-            }
-            //>> CHECK IF ENEMY TIME TO SHOOT
-
-            //<< CHECK IF BULLET HIT ENEMY
-            for bullet in _ufoBulletsArray {
-                if enemy.frame.contains(bullet.position) {
-                    
-                    let bulletIndex = _ufoBulletsArray.index(of: bullet)
-                    _ufoBulletsArray.remove(at: bulletIndex!)
-                    bullet.removeAllActions()
-                    bullet.removeFromParent()
-                   _score += 1
-                    _statusBar.updateStageScore(score: _score)
-
-                    if enemy.life_ > 0
+                    if enemy.countDownToNextEnemyShoot_ <= 0
                     {
-                        enemy.life_ = enemy.life_ - 1
+                        self.addBulletToEnemy(enemy: enemy)
+                        let shootTimeFactor = UInt32(60*(maxLevelsInGame_ - gameSelectedLevel_) + 60*3)
+                        enemy.countDownToNextEnemyShoot_ = Int(arc4random()%shootTimeFactor)
                     }
                     else
                     {
-                        self.particlesAction(fileName: "blow_particles.sks", pos: enemy.position, duration: 0.5)
-                        let enemyIndex = _enemiesSpritesArray.index(of: enemy)
-                        if !enemy.isActive_{return}
-                        _enemiesSpritesArray.remove(at: enemyIndex!)
-                        enemy.isActive_ = false
-                        
-                        enemy.removeAllActions()
-                        enemy.removeFromParent()
-                    }
-                    if _enemiesSpritesArray.isEmpty
-                    {
-                        self.enemiesFinished()
+                        enemy.countDownToNextEnemyShoot_ = enemy.countDownToNextEnemyShoot_ - 1
                     }
                 }
+                //>> CHECK IF ENEMY TIME TO SHOOT
+                
+                //<< CHECK IF BULLET HIT ENEMY
+                for bullet in _ufoBulletsArray {
+                    if enemy.frame.contains(bullet.position) {
+                        
+                        let bulletIndex = _ufoBulletsArray.index(of: bullet)
+                        _ufoBulletsArray.remove(at: bulletIndex!)
+                        bullet.removeAllActions()
+                        bullet.removeFromParent()
+                        _score += 1
+                        _statusBar.updateStageScore(score: _score)
+                        
+                        if enemy.life_ > 0
+                        {
+                            enemy.life_ = enemy.life_ - 1
+                        }
+                        else
+                        {
+                            self.particlesAction(fileName: "blow_particles.sks", pos: enemy.position, duration: 0.5)
+                            let enemyIndex = _enemiesSpritesArray.index(of: enemy)
+                            if !enemy.isActive_{return}
+                            _enemiesSpritesArray.remove(at: enemyIndex!)
+                            enemy.isActive_ = false
+                            
+                            enemy.removeAllActions()
+                            enemy.removeFromParent()
+                        }
+                        if _enemiesSpritesArray.isEmpty
+                        {
+                            self.enemiesFinished()
+                        }
+                    }
+                }
+                //>> CHECK IF BULLET HIT ENEMY
             }
-            //>> CHECK IF BULLET HIT ENEMY
-        }
         }
         else if _enemyShipSprite != nil
         {
             if _enemyShipSprite.isEnabled{
                 
-            //ENEMY SHIP ACTIONS
-            for bullet in _ufoBulletsArray {
-             
-                if _enemyShipSprite == nil{break}
-                
-                if _enemyShipSprite.frame.contains(bullet.position) {
+                //ENEMY SHIP ACTIONS
+                for bullet in _ufoBulletsArray {
                     
-                    let bulletIndex = _ufoBulletsArray.index(of: bullet)
-                    _ufoBulletsArray.remove(at: bulletIndex!)
-                    bullet.removeAllActions()
-                    bullet.removeFromParent()
+                    if _enemyShipSprite == nil{break}
                     
-                    _score += 1
-                    _statusBar.updateStageScore(score: _score)
-                    
-                    if _enemyShipSprite.life_ > 0
-                    {
-                        _enemyShipSprite.enemyShipWasHit()
+                    if _enemyShipSprite.frame.contains(bullet.position) {
+                        
+                        let bulletIndex = _ufoBulletsArray.index(of: bullet)
+                        _ufoBulletsArray.remove(at: bulletIndex!)
+                        bullet.removeAllActions()
+                        bullet.removeFromParent()
+                        
+                        _score += 1
+                        _statusBar.updateStageScore(score: _score)
+                        
+                        if _enemyShipSprite.life_ > 0
+                        {
+                            _enemyShipSprite.enemyShipWasHit()
+                        }
+                        else
+                        {
+                            self.particlesAction(fileName: "blow_particles.sks", pos: _enemyShipSprite.position, duration: 3.5)
+                            _enemyShipSprite.isEnabled = false
+                            _countDownToNextEnemyShipBullet = -1
+                            _enemyShipSprite.removeAllActions()
+                            _enemyShipSprite.removeFromParent()
+                            _enemyShipSprite = nil
+                            self.enemiesFinished()
+                        }
                     }
-                    else
-                    {
-                        self.particlesAction(fileName: "blow_particles.sks", pos: _enemyShipSprite.position, duration: 3.5)
-                        _enemyShipSprite.isEnabled = false
-                        _countDownToNextEnemyShipBullet = -1
-                        _enemyShipSprite.removeAllActions()
-                        _enemyShipSprite.removeFromParent()
-                        _enemyShipSprite = nil
-                    self.enemiesFinished()
-                    }
-        }
-        }
+                }
             }
             
         }
@@ -700,25 +700,25 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     
     func enemiesFinished() {
-
+        
         // prepare for next round
         isGamePaused = true
         for obstacle in _obstaclesSpritesArray
         {
             _score += _obstaclesSpritesArray.count * 5
             _statusBar.updateStageScore(score: _score)
-
+            
             if _obstaclesSpritesArray.count <= 0
             {
                 break
             }
             self.obstacleBlow(obstacle: obstacle)
         }
-
+        
     }
     
     func checkIfUfoWasHit() {
-
+        
         if !_ufoSprite.isEnabled
         {
             return
@@ -742,9 +742,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 return
             }
         }
-
+        
         //>> CHECK IF ENEMY BULLET HIT UFO
-    
+        
         //<< CHECK IF ENEMY SHIP BULLET HIT UFO
         for bullet in _enemyShipBulletsArray {
             if ufoRect.contains(bullet.position) {
@@ -759,11 +759,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             }
         }
         //>> CHECK IF ENEMY SHIP BULLET HIT UFO
-
+        
         //<< CHECK IF OBSTACLE HIT UFO
         for obstacle in _obstaclesSpritesArray {
             
-          //  if _obstaclesSpritesArray.count <= 0 {break}
+            //  if _obstaclesSpritesArray.count <= 0 {break}
             
             if obstacle.frame.intersects(ufoRect) || obstacle.tag == -1 {
                 let obstacleIndex = _obstaclesSpritesArray.index(of: obstacle)
@@ -775,7 +775,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 if obstacle.frame.intersects(ufoRect)
                 {
                     self.ufoBlow()
-           break
+                    break
                 }
             }
         }
@@ -784,17 +784,17 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         //<< CHECK IF UFO BUMP ENEMIES
         for enemy in _enemiesSpritesArray {
             
-         //   if _enemiesSpritesArray.count <= 0 {break}
+            //   if _enemiesSpritesArray.count <= 0 {break}
             
-                if _ufoSprite.frame.contains(enemy.position) {
+            if _ufoSprite.frame.contains(enemy.position) {
                 
-                        let enemyIndex = _enemiesSpritesArray.index(of: enemy)
-                        _enemiesSpritesArray.remove(at: enemyIndex!)
-                        enemy.isActive_ = false
-                        enemy.removeAllActions()
-                        enemy.removeFromParent()
-                    self.ufoBlow()
-                    break
+                let enemyIndex = _enemiesSpritesArray.index(of: enemy)
+                _enemiesSpritesArray.remove(at: enemyIndex!)
+                enemy.isActive_ = false
+                enemy.removeAllActions()
+                enemy.removeFromParent()
+                self.ufoBlow()
+                break
             }
         }
         //>> CHECK IF UFO BUMP ENEMIES
@@ -802,10 +802,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         //<< CHECK IF UFO BUMP ENEMY SPACE SHIP
         if _enemyShipSprite != nil
         {
-        if _enemyShipSprite.frame.intersects(ufoRect) && _enemyShipSprite.isEnabled
-        {
-            self.ufoBlow()
-        }
+            if _enemyShipSprite.frame.intersects(ufoRect) && _enemyShipSprite.isEnabled
+            {
+                self.ufoBlow()
+            }
         }
         //>> CHECK IF UFO BUMP ENEMY SPACE SHIP
     }
@@ -813,12 +813,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     func ufoBlow() {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-
+        
         self.particlesAction(fileName: "blow_particles.sks", pos: _ufoSprite.position, duration: 1.5)
-//play blow sfx
-
+        //play blow sfx
+        
         // remove ufo from screen
-       // _ufoSprite.isPaused = true
+        // _ufoSprite.isPaused = true
         _ufoSprite.isEnabled = false
         _ufoSprite.run(SKAction.fadeOut(withDuration: 0.5))
         _countDownToNextUfoBullet = -1
@@ -826,7 +826,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.stopTick()
         
         var openPopup: SKAction
-
+        
         if _ufoSprite._life == 1
         {
             //open watch
@@ -836,7 +836,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         {
             if gameCoins_ >= 2000
             {
-        // pay to continue game
+                // pay to continue game
                 openPopup = SKAction.run {self.setPopUpWindow(type: 1)}
             }
             else
@@ -858,8 +858,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     func reloadUfoToScreen() {
         self.particlesAction(fileName: "MagicParticle.sks", pos: _ufoSprite.position, duration: 0.5)
-     //   _ufoSprite.isPaused = false
-      //  _ufoSprite.run(SKAction.fadeIn(withDuration: 0.5))
+        //   _ufoSprite.isPaused = false
+        //  _ufoSprite.run(SKAction.fadeIn(withDuration: 0.5))
         _ufoSprite.run(SKAction.sequence([
             SKAction.fadeIn(withDuration: 1.0),
             SKAction.wait(forDuration: 2.0),
@@ -887,47 +887,45 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     _ufoBulletsArray.remove(at: bulletIndex!)
                     bullet.removeAllActions()
                     bullet.removeFromParent()
-                
+                    
                     _score += 1
                     _statusBar.updateStageScore(score: _score)
-               
+                    
                     self.obstacleBlow(obstacle: obstacle)
-                break
+                    break
                 }
-                }
+            }
             //>> CHECK IF BULLET HIT OBSTACLE
         }
- }
+    }
     
     func obstacleBlow(obstacle:ObstacleSprite) {
-    
+        
         let obstacleIndex = _obstaclesSpritesArray.index(of: obstacle)
-
+        
         if _obstaclesSpritesArray.count <= 0 {return}
-
+        
         _obstaclesSpritesArray.remove(at: obstacleIndex!)
         
-     //   self.particlesAction(fileName: "coins_particles.sks", pos: obstacle.position)
         self.particlesAction(fileName: "blow_particles.sks", pos: obstacle.position, duration: 0.5)
         self.coinAction(pos:obstacle.position)
-
+        
         obstacle.removeAllActions()
         obstacle.removeFromParent()
-
+        
         if _enemiesSpritesArray.isEmpty
         {
             self.checkIfUfoCollectedCoin()
         }
     }
- 
+    
     
     func coinAction(pos:CGPoint){
         
         let numberOfCoins = (arc4random()%20)+5
         
-     //   physicsWorld.speed = 0.1
-    
-        //TRY TO ADD DELAY TO NEXT COIN
+        //   physicsWorld.speed = 0.1
+        
         for _ in 0...numberOfCoins {
             
             physicsWorld.gravity = CGVector(dx: 0, dy: -1)
@@ -938,7 +936,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             coin.physicsBody?.isDynamic = true
             coin.physicsBody?.allowsRotation = false
             coin.physicsBody?.affectedByGravity = true
-
+            
             KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: coin)
             
             let xPos = CGFloat(arc4random_uniform(UInt32(self._animatedBG.size.width)))
@@ -958,25 +956,26 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     func checkIfUfoCollectedCoin()
     {
         //TODO: CHECK IF WORK LIKE SHOULD MOVED FINISH ROUND AFTER COLLECTING ALL COINS
-
+        
         if _enemiesSpritesArray.isEmpty
         {
             if !_coinsArray.isEmpty
             {
-            //    self.checkIfUfoCollectedCoin()
+                //    self.checkIfUfoCollectedCoin()
             }
             else
             {
                 if !isGamePaused {return}
                 if _gameRound < roundsPerStage_ && gameSelectedStage_ < stagesPerLevel_
-
+                    
                 {//NEXT ROUND
                     _gameRound += 1
                     self.startGame()
                 }
                 else
                 {//NEXT STAGE
-                     _isStageDone = true
+                    _gameRound = 1
+                    _isStageDone = true
                     _statusBar.updatelevel()
                     self.setPopUpWindow(type: 2)
                 }
@@ -985,9 +984,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             }
         }
         for coin in _coinsArray {
-
+            
             if _coinsArray.isEmpty {break}
-
+            
             if coin.frame.intersects(_ufoSprite.frame)
             {
                 let coinsEarnd = 1
@@ -1011,8 +1010,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     func pauseGame()  {
         isGamePaused = true
-       self.stopTick()
-        self.setPopUpWindow(type: 3)
+        self.stopTick()
+       // real line
+        self.setPopUpWindow(type: 50)
+       // for tests
+      //  self.setPopUpWindow(type: 2)
     }
     
     func stopTick()
@@ -1033,7 +1035,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             //     particles.particleColorRedRange = 1.0
             //     particles.particleColorBlueRange = 1.0
             //   particles.particleColorGreenRange = 1.0
-        //    particles.particleSpeed = 0.5
+            //    particles.particleSpeed = 0.5
             particles.zPosition = 1000
             addChild(particles)
             
@@ -1052,10 +1054,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     
     // GAME SCENE ---- // WATCH&PAY&TIMER // PAY&TIMER //{ THIS CAN BE IN MAIN MENU EARNED- WATCH*2 // PLAY NEXT // HOME
-   
+    
     func setPopUpWindow(type:Int){
         if _popUpWindow != nil  {return}
-
+        
         ////IF DEAD FIRST TIME
         var windowSize = POPUP_WINDOW_SIZE.middle_size
         var closeButtonSel = "homeButtonAction"
@@ -1079,13 +1081,20 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         var timerSel = "homeButtonAction"// move to home
         
         switch type {
-        case 0:
+        case 0: // IF DEAD FIRST TIME AND DON'T HAVE MONEY
             if gameCoins_ < 2000
             {
+         // now buy life option
                 centerText = ""
                 FirstButtonImage = ""
                 firstButtonSel = ""
-            }
+            //watch TITLE
+                bottomPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT
+            //watch BUTTON
+                SecondButtonPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
+             // timer
+                timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
+      }
         case 1://IF DEAD SECOND TIME AND HAVE ENOUGH COINS (combine with original popup)
             closeButtonSel = "homeButtonAction"
             topText = "GET ONE LIFE"
@@ -1113,18 +1122,40 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
             centerText = "EARNED:" + String(_coins)
+            middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
+            bottomText = "X2"
+            bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
+            imageName = ""
+            imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
+            imageSel = ""//
+            FirstButtonImage = "pop_up_rewarded_button"
+            FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
+            firstButtonSel = "presentRewardedAd"//watch and open new popup
+            SecondButtonImage = "map_button"//go to map button
+            SecondButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
+            secondButtonSel = "mapButtonAction" //go to map
+            timer = 0
+            timerPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
+            timerSel = ""
+            break
+        case 3://IF WATCHED REWARDED AT STAGE FINISHED
+            closeButtonSel = "homeButtonAction"
+            windowSize = POPUP_WINDOW_SIZE.middle_size
+            topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
+            topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
+            centerText = "EARNED:" + String(_coins)
             middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT
-            bottomText = "DOUBLE X2"
-            bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
+            bottomText = ""
+            bottomPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
             imageName = "space_coin"
             imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
-            imageSel = "presentRewardedAd"//watch and move to map
-            FirstButtonImage = "pop_up_rewarded_button"
-            FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
-            firstButtonSel = "presentRewardedAd"//watch and move to map
-            SecondButtonImage = "map_button"//go to map button
+            imageSel = ""
+            FirstButtonImage = "map_button" // go to map button
+            FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
+            firstButtonSel = "mapButtonAction"//go to map
+            SecondButtonImage = "play_button"//play button
             SecondButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
-            secondButtonSel = "mapButtonAction" //go to map
+            secondButtonSel = "startGame" //play next level
             timer = 0
             timerPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
             timerSel = ""
@@ -1176,32 +1207,33 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         self.addChild(_popUpWindow)
     }
- 
+    
     @objc func handleCoinsFromPopup()
     {
         _statusBar.updateCoinsAndSave(addToCoins: -2000, shouldUpdateStatusBar:false, animated: false)
-//        _popUpWindow.removeFromParent()
-    isGamePaused = false
+        //        _popUpWindow.removeFromParent()
+        isGamePaused = false
         self.reloadUfoToScreen()
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
     }
-
+    
     @objc func resumeGame()
     {
         if _popUpWindow != nil
         {
-         _popUpWindow.removeFromParent()
+            _popUpWindow.removeFromParent()
         }
-      isGamePaused = false
-       self.reloadUfoToScreen()
+        _countDownToNextObstacle = 50
+        isGamePaused = false
+        self.reloadUfoToScreen()
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
     }
-  
-   // HOME BUTTON PRESSED
-   @objc func homeButtonAction() {
-     
-    self.clearScene()
-    KTF_Sound_Engine().playSound(fileName: "ufo_pass")
+    
+    // HOME BUTTON PRESSED
+    @objc func homeButtonAction() {
+        
+        self.clearScene()
+        KTF_Sound_Engine().playSound(fileName: "ufo_pass")
         
         if let view = self.view {
             self.removeAllActions()
@@ -1211,7 +1243,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             view.presentScene(scene, transition: transition)
         }
     }
-
+    
     @objc func mapButtonAction() {
         
         if _isStageDone
@@ -1247,22 +1279,31 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         }
     }
     
-  //////////////////////////////////////<< ADS HANDLING ////////////////////////////////////////
+    //////////////////////////////////////<< ADS HANDLING ////////////////////////////////////////
     
     @objc func presentRewardedAd() {
         
         print("presenting Rewarded Ad")
-     _bgPlayer.setMusicVolume(volume: 0.01)
+        _bgPlayer.setMusicVolume(volume: 0.01)
         _popUpWindow.removeFromParent()
+        _popUpWindow = nil
         _rewardedAd = KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self)
         _rewardedAd.delegate = self
     }
     
     
     func rewardedFinishSuccessfuly() {
-        
-        _ufoSprite._life = 0
         print("rewardedFinishSuccessfuly")
+        if _isStageDone
+        {
+            // open popup window with "you earned coins" & to go to map or play next level
+            _ufoSprite._life = 1
+            self.setPopUpWindow(type: 3)
+        }
+        else
+        {
+            _ufoSprite._life = 0
+        }
     }
     
     func rewardedAdClosed() {
@@ -1272,10 +1313,16 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         if _isStageDone
         {
-            // TODO: add coins for watching rewarded ad
-            self.mapButtonAction()
-            print("GO TO MAP SCENE")
-        }
+            for _ in 0..._coins
+            {
+                let coinsEarnd = 1
+                _coins += coinsEarnd
+                _statusBar.updateStageCoins(coins: _coins, amountToUpdate: coinsEarnd)
+                if _popUpWindow._middleLabel != nil
+                {
+                    _popUpWindow._middleLabel.text = "EARNED:" + String(_coins)
+                }
+            }        }
         else if _ufoSprite._life == 0
         {
             print("CONTINUE GAME")
@@ -1290,9 +1337,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     func interAdClosed()
     {
-     print("INTER ADS SHOWED SUCCESSFULY")
+        print("INTER ADS SHOWED SUCCESSFULY")
         _bgPlayer.setMusicVolume(volume: 0.1)
-       // need to act like reward received
+        // need to act like reward received
         if _needToShowInterAds
         {
             self.homeButtonAction()
@@ -1300,12 +1347,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         }
         else
         {
-        self.rewardedFinishSuccessfuly()
-        self.rewardedAdClosed()
+            self.rewardedFinishSuccessfuly()
+            self.rewardedAdClosed()
         }
         
     }
-
+    
     func didNotReceiveInterAd() {
         print("GO HOME - no ads")
         _bgPlayer.setMusicVolume(volume: 0.1)
@@ -1313,8 +1360,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.homeButtonAction()
     }
     
-//////////////////////////////////////>> ADS HANDLING ////////////////////////////////////////
-
+    //////////////////////////////////////>> ADS HANDLING ////////////////////////////////////////
+    
     
 }
 

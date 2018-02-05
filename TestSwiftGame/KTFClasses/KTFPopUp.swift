@@ -149,7 +149,7 @@ class KTF_POPUP: KTF_Sprite
        _topLabel = SKLabelNode(fontNamed: "Avenir-Black")
         _topLabel.text = top
         _topLabel.colorBlendFactor = 1.0
-        _topLabel.color = UIColor.red
+        _topLabel.fontColor = UIColor.red
         _topLabel.fontSize = 120 * popUpScaleFactorX_
         _topLabel.position =  self.getPosForIndex(posIndex: topPos.rawValue,
                                                   forItem:_topLabel)
@@ -163,7 +163,7 @@ class KTF_POPUP: KTF_Sprite
    _middleLabel = SKLabelNode(fontNamed: "Avenir-Black")
             _middleLabel.text = middle
             _middleLabel.colorBlendFactor = 1.0
-            _middleLabel.color = UIColor.red
+            _middleLabel.fontColor = UIColor.red
             _middleLabel.fontSize = 120 * popUpScaleFactorX_
             _middleLabel.position =  self.getPosForIndex(posIndex: middlePos.rawValue,
                                                          forItem:_middleLabel)
@@ -177,7 +177,7 @@ class KTF_POPUP: KTF_Sprite
  _bottomLabel = SKLabelNode(fontNamed: "Avenir-Black")
             _bottomLabel.text = bottom
             _bottomLabel.colorBlendFactor = 1.0
-            _bottomLabel.color = UIColor.red
+            _bottomLabel.fontColor = UIColor.red
             _bottomLabel.fontSize = 120 * popUpScaleFactorX_
             _bottomLabel.position =  self.getPosForIndex(posIndex: bottomPos.rawValue,
                                                          forItem:_bottomLabel)
@@ -283,7 +283,7 @@ class KTF_POPUP: KTF_Sprite
             _timerLabel = SKLabelNode(fontNamed: "Avenir-Black")
             _timerLabel.text = timeText
             _timerLabel.colorBlendFactor = 1.0
-            _timerLabel.color = UIColor.green
+            _timerLabel.fontColor = UIColor.green
             _timerLabel.fontSize = 120 * popUpScaleFactorX_
             _timerLabel.position =  self.getPosForIndex(posIndex: timerPos.rawValue,
                                                         forItem:_timerLabel)
@@ -305,7 +305,7 @@ class KTF_POPUP: KTF_Sprite
                 timeText = "0:0" + String(_time)
                 if _time < 5
                 {
-                    _timerLabel.color = UIColor.red
+                    _timerLabel.fontColor = UIColor.red
                 }
             }
             else
@@ -403,11 +403,11 @@ class KTF_POPUP: KTF_Sprite
                               y:self.position.y + self.size.height/2 - forItem.frame.size.height * 1.5)
             break
         case POPUP_ITEMS_POS_INDEX.posUP_RIGHT.rawValue:
-            itemPos = CGPoint(x:self.position.x + self.size.width/2 - forItem.frame.size.width * 1.0,
+            itemPos = CGPoint(x:self.position.x + self.size.width/4,// - forItem.frame.size.width * 1.0,
                               y:self.position.y + self.size.height/2 - forItem.frame.size.height * 1.1)
             break
         case POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT.rawValue:
-            itemPos = CGPoint(x:self.position.x - self.size.width/2 + forItem.frame.size.width * 0.7,
+            itemPos = CGPoint(x:self.position.x - self.size.width/4,// + forItem.frame.size.width * 0.7,
                               y:self.position.y)
             break
         case POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE.rawValue:
@@ -415,7 +415,7 @@ class KTF_POPUP: KTF_Sprite
                               y:self.position.y)
             break
         case POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT.rawValue:
-            itemPos = CGPoint(x:self.position.x + self.size.width/2 - forItem.frame.size.width * 0.7,
+            itemPos = CGPoint(x:self.position.x + self.size.width/4,// - forItem.frame.size.width * 0.7,
                               y:self.position.y)
             break
         case POPUP_ITEMS_POS_INDEX.posDOWN_LEFT.rawValue:
@@ -427,7 +427,7 @@ class KTF_POPUP: KTF_Sprite
                               y:self.position.y - self.size.height/2 + forItem.frame.size.height * 0.7)
             break
         case POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT.rawValue:
-            itemPos = CGPoint(x:self.position.x + self.size.width/2 - forItem.frame.size.width * 0.7,
+            itemPos = CGPoint(x:self.position.x + self.size.width/4,// - forItem.frame.size.width * 0.7,
                               y:self.position.y - self.size.height/2 + forItem.frame.size.height * 0.7)
             break
         default:

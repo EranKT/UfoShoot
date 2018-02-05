@@ -12,6 +12,7 @@ let MENU_TITLE_LABEL_AVAILABE = "GET"
 let MENU_TITLE_LABEL_NOT_AVAILABE = "OPEN AFTER LEVEL "
 
 let MENU_BOTTOM_LABEL_OWNED = "V"
+let lockName_ = "lock_image"
 
 
 import Foundation
@@ -68,19 +69,6 @@ class KTF_Scroll: SKSpriteNode {
             
             itemFileName = prefix + String(i)
             itemSprite = KTF_Sprite(imageNamed: itemFileName)
-
-            if i >= gameLevel_
-            {
-                //COLOR SPRITE IN GRAY
-            /*    let myImage = UIImage.init(named: itemFileName)
-                let aImage:UIImage = KTF_GRAY_IMAGE().convertImageToGrayScale(image: myImage!)
-                //   let sourceImageRef = aImage.cgImage
-                let texture = SKTexture(image:aImage)
-                itemSprite = KTF_Sprite(texture: texture)
-                itemSprite.alpha = 0.5
-                //    itemSprite = KTF_Sprite(spriteWithCGImage:sourceImageRef, key:"")
-              */
-         }
             
             itemSprite.tag = i
             itemSprite.alpha = 0
@@ -111,12 +99,26 @@ class KTF_Scroll: SKSpriteNode {
                 {
                     itemSprite.color = SKColor.init(red: 0, green: 0, blue: 0, alpha: 1.0)
                     itemSprite.colorBlendFactor = 0.7
-                }
+                    self.addLockToUfo(ufo:itemSprite)
+            }
         }
   
         
     }
 
+    func addLockToUfo(ufo:KTF_Sprite)
+    {
+        let lockImage = KTF_Sprite(imageNamed: lockName_)
+        lockImage.name = lockName_
+        lockImage.position = KTF_POS().posInNodePrc(node: ufo, isParentFullScreen: false, PrcX: 50, PrcY: 50)
+        ufo.addChild(lockImage)
+    }
+
+    func removeLockFromUfo(ufo:KTF_Sprite)
+    {
+        //TODO: remove lock when ufo bought
+    }
+    
     // SET INITIAL MENU ITEM
     func setFirstSpriteInPlace() {
         

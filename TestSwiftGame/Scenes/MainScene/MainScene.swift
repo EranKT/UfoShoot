@@ -406,7 +406,8 @@ class MainScene: SKScene {
         _ufoMenu.scrollItemsLeft()
         ufoToBuy.color = SKColor.white
         ufoToBuy.colorBlendFactor = 1.0
-        
+        let lockImage = ufoToBuy.childNode(withName: lockName_)
+        lockImage?.removeFromParent()
         _ufoMenu.scrollItemsRight()
         _popUpWindow.removeFromParent()
     }
