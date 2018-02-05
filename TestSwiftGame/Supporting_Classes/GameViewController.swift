@@ -23,47 +23,29 @@ class GameViewController: UIViewController {
         self.view = SKView()
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-     
+        
         //LOAD BANNER ADS
         KTF_Ads_Banner_Support().showAds(myView: self, atPos:KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         //PRELOAD REWARD AND INTER ADS
-       KTF_Ads_Rewarded_Support().preloadRewardAds(myView: self)
+        KTF_Ads_Rewarded_Support().preloadRewardAds(myView: self)
         KTF_Ads_Inter_Support().preloadInterAds(myView: self)
         
         let scene:SKScene = MainScene(size: UIScreen.main.bounds.size)
-            scene.scaleMode = .resizeFill
-
-
+        scene.scaleMode = .resizeFill
+        
+        
         if let view = self.view as! SKView? {
-
+            
             let transition:SKTransition = SKTransition.fade(withDuration: 1)
-
+            
             view.presentScene(scene, transition: transition)
             view.ignoresSiblingOrder = true
-}
         }
-
-
-   /*
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        var frame = gridCollectionView_.frame
-        frame.size.height = self.view.frame.size.height/2
-        frame.size.width = self.view.frame.size.width/2
-        frame.origin.x = 0//self.view.frame.size.width/2  - self.view.frame.size.width/2
-        frame.origin.y = 0//self.view.frame.size.height/2 - self.view.frame.size.height/2
-        gridCollectionView_.frame = frame
-        gridLayout_.scrollDirection = .horizontal
-
-        // THIS LINE IS FOR ARROWS BUTTONS
-       //   gridCollectionView_.scrollToItem(at: a, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
-
     }
- */   override var shouldAutorotate: Bool {
+
+    override var shouldAutorotate: Bool {
         return true
     }
 

@@ -90,7 +90,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.initAnimatedBg()
         self.addHomeButton()
  
-        _ufoNumberOfBullets = 4
+        _ufoNumberOfBullets = 1
         
         _statusBar = KTF_StatusBar().initStatusBar(scene: self, posIsTop: true)
         _statusBar.populateStatusBar(includeSavedScore:false)
@@ -825,30 +825,35 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         // animate ufo show back in screen
         self.stopTick()
         
-      //  var openPopup: SKAction
-        
+        var openPopup: SKAction
+
         if _ufoSprite._life == 1
         {
             //open watch
-           /* openPopup = SKAction.run {*/self.setPopUpWindow(type: 0)//}
+            openPopup = SKAction.run {self.setPopUpWindow(type: 0)}
         }
         else
         {
             if gameCoins_ >= 2000
             {
         // pay to continue game
-             /*   openPopup = SKAction.run {*/self.setPopUpWindow(type: 1)//}
+                openPopup = SKAction.run {self.setPopUpWindow(type: 1)}
             }
             else
             {
-                // go to home screen
+                // go to home screen with inter ads
                 _needToShowInterAds = true
-                _interAd = KTF_Ads_Inter_Support().presentInterAds()
-                _interAd.delegate = self
-                //  openPopup = SKAction.run(self.homeButtonAction)
+                //TODO: not calling go home method when no inter ads to show
+                openPopup = SKAction.run {
+                    self._interAd = KTF_Ads_Inter_Support().presentInterAds()
+                    self._interAd.delegate = self
+                    self.homeButtonAction()
+                }
             }
         }
-      //  _ufoSprite.run(openPopup)
+        let actionWithDelay = SKAction.sequence([SKAction.wait(forDuration: 1.0),
+                                                 openPopup])
+        _ufoSprite.run(actionWithDelay)
     }
     
     func reloadUfoToScreen() {
@@ -967,6 +972,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
 
                 {//NEXT ROUND
                     _gameRound += 1
+                    self.startGame()
                 }
                 else
                 {//NEXT STAGE
@@ -974,9 +980,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     _statusBar.updatelevel()
                     self.setPopUpWindow(type: 2)
                 }
-                // TODO: WHEN STAGE FINISH OPEN POPUP
                 self.stopTick()
-                self.startGame()
                 return
             }
         }
@@ -1084,10 +1088,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             }
         case 1://IF DEAD SECOND TIME AND HAVE ENOUGH COINS (combine with original popup)
             closeButtonSel = "homeButtonAction"
-            topText = String(2000)
-            topPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT
+            topText = "GET ONE LIFE"
+            topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
             centerText = String(2000)
-            middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
+            middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
             bottomText = ""
             bottomPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
             imageName = ""
@@ -1100,20 +1104,20 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             SecondButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
             secondButtonSel = "handleCoinsFromPopup"// reduce coins and continue game
             timer = 10
-            timerPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
+            timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
             timerSel = "homeButtonAction"// move to home
             break
         case 2://IF STAGE FINISHED
             closeButtonSel = "homeButtonAction"
-            windowSize = POPUP_WINDOW_SIZE.full_size
+            windowSize = POPUP_WINDOW_SIZE.middle_size
             topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
-            centerText = "YOU EARNED:" + String(_coins)
+            centerText = "EARNED:" + String(_coins)
             middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT
-            bottomText = "WATCH & GET X2"
+            bottomText = "DOUBLE X2"
             bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
             imageName = "space_coin"
-            imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
+            imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
             imageSel = "presentRewardedAd"//watch and move to map
             FirstButtonImage = "pop_up_rewarded_button"
             FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE

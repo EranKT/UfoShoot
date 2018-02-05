@@ -69,7 +69,7 @@ class MapScene: SKScene
     override func didMove(to view: SKView)
     {
         _currentScreenIndex = gameSelectedLevel_
-        if _isStageChanging {
+        if _isStageChanging && _currentScreenIndex > 1{
             _currentScreenIndex -= 1
         }
         self.addBgImage()
@@ -298,7 +298,7 @@ class MapScene: SKScene
             {
                 _isStageChanging = false
                 KTF_DISK().saveBool(isTrue: _isStageChanging, forKey: SAVED_IS_CHANGING_STAGE)
-              if _currentScreenIndex == gameSelectedLevel_ - 1
+              if _currentScreenIndex == gameSelectedLevel_ - 1 && _currentScreenIndex > 1
               {
                 self.replaceLevel(increaseLevel: true)
                 }
@@ -328,7 +328,6 @@ class MapScene: SKScene
         }
         else
         {
-
             if _currentScreenIndex > 1
             {
                 _currentScreenIndex -= 1
