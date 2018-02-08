@@ -89,8 +89,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         
-        //     physicsWorld.gravity = CGVector(dx: 0, dy: -1)
-        
         self.initAnimatedBg()
         self.addHomeButton()
        
@@ -99,7 +97,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _statusBar = KTF_StatusBar().initStatusBar(scene: self, posIsTop: true)
         _statusBar.populateStatusBar(includeSavedScore:true)
       //changed from stage score to game score
-      //  _statusBar.populateStatusBar(includeSavedScore:false)
 
         self.initUfo()
         self.startGame()
@@ -107,8 +104,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     override func sceneDidLoad()
     {
-        //   print("GAME SCENE sceneDidLoad")
-        
     }
     
     /////<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  INITIAL SETTINGS
@@ -253,17 +248,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         else
         {
             self.initEnemyShip()
-            _countDownToNextEnemyShipBullet = 50//maxLevelsInGame_ + 1 - gameSelectedLevel_
+            _countDownToNextEnemyShipBullet = 50
             _isEnemyShipShoot = true
             _numberOfEnemyShipBullets = gameSelectedLevel_ * 3
             _ufoSprite.isEnabled = true
         }
-        //<< if last stage
-        // SET ENEMY SHOOTS
-        // SET ENEMY LIFE BAR
-        
-        //>> if last stage
-        
         
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
         
@@ -295,7 +284,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             self.addChild(bullet)
             KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
             bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
-            bullet.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)//CGPoint(x: _ufoSprite.position.x, y: _ufoSprite.position.y + _ufoSprite.size.height/2)
+            bullet.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)
             bullet.tag = 0
             _ufoBulletsArray.append(bullet)
             self.ufoShootBullet(bullet: bullet, typeIndex: realBulletIndexForPos)
@@ -353,7 +342,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     //>> UFO BULLETS
     
-    
     //<< ENEMIES
     
     func addEnemies(amount:Int, type:Int, withLife:Int, canShoot:Bool) {
@@ -369,7 +357,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: enemy)
             enemy.zPosition = rush_scene_z_pos.rush_scene_z_enemy.rawValue
             _enemiesSpritesArray.append(enemy)
-            //      enemy.tag = i
+
             enemy.animateEnemyToPlace(itemTag: i, amountIndex: amount, withLife: withLife, canShoot: canShoot)
         }
     }
@@ -459,7 +447,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             self.addChild(bullet)
             KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
             bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
-            bullet.position = _enemyShipSprite.getBulletPosPerType(index: realBulletIndexForPos)//CGPoint(x: _ufoSprite.position.x, y: _ufoSprite.position.y + _ufoSprite.size.height/2)
+            bullet.position = _enemyShipSprite.getBulletPosPerType(index: realBulletIndexForPos)
             bullet.tag = 0
             _enemyShipBulletsArray.append(bullet)
             self.enemyShipShootBullet(bullet: bullet, typeIndex: realBulletIndexForPos)
@@ -469,11 +457,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     func enemyShipShootBullet(bullet:KTF_Sprite, typeIndex:Int) {
         
-        // KTF_Sound_Engine().playSound(fileName: "laser_short")
         KTF_Sound_Engine().playSoundWithVolume(fileName: "laser_short", volume: 0.3)
         let bulletEndPoint = _enemyShipSprite.getBulletEndPosPerType(index: typeIndex)
         bullet.run(SKAction.sequence(
-            [SKAction.move(to: bulletEndPoint,//CGPoint(x:bullet.position.x, y:self.size.height),
+            [SKAction.move(to: bulletEndPoint,
                 duration: 1.0),
              SKAction.run{ self.removeEnemyShipBullet(bullet: bullet)  }
             ]))
@@ -516,15 +503,13 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         bonusSprite.name = bonusBubbleFileName
         bonusSprite.initBonusBubble()
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: bonusSprite)
-        bonusSprite.xScale = bonusSprite.xScale / 5
-        bonusSprite.yScale = bonusSprite.yScale / 5
+        bonusSprite.xScale = bonusSprite.xScale / 4
+        bonusSprite.yScale = bonusSprite.yScale / 4
         bonusSprite.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
         _bonusBubblesSpritesArray.append(bonusSprite)
     }
     //>> BONUS BUBBLE
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  GAME PROCESS
-    
-    
     
     
     
@@ -820,7 +805,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         isGamePaused = true
         
         for bonusBubble in _bonusBubblesSpritesArray {
-            // move bonus bubbles to y=0 will clear bubbles.
+            // move bonus bubble to y=0 will clear bubble.
             bonusBubble.position = CGPoint(x: bonusBubble.position.x, y: 0)
         }
         
