@@ -511,11 +511,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.addChild(bonusSprite)
         bonusSprite.name = bonusBubbleFileName
         bonusSprite.initBonusBubble()
-        bonusSprite.xScale = bonusSprite.xScale / 3
-        bonusSprite.yScale = bonusSprite.yScale / 3
         KTF_SCALE().ScaleMyNode(nodeToScale: bonusSprite)
-        bonusSprite.xScale = bonusSprite.xScale / 3
-        bonusSprite.yScale = bonusSprite.yScale / 3
+        bonusSprite.xScale = bonusSprite.xScale / 5
+        bonusSprite.yScale = bonusSprite.yScale / 5
         bonusSprite.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
         _bonusBubblesSpritesArray.append(bonusSprite)
     }
@@ -855,12 +853,20 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         for bonusBubble in _bonusBubblesSpritesArray {
             
             if bonusBubble.frame.intersects(ufoRect) || bonusBubble.tag == -1 {
-                let bonusIndex = _bonusBubblesSpritesArray.index(of: bonusBubble)
-                _bonusBubblesSpritesArray.remove(at: bonusIndex!)
-                
+             
                 if bonusBubble.frame.intersects(ufoRect)
                 {
-                    self.ufoGotBonus(bonus: bonusBubble)
+                    if _bonusType > -1
+                    {       //clear previous bonus
+                        self.bonusEnded()
+                    }
+                    _bonusType = bonusBubble._bonusType
+     
+                    let bonusIndex = _bonusBubblesSpritesArray.index(of: bonusBubble)
+                    bonusBubble.position = CGPoint(x: bonusBubble.position.x, y: 0)
+                    _bonusBubblesSpritesArray.remove(at: bonusIndex!)
+                    
+                    self.ufoGotBonus()
                     break
                 }
             }
@@ -1060,11 +1066,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     
     func checkIfBonusBubbleWasShoot() {
-        //run same check for bullets like for enemies
+     
         for bonus in _bonusBubblesSpritesArray {
             
             if _bonusBubblesSpritesArray.count <= 0 {return}
-            
+            if let bubbleSprite = bonus.childNode(withName: BUBBLE_FILES_PREFIX)
+            {
             //<< CHECK IF BULLET HIT BONUS BUBBLE
             for bullet in _ufoBulletsArray {
                 if bonus.frame.contains(bullet.position) {
@@ -1077,42 +1084,34 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     _score += 1
                     _statusBar.updateStageScore(score: _score)
                     
-                    self.bonusWasShot(bonus: bonus)
+                    self.bonusWasShot(bubble: bubbleSprite)
                     break
                 }
             }
             //>> CHECK IF BULLET HIT BONUS BUBBLE
+            }
+            
         }
     }
     
-    func bonusWasShot(bonus: BonusBubbleSprite) {
-        //check if bonus have bubble and remove it
-        if let bubbleSprite = bonus.childNode(withName: BUBBLE_FILES_PREFIX)
-        {
-            //TODO: add bubble blow SFX
-            bubbleSprite.removeFromParent()
-        }
+    func bonusWasShot(bubble: SKNode) {
+
+        //TODO: add bubble blow SFX
+            bubble.removeFromParent()
     }
     
-    func ufoGotBonus(bonus: BonusBubbleSprite) {
+    func ufoGotBonus() {
         
-        //remove bonus
-        bonus.position = CGPoint(x: bonus.position.x, y: 0)
-        //TODO: handle bonus (including timer to remove bonus
-        _bonusType = bonus._bonusType
-        //reset incase bonus was active
-        self.bonusEnded()
-        
-        switch bonus._bonusType {
+        switch _bonusType {
         case bonus_types.X2.rawValue:
             
             _ufoNumberOfBullets = 2
-            _countDownForBonusActive = 10
+            _countDownForBonusActive = BONUS_TIME
             
         case bonus_types.X4.rawValue:
             
-            _ufoNumberOfBullets = 2
-            _countDownForBonusActive = 10
+            _ufoNumberOfBullets = 4
+            _countDownForBonusActive = BONUS_TIME
             
         case bonus_types.blow.rawValue:
             
@@ -1128,32 +1127,84 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 self.obstacleBlow(obstacle: obstacle)
             }
             
-            if _enemyShipSprite != nil
-            {
-                if _enemyShipSprite.isEnabled
-                {
-                    _enemyShipSprite.life_ = 25 * gameSelectedLevel_
-                }
-                
-            }
-            else if _enemiesSpritesArray.count > 0
+            if _enemiesSpritesArray.count > 0
             {
                 for enemy in _enemiesSpritesArray
                 {
-                    enemy.life_ = enemy.life_ - gameSelectedLevel_
+                    print("ENEMY HAD:", enemy.life_)
+                    _score += 1
+                    _statusBar.updateStageScore(score: _score)
+                    
+                    if enemy.life_ > 0
+                    {
+                        enemy.life_ = enemy.life_ - gameSelectedLevel_ - 1
+                    }
+                    if enemy.life_ <= 0
+                    {
+                        self.particlesAction(fileName: "blow_particles.sks", pos: enemy.position, duration: 0.5)
+                        let enemyIndex = _enemiesSpritesArray.index(of: enemy)
+                        if !enemy.isActive_{return}
+                        _enemiesSpritesArray.remove(at: enemyIndex!)
+                        enemy.isActive_ = false
+                        
+                        enemy.removeAllActions()
+                        enemy.removeFromParent()
+                    }
+                    if _enemiesSpritesArray.isEmpty
+                    {
+                        self.enemiesFinished()
+                    }
                 }
             }
+            else if _enemyShipSprite != nil
+            {
+                for _ in 0...25
+                {
+                if _enemyShipSprite.isEnabled
+                {
+                    _score += 1
+                    _statusBar.updateStageScore(score: _score)
+                    
+                    if _enemyShipSprite.life_ > 0
+                    {
+                        _enemyShipSprite.enemyShipWasHit()
+                    }
+                    else
+                    {
+                        self.particlesAction(fileName: "blow_particles.sks", pos: _enemyShipSprite.position, duration: 3.5)
+                        _enemyShipSprite.isEnabled = false
+                        _countDownToNextEnemyShipBullet = -1
+                        _enemyShipSprite.removeAllActions()
+                        _enemyShipSprite.removeFromParent()
+                        _enemyShipSprite = nil
+                        self.enemiesFinished()
+                    }
+                }
+                }
+            }
+            
         case bonus_types.rocket.rawValue:
-            _countDownForBonusActive = 10
+            _countDownForBonusActive = BONUS_TIME
         case bonus_types.shield.rawValue:
             
-            let ufoShield = KTF_Sprite(imageNamed:BUBBLE_FILES_PREFIX + String(bonus_types.shield.rawValue))
-            ufoShield.position = _ufoSprite.position
-            ufoShield.zPosition = _ufoSprite.zPosition - 1
+            let ufoShield = KTF_Sprite(imageNamed:BUBBLE_FILES_PREFIX + "_" + String(bonus_types.shield.rawValue))
+            ufoShield.position = KTF_POS().posInNodePrc(node: _ufoSprite,
+                                                        isParentFullScreen: false,
+                                                        PrcX: 50,
+                                                        PrcY: 50)//_ufoSprite.position
+            ufoShield.zPosition = ufo_z_pos.ufo_shieldZorder.rawValue
             ufoShield.name = BUBBLE_FILES_PREFIX
             _ufoSprite.addChild(ufoShield)
-            //TODO: add scale "glow effect"
-            _countDownForBonusActive = 10
+            _countDownForBonusActive = BONUS_TIME
+
+            //add scale "glow effect"
+            let scaleX = ufoShield.xScale
+            let scaleY = ufoShield.yScale
+            let actionScaleUp = SKAction.scaleX(to: scaleX * 1.2, y: scaleY * 1.2, duration: 0.5)
+            let actionScaleDown = SKAction.scaleX(to: scaleX, y: scaleY, duration: 0.5)
+            let actionSequence = SKAction.sequence([actionScaleUp,actionScaleDown])
+            ufoShield.run(SKAction.repeatForever(actionSequence))
+
         default:
             print("DO NOTHING")
         }
@@ -1352,6 +1403,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         switch type {
         case 0: // IF DEAD FIRST TIME AND DON'T HAVE MONEY
+            print("GAME COINS:",gameCoins_)
             if gameCoins_ < 2000
             {
                 // now buy life option
@@ -1391,7 +1443,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             windowSize = POPUP_WINDOW_SIZE.middle_size
             topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
-            centerText = "EARNED:" + String(_coins)
+            centerText = "EARNED: " + String(_coins)
             middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
             bottomText = "X2"
             bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
@@ -1413,11 +1465,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             windowSize = POPUP_WINDOW_SIZE.middle_size
             topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
-            centerText = "EARNED:" + String(_coins)
-            middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT
+            centerText = "EARNED: " + String(_coins)
+            middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
             bottomText = ""
             bottomPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
-            imageName = "space_coin"
+            imageName = ""
             imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
             imageSel = ""
             FirstButtonImage = "map_button" // go to map button
@@ -1480,6 +1532,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     @objc func handleCoinsFromPopup()
     {
+        print("GAME COINS:", gameCoins_)
         _statusBar.updateCoinsAndSave(addToCoins: -2000, shouldUpdateStatusBar:false, animated: false)
         //        _popUpWindow.removeFromParent()
         isGamePaused = false

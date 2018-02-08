@@ -36,7 +36,8 @@ enum ufo_z_pos: CGFloat
 {
     case ufo_jetZorder = -3
     case ufo_baseBackZorder = -2
-    case ufo_driverZorder
+    case ufo_shieldZorder
+   case ufo_driverZorder
     case ufo_gunZorder
     case ufo_baseZorder
     case ufo_hoodZorder

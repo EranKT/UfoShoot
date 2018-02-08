@@ -71,6 +71,7 @@ class MainScene: SKScene {
         KTF_DISK().saveInt(number: gameSelectedStage_, forKey: SAVED_GAME_SELECTED_STAGE)
      //   KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
         KTF_DISK().saveBool(isTrue: false, forKey: SAVED_IS_CHANGING_STAGE)
+     //   KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_COINS)
 
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         
