@@ -337,13 +337,16 @@ class KTF_Ads_Sub_Class
     func loadAdRequest() -> GADRequest{
         
         let request = GADRequest()
-        
+      
+        #if DEBUG
+
         request.testDevices = ["acc8f37f622185236d1f09abd03f2b5d",
                                "df9dfa5edaf80f86ba79f3ad4b8787d9",
                                "9f7ea1062afad6bf37c91212c5e228c4159e26a6",
                                "461383f79e6c870f0b8ff22d30d1368b",
                                "b0438b8c5bcb180bc6e70a0590e9bf01"]
-        return request
+            #endif
+            return request
     }
     
 }

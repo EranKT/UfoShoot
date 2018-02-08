@@ -93,12 +93,14 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         self.initAnimatedBg()
         self.addHomeButton()
-        
-        _ufoNumberOfBullets = 1
+       
+            _ufoNumberOfBullets = 1
         
         _statusBar = KTF_StatusBar().initStatusBar(scene: self, posIsTop: true)
-        _statusBar.populateStatusBar(includeSavedScore:false)
-        
+        _statusBar.populateStatusBar(includeSavedScore:true)
+      //changed from stage score to game score
+      //  _statusBar.populateStatusBar(includeSavedScore:false)
+
         self.initUfo()
         self.startGame()
     }
@@ -153,6 +155,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     @objc func startGame()
     {
         if !isGamePaused {return}
+        _isStageDone = false
+
         isGamePaused = false
         if gameSelectedStage_ < stagesPerLevel_
         {
@@ -511,7 +515,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.addChild(bonusSprite)
         bonusSprite.name = bonusBubbleFileName
         bonusSprite.initBonusBubble()
-        KTF_SCALE().ScaleMyNode(nodeToScale: bonusSprite)
+        KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: bonusSprite)
         bonusSprite.xScale = bonusSprite.xScale / 5
         bonusSprite.yScale = bonusSprite.yScale / 5
         bonusSprite.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
@@ -1312,7 +1316,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             {
                 let coinsEarnd = 1
                 _coins += coinsEarnd
-                _statusBar.updateStageCoins(coins: _coins, amountToUpdate: coinsEarnd)
+               
+                _statusBar.updateCoinsAndSave(addToCoins: coinsEarnd, shouldUpdateStatusBar: true, animated: false)
+              //changed from stage coins to game coins
+               // _statusBar.updateStageCoins(coins: _coins, amountToUpdate: coinsEarnd)
                 self.removeCoin(coin: coin)
             }
         }
@@ -1533,7 +1540,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     @objc func handleCoinsFromPopup()
     {
         print("GAME COINS:", gameCoins_)
-        _statusBar.updateCoinsAndSave(addToCoins: -2000, shouldUpdateStatusBar:false, animated: false)
+        _statusBar.updateCoinsAndSave(addToCoins: -2000, shouldUpdateStatusBar:true, animated: false)
         //        _popUpWindow.removeFromParent()
         isGamePaused = false
         self.reloadUfoToScreen()
@@ -1641,12 +1648,16 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             {
                 let coinsEarnd = 1
                 _coins += coinsEarnd
-                _statusBar.updateStageCoins(coins: _coins, amountToUpdate: coinsEarnd)
+                _statusBar.updateCoinsAndSave(addToCoins: coinsEarnd, shouldUpdateStatusBar: true, animated: false)
+                //changed from stage coins to game coins
+                // _statusBar.updateStageCoins(coins: _coins, amountToUpdate: coinsEarnd)
                 if _popUpWindow._middleLabel != nil
                 {
                     _popUpWindow._middleLabel.text = "EARNED:" + String(_coins)
                 }
-            }        }
+            }
+        _coins = 0
+        }
         else if _ufoSprite._life == 0
         {
             print("CONTINUE GAME")
