@@ -56,6 +56,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     var _timer: Timer!
     var _countDownToNextObstacle: CGFloat!
+    var _countDownToNextBonusBubble: CGFloat!
+    var _countDownForBonusActive = -1
+    var _bonusType = -1
     var _countDownToNextUfoBullet: Int!
     var _countDownToNextEnemyShipBullet = -1
     var _numberOfEnemyShipBullets = -1
@@ -68,6 +71,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     var _enemiesSpritesArray: [EnemySprite] = [EnemySprite]()
     var _obstaclesSpritesArray: [ObstacleSprite] = [ObstacleSprite]()
+    var _bonusBubblesSpritesArray: [BonusBubbleSprite] = [BonusBubbleSprite]()
     var _ufoBulletsArray: [KTF_Sprite] = [KTF_Sprite]()
     var _enemyBulletsArray: [KTF_Sprite] = [KTF_Sprite]()
     var _enemyShipBulletsArray: [KTF_Sprite] = [KTF_Sprite]()
@@ -195,7 +199,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         print("INIT ROUND")
         _obstaclesSpritesArray = []
         _countDownToNextObstacle = 50 / CGFloat(gameSelectedLevel_)
+        
+        _bonusBubblesSpritesArray = []
+        _countDownToNextBonusBubble = 70 / CGFloat(gameSelectedLevel_)
+        
         _countDownToNextUfoBullet = 10
+        
         if gameSelectedStage_ < stagesPerLevel_
         {
             var enemiesAmount:Int
@@ -290,18 +299,42 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
     }
     
+    func addRocketToUFO() {
+        
+        let realBulletIndexForPos = 0
+        
+        let fileName = "rocket_0"
+        
+        let rocket = KTF_Sprite(imageNamed:fileName)
+        self.addChild(rocket)
+        KTF_SCALE().ScaleMyNode(nodeToScale: rocket)
+        rocket.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
+        rocket.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)
+        rocket.tag = 1
+        _ufoBulletsArray.append(rocket)
+        self.ufoShootBullet(bullet: rocket, typeIndex: realBulletIndexForPos)
+        
+        
+    }
+    
+    
     func ufoShootBullet(bullet:KTF_Sprite, typeIndex:Int) {
         
-        // KTF_Sound_Engine().playSound(fileName: "laser_short")
-        KTF_Sound_Engine().playSoundWithVolume(fileName: "laser_short", volume: 0.3)
+        var sfxFile = "laser_short"
+        if bullet.tag == 1
+        {
+            sfxFile = "laser_sfx"
+        }
+        
+        KTF_Sound_Engine().playSoundWithVolume(fileName: sfxFile, volume: 0.3)
         let bulletEndPoint = _ufoSprite.getBulletEndPosPerType(index: typeIndex)
         bullet.run(SKAction.sequence(
-            [SKAction.move(to: bulletEndPoint,//CGPoint(x:bullet.position.x, y:self.size.height),
-                duration: 1.0),
+            [SKAction.move(to: bulletEndPoint, duration: 1.0),
              SKAction.run{ self.removeUfoBullet(bullet: bullet)  }
             ]))
         
     }
+    
     
     func removeUfoBullet(bullet:KTF_Sprite) {
         
@@ -470,6 +503,23 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     //>> OBSTACLES
     
+    //<<  BONUS BUBBLE
+    
+    func addBonusBubble() {
+        let bonusBubbleFileName = BonusBubbleSprite().getFileName()
+        let bonusSprite = BonusBubbleSprite(imageNamed: bonusBubbleFileName)
+        self.addChild(bonusSprite)
+        bonusSprite.name = bonusBubbleFileName
+        bonusSprite.initBonusBubble()
+        bonusSprite.xScale = bonusSprite.xScale / 3
+        bonusSprite.yScale = bonusSprite.yScale / 3
+        KTF_SCALE().ScaleMyNode(nodeToScale: bonusSprite)
+        bonusSprite.xScale = bonusSprite.xScale / 3
+        bonusSprite.yScale = bonusSprite.yScale / 3
+        bonusSprite.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
+        _bonusBubblesSpritesArray.append(bonusSprite)
+    }
+    //>> BONUS BUBBLE
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  GAME PROCESS
     
     
@@ -552,6 +602,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         self.HandleEnemyActions()
         self.checkIfObstacleWasShoot()
+        self.checkIfBonusBubbleWasShoot()
         //NEXT OBSTACLE
         if _countDownToNextObstacle <= 0 {
             _countDownToNextObstacle = 5 * 60
@@ -560,12 +611,39 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             _countDownToNextObstacle = _countDownToNextObstacle - 1
         }
         
+        //NEXT BONUS BUBBLE
+        if _countDownToNextBonusBubble <= 0 {
+            _countDownToNextBonusBubble = 5 * 60
+            self.addBonusBubble()
+        } else {
+            _countDownToNextBonusBubble = _countDownToNextBonusBubble - 1
+        }
+        
+        //BONUS TIMER
+        if _countDownForBonusActive > 0
+        {
+            _countDownForBonusActive = _countDownForBonusActive - 1
+        }
+        else if _countDownForBonusActive == 0
+        {
+            self.bonusEnded()
+        }
+        
         //NEXT UFO BULLET
         if _countDownToNextUfoBullet == 0
         {
-            _countDownToNextUfoBullet = 10
-            self.addBulletToUFO()
-        } else
+            if _bonusType != bonus_types.rocket.rawValue
+            {
+                _countDownToNextUfoBullet = 10
+                self.addBulletToUFO()
+            }
+            else
+            {
+                _countDownToNextUfoBullet = 25
+                self.addRocketToUFO()
+            }
+        }
+        else
         { _countDownToNextUfoBullet = _countDownToNextUfoBullet - 1}
         
         //NEXT SPACE SHIP BULLET
@@ -622,40 +700,75 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     }
                 }
                 //>> CHECK IF ENEMY TIME TO SHOOT
-                
-                //<< CHECK IF BULLET HIT ENEMY
-                for bullet in _ufoBulletsArray {
-                    if enemy.frame.contains(bullet.position) {
-                        
-                        let bulletIndex = _ufoBulletsArray.index(of: bullet)
-                        _ufoBulletsArray.remove(at: bulletIndex!)
-                        bullet.removeAllActions()
-                        bullet.removeFromParent()
-                        _score += 1
-                        _statusBar.updateStageScore(score: _score)
-                        
-                        if enemy.life_ > 0
-                        {
-                            enemy.life_ = enemy.life_ - 1
-                        }
-                        else
-                        {
-                            self.particlesAction(fileName: "blow_particles.sks", pos: enemy.position, duration: 0.5)
-                            let enemyIndex = _enemiesSpritesArray.index(of: enemy)
-                            if !enemy.isActive_{return}
-                            _enemiesSpritesArray.remove(at: enemyIndex!)
-                            enemy.isActive_ = false
+                if _bonusType == bonus_types.rocket.rawValue
+                {
+                    //<< CHECK IF ROCKET HIT ENEMY
+                    for rocket in _ufoBulletsArray {
+                        if enemy.frame.contains(rocket.position) {
                             
-                            enemy.removeAllActions()
-                            enemy.removeFromParent()
-                        }
-                        if _enemiesSpritesArray.isEmpty
-                        {
-                            self.enemiesFinished()
+                            _score += 1
+                            _statusBar.updateStageScore(score: _score)
+                            
+                            if enemy.life_ > 0
+                            {
+                                enemy.life_ = enemy.life_ - 1
+                            }
+                            else
+                            {
+                                self.particlesAction(fileName: "blow_particles.sks", pos: enemy.position, duration: 0.5)
+                                let enemyIndex = _enemiesSpritesArray.index(of: enemy)
+                                if !enemy.isActive_{return}
+                                _enemiesSpritesArray.remove(at: enemyIndex!)
+                                enemy.isActive_ = false
+                                
+                                enemy.removeAllActions()
+                                enemy.removeFromParent()
+                            }
+                            if _enemiesSpritesArray.isEmpty
+                            {
+                                self.enemiesFinished()
+                            }
                         }
                     }
+                    //>> CHECK IF ROCKET HIT ENEMY
                 }
-                //>> CHECK IF BULLET HIT ENEMY
+                else
+                {
+                    //<< CHECK IF BULLET HIT ENEMY
+                    for bullet in _ufoBulletsArray {
+                        if enemy.frame.contains(bullet.position) {
+                            
+                            let bulletIndex = _ufoBulletsArray.index(of: bullet)
+                            _ufoBulletsArray.remove(at: bulletIndex!)
+                            bullet.removeAllActions()
+                            bullet.removeFromParent()
+                            _score += 1
+                            _statusBar.updateStageScore(score: _score)
+                            
+                            if enemy.life_ > 0
+                            {
+                                enemy.life_ = enemy.life_ - 1
+                            }
+                            else
+                            {
+                                self.particlesAction(fileName: "blow_particles.sks", pos: enemy.position, duration: 0.5)
+                                let enemyIndex = _enemiesSpritesArray.index(of: enemy)
+                                if !enemy.isActive_{return}
+                                _enemiesSpritesArray.remove(at: enemyIndex!)
+                                enemy.isActive_ = false
+                                
+                                enemy.removeAllActions()
+                                enemy.removeFromParent()
+                            }
+                            if _enemiesSpritesArray.isEmpty
+                            {
+                                self.enemiesFinished()
+                            }
+                        }
+                    }
+                    //>> CHECK IF BULLET HIT ENEMY
+                }
+                
             }
         }
         else if _enemyShipSprite != nil
@@ -703,6 +816,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         // prepare for next round
         isGamePaused = true
+        
+        for bonusBubble in _bonusBubblesSpritesArray {
+            // move bonus bubbles to y=0 will clear bubbles.
+            bonusBubble.position = CGPoint(x: bonusBubble.position.x, y: 0)
+        }
+        
         for obstacle in _obstaclesSpritesArray
         {
             _score += _obstaclesSpritesArray.count * 5
@@ -723,11 +842,32 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         {
             return
         }
+        
+        
         //SET HIT RECT OF UFO
         let ufoRect = CGRect(x: _ufoSprite.position.x - _ufoSprite.size.width*0.3,
                              y: _ufoSprite.position.y - _ufoSprite.size.height*0.3,
                              width: _ufoSprite.size.width*0.6,
                              height: _ufoSprite.size.height*0.6)
+        
+        
+        //<< CHECK IF BONUS BUBBLE HIT UFO
+        for bonusBubble in _bonusBubblesSpritesArray {
+            
+            if bonusBubble.frame.intersects(ufoRect) || bonusBubble.tag == -1 {
+                let bonusIndex = _bonusBubblesSpritesArray.index(of: bonusBubble)
+                _bonusBubblesSpritesArray.remove(at: bonusIndex!)
+                
+                if bonusBubble.frame.intersects(ufoRect)
+                {
+                    self.ufoGotBonus(bonus: bonusBubble)
+                    break
+                }
+            }
+        }
+        //>> CHECK IF BONUS BUBBLE HIT UFO
+        
+        if _bonusType == bonus_types.shield.rawValue{return}
         
         //<< CHECK IF ENEMY BULLET HIT UFO
         for bullet in _enemyBulletsArray {
@@ -919,6 +1059,136 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         }
     }
     
+    func checkIfBonusBubbleWasShoot() {
+        //run same check for bullets like for enemies
+        for bonus in _bonusBubblesSpritesArray {
+            
+            if _bonusBubblesSpritesArray.count <= 0 {return}
+            
+            //<< CHECK IF BULLET HIT BONUS BUBBLE
+            for bullet in _ufoBulletsArray {
+                if bonus.frame.contains(bullet.position) {
+                    
+                    let bulletIndex = _ufoBulletsArray.index(of: bullet)
+                    _ufoBulletsArray.remove(at: bulletIndex!)
+                    bullet.removeAllActions()
+                    bullet.removeFromParent()
+                    
+                    _score += 1
+                    _statusBar.updateStageScore(score: _score)
+                    
+                    self.bonusWasShot(bonus: bonus)
+                    break
+                }
+            }
+            //>> CHECK IF BULLET HIT BONUS BUBBLE
+        }
+    }
+    
+    func bonusWasShot(bonus: BonusBubbleSprite) {
+        //check if bonus have bubble and remove it
+        if let bubbleSprite = bonus.childNode(withName: BUBBLE_FILES_PREFIX)
+        {
+            //TODO: add bubble blow SFX
+            bubbleSprite.removeFromParent()
+        }
+    }
+    
+    func ufoGotBonus(bonus: BonusBubbleSprite) {
+        
+        //remove bonus
+        bonus.position = CGPoint(x: bonus.position.x, y: 0)
+        //TODO: handle bonus (including timer to remove bonus
+        _bonusType = bonus._bonusType
+        //reset incase bonus was active
+        self.bonusEnded()
+        
+        switch bonus._bonusType {
+        case bonus_types.X2.rawValue:
+            
+            _ufoNumberOfBullets = 2
+            _countDownForBonusActive = 10
+            
+        case bonus_types.X4.rawValue:
+            
+            _ufoNumberOfBullets = 2
+            _countDownForBonusActive = 10
+            
+        case bonus_types.blow.rawValue:
+            
+            for obstacle in _obstaclesSpritesArray
+            {
+                _score += _obstaclesSpritesArray.count * 5
+                _statusBar.updateStageScore(score: _score)
+                
+                if _obstaclesSpritesArray.count <= 0
+                {
+                    break
+                }
+                self.obstacleBlow(obstacle: obstacle)
+            }
+            
+            if _enemyShipSprite != nil
+            {
+                if _enemyShipSprite.isEnabled
+                {
+                    _enemyShipSprite.life_ = 25 * gameSelectedLevel_
+                }
+                
+            }
+            else if _enemiesSpritesArray.count > 0
+            {
+                for enemy in _enemiesSpritesArray
+                {
+                    enemy.life_ = enemy.life_ - gameSelectedLevel_
+                }
+            }
+        case bonus_types.rocket.rawValue:
+            _countDownForBonusActive = 10
+        case bonus_types.shield.rawValue:
+            
+            let ufoShield = KTF_Sprite(imageNamed:BUBBLE_FILES_PREFIX + String(bonus_types.shield.rawValue))
+            ufoShield.position = _ufoSprite.position
+            ufoShield.zPosition = _ufoSprite.zPosition - 1
+            ufoShield.name = BUBBLE_FILES_PREFIX
+            _ufoSprite.addChild(ufoShield)
+            //TODO: add scale "glow effect"
+            _countDownForBonusActive = 10
+        default:
+            print("DO NOTHING")
+        }
+    }
+    
+    func bonusEnded()
+    {
+        // clear bonus items
+        _countDownForBonusActive = -1
+        
+        switch _bonusType {
+        case bonus_types.X2.rawValue:
+            
+            _ufoNumberOfBullets = 1
+            
+        case bonus_types.X4.rawValue:
+            
+            _ufoNumberOfBullets = 1
+            
+        case bonus_types.blow.rawValue:
+            print("BOMB DO NOTHING")
+            
+        case bonus_types.rocket.rawValue:
+            _countDownToNextUfoBullet = 10
+            
+        case bonus_types.shield.rawValue:
+            let shieldSprite = _ufoSprite.childNode(withName: BUBBLE_FILES_PREFIX)
+            shieldSprite?.removeAllActions()
+            shieldSprite?.removeFromParent()
+            
+        default:
+            print("DO NOTHING")
+        }
+        _bonusType = -1
+    }
     
     func coinAction(pos:CGPoint){
         
@@ -1011,10 +1281,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     func pauseGame()  {
         isGamePaused = true
         self.stopTick()
-       // real line
+        // real line
         self.setPopUpWindow(type: 50)
-       // for tests
-      //  self.setPopUpWindow(type: 2)
+        // for tests
+        //  self.setPopUpWindow(type: 2)
     }
     
     func stopTick()
@@ -1084,17 +1354,17 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         case 0: // IF DEAD FIRST TIME AND DON'T HAVE MONEY
             if gameCoins_ < 2000
             {
-         // now buy life option
+                // now buy life option
                 centerText = ""
                 FirstButtonImage = ""
                 firstButtonSel = ""
-            //watch TITLE
+                //watch TITLE
                 bottomPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_LEFT
-            //watch BUTTON
+                //watch BUTTON
                 SecondButtonPos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
-             // timer
+                // timer
                 timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
-      }
+            }
         case 1://IF DEAD SECOND TIME AND HAVE ENOUGH COINS (combine with original popup)
             closeButtonSel = "homeButtonAction"
             topText = "GET ONE LIFE"
@@ -1267,6 +1537,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     {
         self.stopTick()
         _obstaclesSpritesArray.removeAll()
+        _bonusBubblesSpritesArray.removeAll()
         _enemiesSpritesArray.removeAll()
         _ufoBulletsArray.removeAll()
         _animatedBG.removeFromParent()

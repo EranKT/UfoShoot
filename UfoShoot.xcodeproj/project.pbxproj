@@ -273,6 +273,14 @@
 		ABED9DB12005A2D4004E13D8 /* pop_up_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ABED9DAF2005A2D4004E13D8 /* pop_up_button.png */; };
 		ABED9DB32005A591004E13D8 /* pop_up_close_button.png in Resources */ = {isa = PBXBuildFile; fileRef = ABED9DB22005A591004E13D8 /* pop_up_close_button.png */; };
 		ABFFBD5A202875C600C5229A /* lock_image.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD59202875C600C5229A /* lock_image.png */; };
+		ABFFBD62202B851900C5229A /* bonus_bubble_0.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD5C202B851500C5229A /* bonus_bubble_0.png */; };
+		ABFFBD63202B851900C5229A /* bonus_bubble_4.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD5D202B851600C5229A /* bonus_bubble_4.png */; };
+		ABFFBD64202B851900C5229A /* bonus_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD5E202B851700C5229A /* bonus_bubble.png */; };
+		ABFFBD65202B851900C5229A /* bonus_bubble_1.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD5F202B851700C5229A /* bonus_bubble_1.png */; };
+		ABFFBD66202B851900C5229A /* bonus_bubble_3.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD60202B851800C5229A /* bonus_bubble_3.png */; };
+		ABFFBD67202B851900C5229A /* bonus_bubble_2.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD61202B851800C5229A /* bonus_bubble_2.png */; };
+		ABFFBD69202B869300C5229A /* BonusBubbleSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFFBD68202B869300C5229A /* BonusBubbleSprite.swift */; };
+		ABFFBD6B202BB7A300C5229A /* rocket_0.png in Resources */ = {isa = PBXBuildFile; fileRef = ABFFBD6A202BB7A200C5229A /* rocket_0.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -544,6 +552,14 @@
 		ABED9DAF2005A2D4004E13D8 /* pop_up_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_up_button.png; sourceTree = "<group>"; };
 		ABED9DB22005A591004E13D8 /* pop_up_close_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pop_up_close_button.png; sourceTree = "<group>"; };
 		ABFFBD59202875C600C5229A /* lock_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock_image.png; sourceTree = "<group>"; };
+		ABFFBD5C202B851500C5229A /* bonus_bubble_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus_bubble_0.png; sourceTree = "<group>"; };
+		ABFFBD5D202B851600C5229A /* bonus_bubble_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus_bubble_4.png; sourceTree = "<group>"; };
+		ABFFBD5E202B851700C5229A /* bonus_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus_bubble.png; sourceTree = "<group>"; };
+		ABFFBD5F202B851700C5229A /* bonus_bubble_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus_bubble_1.png; sourceTree = "<group>"; };
+		ABFFBD60202B851800C5229A /* bonus_bubble_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus_bubble_3.png; sourceTree = "<group>"; };
+		ABFFBD61202B851800C5229A /* bonus_bubble_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bonus_bubble_2.png; sourceTree = "<group>"; };
+		ABFFBD68202B869300C5229A /* BonusBubbleSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusBubbleSprite.swift; sourceTree = "<group>"; };
+		ABFFBD6A202BB7A200C5229A /* rocket_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rocket_0.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -812,6 +828,7 @@
 		AB0BF2D41FF1C8C600D290DE /* graphics */ = {
 			isa = PBXGroup;
 			children = (
+				ABFFBD5B202B84E700C5229A /* bonus_bubbles */,
 				AB1F92571FF6805E00E0BBCD /* enemies */,
 				AB0BF2EC1FF2761C00D290DE /* obstacles */,
 				AB0BF2DF1FF275C600D290DE /* bg_anim */,
@@ -872,6 +889,7 @@
 				AB0BF3201FF3BE3900D290DE /* ObstacleSprite.swift */,
 				AB1F92541FF670D300E0BBCD /* EnemySprite.swift */,
 				ABED9D7720039CCB004E13D8 /* EnemySpaceShip.swift */,
+				ABFFBD68202B869300C5229A /* BonusBubbleSprite.swift */,
 			);
 			path = SupportingClasses;
 			sourceTree = "<group>";
@@ -941,6 +959,7 @@
 		AB854634201A8E9D00267830 /* bullets */ = {
 			isa = PBXGroup;
 			children = (
+				ABFFBD6A202BB7A200C5229A /* rocket_0.png */,
 				AB854635201A8E9D00267830 /* ufo_0 */,
 				AB85463B201A8E9D00267830 /* ufo_1 */,
 				AB854641201A8E9D00267830 /* ufo_10 */,
@@ -1236,6 +1255,19 @@
 			path = pop_up_files;
 			sourceTree = "<group>";
 		};
+		ABFFBD5B202B84E700C5229A /* bonus_bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				ABFFBD5C202B851500C5229A /* bonus_bubble_0.png */,
+				ABFFBD5F202B851700C5229A /* bonus_bubble_1.png */,
+				ABFFBD61202B851800C5229A /* bonus_bubble_2.png */,
+				ABFFBD60202B851800C5229A /* bonus_bubble_3.png */,
+				ABFFBD5D202B851600C5229A /* bonus_bubble_4.png */,
+				ABFFBD5E202B851700C5229A /* bonus_bubble.png */,
+			);
+			path = bonus_bubbles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1343,6 +1375,7 @@
 				AB7113761FFD20EE0095DCFF /* stars.png in Resources */,
 				AB0BF2A21FED820C00D290DE /* view_4_item_12.mp3 in Resources */,
 				AB0BF1691FEA5C4C00D290DE /* ufo_hood.png in Resources */,
+				ABFFBD67202B851900C5229A /* bonus_bubble_2.png in Resources */,
 				ABD459E1200BD34F00FE8212 /* planet_5_1.png in Resources */,
 				ABD459A1200A0F2F00FE8212 /* pause_button.png in Resources */,
 				ABD459D3200BD34F00FE8212 /* planet_1_3.png in Resources */,
@@ -1362,6 +1395,7 @@
 				AB7113A51FFD37A30095DCFF /* ufo_top_base_9.png in Resources */,
 				AB0BF1651FEA5C4C00D290DE /* alien_1_0.png in Resources */,
 				AB8546CC201A8E9E00267830 /* bullet_9_2.png in Resources */,
+				ABFFBD66202B851900C5229A /* bonus_bubble_3.png in Resources */,
 				AB0BF2B11FED820C00D290DE /* view_4_item_3.mp3 in Resources */,
 				AB8546B2201A8E9E00267830 /* bullet_4_1.png in Resources */,
 				AB8546CE201A8E9E00267830 /* bullet_9_4.png in Resources */,
@@ -1409,12 +1443,14 @@
 				AB85468B201A8E9E00267830 /* bullet_0_2.png in Resources */,
 				AB8546B4201A8E9E00267830 /* bullet_4_3.png in Resources */,
 				AB7113A81FFD37A30095DCFF /* ufo_top_lights_10.png in Resources */,
+				ABFFBD63202B851900C5229A /* bonus_bubble_4.png in Resources */,
 				AB8546BC201A8E9E00267830 /* bullet_6_1.png in Resources */,
 				AB8546A6201A8E9E00267830 /* bullet_13_4.png in Resources */,
 				AB8546A7201A8E9E00267830 /* bullet_2_0.png in Resources */,
 				AB854694201A8E9E00267830 /* bullet_10_1.png in Resources */,
 				AB0BF2B21FED820C00D290DE /* view_4_item_4.mp3 in Resources */,
 				AB1F925A1FF6805E00E0BBCD /* enemy_0.png in Resources */,
+				ABFFBD65202B851900C5229A /* bonus_bubble_1.png in Resources */,
 				AB8546C7201A8E9E00267830 /* bullet_8_2.png in Resources */,
 				AB0BF2A91FED820C00D290DE /* view_4_item_19.mp3 in Resources */,
 				AB0BF11F1FE83DBC00D290DE /* gun_pressd.mp3 in Resources */,
@@ -1479,6 +1515,7 @@
 				ABD459D2200BD34F00FE8212 /* planet_1_2.png in Resources */,
 				AB7113981FFD37A30095DCFF /* ufo_top_base_0.png in Resources */,
 				AB85469F201A8E9E00267830 /* bullet_12_2.png in Resources */,
+				ABFFBD6B202BB7A300C5229A /* rocket_0.png in Resources */,
 				ABD459DB200BD34F00FE8212 /* planet_3_3.png in Resources */,
 				AB0BF1281FE83DBC00D290DE /* witch_laugh.mp3 in Resources */,
 				AB7113CB20014E140095DCFF /* coins_particles.sks in Resources */,
@@ -1490,6 +1527,7 @@
 				ABD459DD200BD34F00FE8212 /* planet_4_1.png in Resources */,
 				AB8546A5201A8E9E00267830 /* bullet_13_3.png in Resources */,
 				AB0BF1201FE83DBC00D290DE /* gun_shot.mp3 in Resources */,
+				ABFFBD64202B851900C5229A /* bonus_bubble.png in Resources */,
 				AB854693201A8E9E00267830 /* bullet_10_0.png in Resources */,
 				AB0BF1701FEA5C4C00D290DE /* ufo_lights_6.png in Resources */,
 				AB0BF1191FE83DBC00D290DE /* camera_button.mp3 in Resources */,
@@ -1524,6 +1562,7 @@
 				AB7113991FFD37A30095DCFF /* ufo_top_base_1.png in Resources */,
 				AB0BF3231FF4135B00D290DE /* bg_transparent.png in Resources */,
 				AB8546BD201A8E9E00267830 /* bullet_6_2.png in Resources */,
+				ABFFBD62202B851900C5229A /* bonus_bubble_0.png in Resources */,
 				ABD4599E2008F57500FE8212 /* pop_up_rewarded_button.png in Resources */,
 				AB0BF2CE1FED835700D290DE /* tilt_button.png in Resources */,
 				AB85469D201A8E9E00267830 /* bullet_12_0.png in Resources */,
@@ -1567,6 +1606,7 @@
 				AB0BF2F41FF27A4F00D290DE /* AnimatedBg.swift in Sources */,
 				ABED9D7820039CCB004E13D8 /* EnemySpaceShip.swift in Sources */,
 				AB0BF13C1FE91A3000D290DE /* UFOClass.swift in Sources */,
+				ABFFBD69202B869300C5229A /* BonusBubbleSprite.swift in Sources */,
 				AB0BF0CA1FE288DC00D290DE /* KTFGeneralAsistant.swift in Sources */,
 				AB0BF2D21FF129C200D290DE /* KTFSprite.swift in Sources */,
 				AB0BF1001FE4367A00D290DE /* Prefix_Keys.swift in Sources */,
