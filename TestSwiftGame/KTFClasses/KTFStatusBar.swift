@@ -282,22 +282,21 @@ class KTF_StatusBar: KTF_Sprite {
     func updateCoinsAndSave(addToCoins:Int, shouldUpdateStatusBar:Bool, animated:Bool)
     {
         // get saved coins
-        var coins = KTF_DISK().getInt(forKey: SAVED_GAME_COINS)
-
+        let coins = KTF_DISK().getInt(forKey: SAVED_GAME_COINS)
         if animated {
             KTF_StatusBar.statusBar_.updateCoinsAnimation(from: coins, to: coins+addToCoins)
             return
         }
         //add to coins
-        coins += addToCoins
+        gameCoins_ += addToCoins
         //save new coins
-        KTF_DISK().saveInt(number: coins, forKey: SAVED_GAME_COINS)
+        KTF_DISK().saveInt(number: gameCoins_, forKey: SAVED_GAME_COINS)
         // update coins label
         // DISABLE THIS LINE WHEN BUYING LIFE DURING GAME TO PREVENT SHOWING SAVED COINS
         if shouldUpdateStatusBar
         {
-            coinsLabel_.text = String(coins)
-        }
+            coinsLabel_.text = String(gameCoins_)
+       }
     }
 
     

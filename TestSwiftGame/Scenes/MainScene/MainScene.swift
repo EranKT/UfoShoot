@@ -12,14 +12,16 @@ import GameplayKit
 
 enum main_menu_z_pos: CGFloat
 {
+    typealias RawValue = CGFloat
+    
     case main_menu_z_bg = 0
-    case main_menu_z_play_button
-    case main_menu_z_map_button
-    case main_menu_z_ufo_menu
-    case main_menu_z_title
-    case main_menu_z_more_button
-    case main_menu_z_rate_button
-    case main_menu_z_popUpWindow
+    case main_menu_z_play_button = 1
+    case main_menu_z_map_button = 2
+    case main_menu_z_title = 3
+    case main_menu_z_more_button = 4
+    case main_menu_z_rate_button = 5
+    case main_menu_z_ufo_menu = 50
+    case main_menu_z_popUpWindow = 100
 }
 
 let MAIN_SCENE_POS_LIST = [
@@ -44,14 +46,11 @@ class MainScene: SKScene {
     // DECLARE CLASS OBJECTS
     private var _mapButton = KTF_Sprite(imageNamed: "map_button")
     private var _playButton = KTF_Sprite(imageNamed: "pop_up_button")
- //   private var moreButton = UIMenuItem.init(title: #imageLiteral(resourceName: "more_button"), action: <#T##Selector#>)
     private var rateButton = KTF_Sprite(imageNamed: "rate_button")
     var _ufoMenu = KTF_Scroll()
     var _popUpWindow: KTF_POPUP!
 
     var _statusBar: KTF_StatusBar!
-
-    // let audio = KTF_MusicPlayer.sharedInstance()
 
     override func didMove(to view: SKView) {
         
@@ -69,9 +68,8 @@ class MainScene: SKScene {
         gameSelectedStage_ = gameStage_
         KTF_DISK().saveInt(number: gameSelectedLevel_, forKey: SAVED_GAME_SELECTED_LEVEL)
         KTF_DISK().saveInt(number: gameSelectedStage_, forKey: SAVED_GAME_SELECTED_STAGE)
-     //   KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
         KTF_DISK().saveBool(isTrue: false, forKey: SAVED_IS_CHANGING_STAGE)
-     //   KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_COINS)
+        KTF_DISK().saveInt(number: 5000, forKey: SAVED_GAME_COINS)
 
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         
@@ -207,26 +205,6 @@ class MainScene: SKScene {
             
             let location = touch.location(in: self)
             
-            //TODO: MOVE THIS TOUCH TO SCROLL CLASS
-       //     let ufoInMenu = _ufoMenu._menuItemsArray[_ufoMenu._currentItemIndex]
-    /*
-            if _ufoMenu._leftNavButton.contains(location)
-            {
-                _ufoMenu.scrollItemsLeft()
-                return
-            }
-            else if _ufoMenu._rightNavButton.contains(location)
-            {
-                _ufoMenu.scrollItemsRight()
-                return
-            }else if ufoInMenu.contains(location)
-            {
-                if ufoInMenu.isEnabled
-                {
-                    self.playButtonPressed()
-                }
-            }
-  */
             if _playButton.contains(location)
             {
                 self.playButtonPressed()

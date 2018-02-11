@@ -110,7 +110,8 @@ class KTF_Scroll: SKSpriteNode {
     {
         let lockImage = KTF_Sprite(imageNamed: lockName_)
         lockImage.name = lockName_
-        lockImage.position = KTF_POS().posInNodePrc(node: ufo, isParentFullScreen: false, PrcX: 50, PrcY: 50)
+        lockImage.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+       lockImage.position = KTF_POS().posInNodePrc(node: ufo, isParentFullScreen: false, PrcX: 50, PrcY: 50)
         ufo.addChild(lockImage)
     }
 
@@ -126,7 +127,7 @@ class KTF_Scroll: SKSpriteNode {
 
         KTF_Scroll._scrollMenu._scene.addChild(itemSpriteMiddle)
         itemSpriteMiddle.position = KTF_Scroll._scrollMenu._centerPosition
-        itemSpriteMiddle.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue
+        itemSpriteMiddle.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
         itemSpriteMiddle.alpha = 1.0
         
         KTF_Scroll._scrollMenu.setTitleLabelToMenu(currentItem: itemSpriteMiddle)
@@ -147,8 +148,8 @@ class KTF_Scroll: SKSpriteNode {
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: KTF_Scroll._scrollMenu._leftNavButton)
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: KTF_Scroll._scrollMenu._rightNavButton)
 
-        KTF_Scroll._scrollMenu._leftNavButton.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue
-        KTF_Scroll._scrollMenu._rightNavButton.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue
+        KTF_Scroll._scrollMenu._leftNavButton.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+        KTF_Scroll._scrollMenu._rightNavButton.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
     }
     
     func scrollItemsLeft() {
@@ -169,7 +170,7 @@ class KTF_Scroll: SKSpriteNode {
         {
             _scene.addChild(itemSpriteRight)
         }
-        itemSpriteRight.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue
+        itemSpriteRight.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
 
         itemSpriteRight.position = CGPoint(x: _centerPosition.x - itemSpriteMiddle.frame.size.width*1.2,
                                            y: _centerPosition.y)
@@ -217,7 +218,7 @@ class KTF_Scroll: SKSpriteNode {
         {
             _scene.addChild(itemSpriteLeft)
         }
-        itemSpriteLeft.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue
+        itemSpriteLeft.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
         itemSpriteLeft.position = CGPoint(x: _centerPosition.x + itemSpriteMiddle.frame.size.width*1.2,
                                           y: _centerPosition.y)
         

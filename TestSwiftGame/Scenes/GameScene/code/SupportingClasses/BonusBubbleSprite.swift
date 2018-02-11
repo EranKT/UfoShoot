@@ -64,10 +64,6 @@ class BonusBubbleSprite: KTF_Sprite {
 
         self._bonusType = Int(String(self.name![indexStr]))!
        
-        print("NAME:", self.name!)
-        print("INDEX STR:", indexStr)
-        print("BONUS TYPE:", self._bonusType)
-
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0,
                                       target: self,
                                       selector: #selector(BonusBubbleSprite.bubbleAnimation),

@@ -61,6 +61,11 @@ class MapScene: SKScene
     let _leftNavButton = KTF_Sprite(imageNamed: "menu_left_button")
     // title label
     var _titleLabel: SKLabelNode!
+    var _ufoMenuBg: KTF_Sprite!
+    var _ufoMenu = KTF_Scroll()
+    var _selectedStage = 100
+    
+    
     // Current screenIndex
     var _currentScreenIndex = 0
     var _planetPrefix = "planet_"
@@ -72,6 +77,7 @@ class MapScene: SKScene
         if _isStageChanging && _currentScreenIndex > 1{
             _currentScreenIndex -= 1
         }
+        _ufoMenuBg = nil
         self.addBgImage()
         self.addHomeButton()
         self.addPlayButton()
@@ -372,8 +378,14 @@ class MapScene: SKScene
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
+        //IF POP UP WINDOW SHOWN IT TAKE CONTROL ON TOUCH BEGAN
+        if _ufoMenuBg != nil
+        {
+            _ = _ufoMenu.touchesStarted(touches, with: event)
+            return
+        }
+
         for touch in touches {
-            
             let location = touch.location(in: self)
             
             if _homeButton.contains(location)
@@ -383,7 +395,8 @@ class MapScene: SKScene
             }
             if _playButton.contains(location)
             {
-                self.playButtonPressed(planetTag: _currentPlanetsArray.count + 1)
+                
+                self.openUfoSelectionPopUp()
                 return
             }
             
@@ -404,15 +417,52 @@ class MapScene: SKScene
             {
                 if planet.contains(location)
                 {
-                    self.playButtonPressed(planetTag: planet.tag)
+                    _selectedStage = planet.tag
+                    self.openUfoSelectionPopUp()
                     return
                 }
             }
         }
     }
 
+func openUfoSelectionPopUp()
+{
+    let menuPos = KTF_POS().posInPrc(PrcX: 50, PrcY: 50)
+
+    let texture = SKTexture(imageNamed: "pop_up_bg")
+    let windowSize = CGSize(width: texture.size().width,
+                            height: texture.size().height * 0.5)
+    
+   _ufoMenuBg = KTF_Sprite(texture: texture, size: windowSize)
+    _ufoMenuBg.position = menuPos
+    _ufoMenuBg.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+   KTF_SCALE().ScaleMyNode(nodeToScale: _ufoMenuBg)
+    self.addChild(_ufoMenuBg)
+    
+    _ufoMenu = _ufoMenu.initScrollMenu(scene: self,
+                                       prefix: "ufo_top_base_",
+                                       pos: menuPos,
+                                       actionForImagePress:#selector(self.playSavedStage))
+    _ufoMenu.position = CGPoint(x:0, y:0)
+    _ufoMenu.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+    self.addChild(_ufoMenu)
+    }
+    
+    @objc func playSavedStage()
+    {
+        let selectedUfoIndex = _ufoMenu._currentItemIndex
+        KTF_DISK().saveInt(number: selectedUfoIndex!, forKey: SAVED_GAME_UFO)
+
+        _ufoMenu.removeAllActions()
+        _ufoMenu.removeFromParent()
+        _ufoMenuBg.removeFromParent()
+        _ufoMenuBg = nil
+        
+        self.playButtonPressed(planetTag:_selectedStage)
+    }
+    
     // play button action
-    func playButtonPressed(planetTag:Int)
+     func playButtonPressed(planetTag:Int)
     {
         if planetTag <= _currentPlanetsArray.count
         {
@@ -422,8 +472,6 @@ class MapScene: SKScene
         KTF_DISK().saveInt(number: gameSelectedLevel_, forKey: SAVED_GAME_SELECTED_LEVEL)
         KTF_DISK().saveInt(number: gameSelectedStage_, forKey: SAVED_GAME_SELECTED_STAGE)
         }
-        
-        
         
         self.clearLevelItems()
         _bgSprite.removeFromParent()

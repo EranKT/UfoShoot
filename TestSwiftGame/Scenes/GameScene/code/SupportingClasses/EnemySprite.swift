@@ -108,7 +108,7 @@ class EnemySprite: KTF_Sprite {
     func activateEnemy() {
     self.isActive_ = true
         if self.canShoot_ {
-            let shootTimeFactor = UInt32(60*(7-gameSelectedLevel_))
+            let shootTimeFactor = UInt32(60*(maxLevelsInGame_ - gameSelectedLevel_ + 1))
             countDownToNextEnemyShoot_ = Int(arc4random()%shootTimeFactor)
         }
     }

@@ -18,7 +18,7 @@ enum rush_scene_z_pos: CGFloat
     case rush_scene_z_bullets
     case rush_scene_z_ufo
     case rush_scene_z_enemy
-    case rush_scene_z_home_button
+    case rush_scene_z_pause_button
     case rush_scene_z_popUpWindow
 
 }
@@ -27,7 +27,7 @@ enum RUSH_SCENE_INDEX: Int
     case BG = 0
     case UFO
     case ENEMY
-    case HOME_BUTTON
+    case PAUSE_BUTTON
     case ROUND_LABEL
    // case ENEMY_SHIP
 
@@ -36,7 +36,7 @@ let RUSH_SCENE_POS = [
     [50, 50], //BG
     [50, 30], //UFO
     [50, 120], //ENEMY
-    [88, 14],   //HOME BUTTON
+    [88, 14],   //PAUSE BUTTON
     [50, 70], //ROUND LABEL
   //  [50, 30], //ENEMY_SHIP
 
@@ -45,7 +45,7 @@ let RUSH_SCENE_POS = [
 class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_SupportDelegate {
     
     var _animatedBG: AnimatedBg!
-    let _homeButton = KTF_Sprite(imageNamed: "pause_button")
+    let _pauseButton = KTF_Sprite(imageNamed: "pause_button")
     
     var _gameRound = 1
     var _statusBar: KTF_StatusBar!
@@ -90,7 +90,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         
         self.initAnimatedBg()
-        self.addHomeButton()
+        self.addPauseButton()
        
             _ufoNumberOfBullets = 1
         
@@ -122,13 +122,13 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     
     // ADD LEARN BUTTON
-    func addHomeButton()
+    func addPauseButton()
     {
-        _homeButton.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.HOME_BUTTON.rawValue][0]),
-                                                  PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.HOME_BUTTON.rawValue][1]))
-        self.addChild(_homeButton)
-        KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _homeButton)
-        _homeButton.zPosition = rush_scene_z_pos.rush_scene_z_home_button.rawValue;
+        _pauseButton.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.PAUSE_BUTTON.rawValue][0]),
+                                                  PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.PAUSE_BUTTON.rawValue][1]))
+        self.addChild(_pauseButton)
+        KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _pauseButton)
+        _pauseButton.zPosition = rush_scene_z_pos.rush_scene_z_pause_button.rawValue;
     }
     
     func initUfo() {
@@ -265,7 +265,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         var realBulletIndexForPos = 0
         
         for index in 0 ... _ufoNumberOfBullets {
-            if _ufoNumberOfBullets > 0
+            if _ufoNumberOfBullets > 1
             {
                 if index == _ufoNumberOfBullets{break}
                 realBulletIndexForPos = index + 1
@@ -535,9 +535,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
         for touch in touches {
             let location = touch.location(in: self)
-            
-            if !_homeButton.contains(location)
-            {
+                 if _pauseButton.contains(location)
+               {
+                 self.pauseGame()
+            }
+                 else
+                 {
                 _ufoSprite.position = location
             }
             
@@ -548,7 +551,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         for touch in touches {
             let location = touch.location(in: self)
             
-            if _ufoSprite.contains(location) || ( !_homeButton.contains(location) && _ufoSprite.tag > 0)
+            if (_ufoSprite.contains(location) ||  !_pauseButton.contains(location))
             {
                 _ufoSprite.position = location
             }
@@ -557,9 +560,9 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        for touch in touches {
+      //  for touch in touches {
             
-            let location = touch.location(in: self)
+       //     let location = touch.location(in: self)
             
             if _popUpWindow != nil
             {
@@ -568,11 +571,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     _popUpWindow = nil
                 }
             }
-            if _homeButton.contains(location)
-            {
-                self.pauseGame()
-            }
-        }
+        //}
     }
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> HANDLE TOUCHES
     
@@ -693,12 +692,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     for rocket in _ufoBulletsArray {
                         if enemy.frame.contains(rocket.position) {
                             
-                            _score += 1
+                            _score += (2 * KTF_DISK().getInt(forKey: SAVED_GAME_UFO))
                             _statusBar.updateStageScore(score: _score)
                             
                             if enemy.life_ > 0
                             {
-                                enemy.life_ = enemy.life_ - 1
+                                enemy.life_ = enemy.life_ - (2 * (KTF_DISK().getInt(forKey: SAVED_GAME_UFO)-1))
                             }
                             else
                             {
@@ -729,12 +728,12 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                             _ufoBulletsArray.remove(at: bulletIndex!)
                             bullet.removeAllActions()
                             bullet.removeFromParent()
-                            _score += 1
+                            _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
                             _statusBar.updateStageScore(score: _score)
                             
                             if enemy.life_ > 0
                             {
-                                enemy.life_ = enemy.life_ - 1
+                                enemy.life_ = enemy.life_ - KTF_DISK().getInt(forKey: SAVED_GAME_UFO) - 1
                             }
                             else
                             {
@@ -774,12 +773,20 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                         bullet.removeAllActions()
                         bullet.removeFromParent()
                         
-                        _score += 1
-                        _statusBar.updateStageScore(score: _score)
+                        var hitValue = KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
+                        if _bonusType == bonus_types.rocket.rawValue
+                        {
+                        hitValue = KTF_DISK().getInt(forKey: SAVED_GAME_UFO) * 3
+                        }
                         
                         if _enemyShipSprite.life_ > 0
                         {
-                            _enemyShipSprite.enemyShipWasHit()
+                            for _ in 0 ... hitValue
+                            {
+                               _enemyShipSprite.enemyShipWasHit()
+                                _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
+                                _statusBar.updateStageScore(score: _score)
+                            }
                         }
                         else
                         {
@@ -976,13 +983,13 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             }
             else
             {
-                // go to home screen with inter ads
+                // go to pause screen with inter ads
                 _needToShowInterAds = true
-                //TODO: not calling go home method when no inter ads to show
+                //TODO: not calling go pause method when no inter ads to show
                 openPopup = SKAction.run {
                     self._interAd = KTF_Ads_Inter_Support().presentInterAds()
                     self._interAd.delegate = self
-                    self.homeButtonAction()
+                    self.pauseButtonAction()
                 }
             }
         }
@@ -1023,7 +1030,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     bullet.removeAllActions()
                     bullet.removeFromParent()
                     
-                    _score += 1
+                    _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
                     _statusBar.updateStageScore(score: _score)
                     
                     self.obstacleBlow(obstacle: obstacle)
@@ -1070,7 +1077,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     bullet.removeAllActions()
                     bullet.removeFromParent()
                     
-                    _score += 1
+                    _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
                     _statusBar.updateStageScore(score: _score)
                     
                     self.bonusWasShot(bubble: bubbleSprite)
@@ -1120,7 +1127,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             {
                 for enemy in _enemiesSpritesArray
                 {
-                    print("ENEMY HAD:", enemy.life_)
                     _score += 1
                     _statusBar.updateStageScore(score: _score)
                     
@@ -1157,6 +1163,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     if _enemyShipSprite.life_ > 0
                     {
                         _enemyShipSprite.enemyShipWasHit()
+                        print("BOMB +1")
                     }
                     else
                     {
@@ -1232,7 +1239,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     func coinAction(pos:CGPoint){
         
-        let numberOfCoins = (arc4random()%20)+5
+        let numberOfCoins = (arc4random()%40)+5
         
         //   physicsWorld.speed = 0.1
         
@@ -1366,14 +1373,14 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         particles.removeFromParent()
     }
     
-    // GAME SCENE ---- // WATCH&PAY&TIMER // PAY&TIMER //{ THIS CAN BE IN MAIN MENU EARNED- WATCH*2 // PLAY NEXT // HOME
+    // GAME SCENE ---- // WATCH&PAY&TIMER // PAY&TIMER //{ THIS CAN BE IN MAIN MENU EARNED- WATCH*2 // PLAY NEXT // pause
     
     func setPopUpWindow(type:Int){
         if _popUpWindow != nil  {return}
         
         ////IF DEAD FIRST TIME
         var windowSize = POPUP_WINDOW_SIZE.middle_size
-        var closeButtonSel = "homeButtonAction"
+        var closeButtonSel = "pauseButtonAction"
         var topText = "GET ONE LIFE"
         var topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
         var centerText = String(2000)
@@ -1391,7 +1398,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         var secondButtonSel = "presentRewardedAd"//watch rewarded and continue
         var timer = 10
         var timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
-        var timerSel = "homeButtonAction"// move to home
+        var timerSel = "pauseButtonAction"// move to pause
         
         switch type {
         case 0: // IF DEAD FIRST TIME AND DON'T HAVE MONEY
@@ -1410,7 +1417,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
             }
         case 1://IF DEAD SECOND TIME AND HAVE ENOUGH COINS (combine with original popup)
-            closeButtonSel = "homeButtonAction"
+            closeButtonSel = "pauseButtonAction"
             topText = "GET ONE LIFE"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
             centerText = String(2000)
@@ -1428,10 +1435,10 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             secondButtonSel = "handleCoinsFromPopup"// reduce coins and continue game
             timer = 10
             timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
-            timerSel = "homeButtonAction"// move to home
+            timerSel = "pauseButtonAction"// move to pause
             break
         case 2://IF STAGE FINISHED
-            closeButtonSel = "homeButtonAction"
+            closeButtonSel = "pauseButtonAction"
             windowSize = POPUP_WINDOW_SIZE.middle_size
             topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
@@ -1453,7 +1460,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             timerSel = ""
             break
         case 3://IF WATCHED REWARDED AT STAGE FINISHED
-            closeButtonSel = "homeButtonAction"
+            closeButtonSel = "pauseButtonAction"
             windowSize = POPUP_WINDOW_SIZE.middle_size
             topText = "STAGE " + String(gameSelectedLevel_) + "-" + String(gameSelectedStage_) + " FINISHD"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
@@ -1475,7 +1482,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             timerSel = ""
             break
         default: // pause button pressed
-            closeButtonSel = "homeButtonAction"
+            closeButtonSel = "pauseButtonAction"
             topText = "GAME PAUSED"
             closeButtonSel = "resumeGame"
             topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
@@ -1488,7 +1495,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             imageSel = ""
             FirstButtonImage = "home_button"
             FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
-            firstButtonSel = "homeButtonAction"
+            firstButtonSel = "pauseButtonAction"
             SecondButtonImage = "play_button"//resume game button
             SecondButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
             secondButtonSel = "resumeGame" //resume game
@@ -1524,9 +1531,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     @objc func handleCoinsFromPopup()
     {
-        print("GAME COINS:", gameCoins_)
         _statusBar.updateCoinsAndSave(addToCoins: -2000, shouldUpdateStatusBar:true, animated: false)
-        //        _popUpWindow.removeFromParent()
         isGamePaused = false
         self.reloadUfoToScreen()
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
@@ -1544,8 +1549,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _timer = Timer.scheduledTimer(timeInterval: 1.0/60.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
     }
     
-    // HOME BUTTON PRESSED
-    @objc func homeButtonAction() {
+    // PAUSE BUTTON PRESSED
+    @objc func pauseButtonAction() {
         
         self.clearScene()
         KTF_Sound_Engine().playSound(fileName: "ufo_pass")
@@ -1597,9 +1602,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     
     //////////////////////////////////////<< ADS HANDLING ////////////////////////////////////////
     
-    @objc func presentRewardedAd() {
-        
-        print("presenting Rewarded Ad")
+    @objc func presentRewardedAd()
+    {
         _bgPlayer.setMusicVolume(volume: 0.01)
         _popUpWindow.removeFromParent()
         _popUpWindow = nil
@@ -1608,8 +1612,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     }
     
     
-    func rewardedFinishSuccessfuly() {
-        print("rewardedFinishSuccessfuly")
+    func rewardedFinishSuccessfuly()
+    {
         if _isStageDone
         {
             // open popup window with "you earned coins" & to go to map or play next level
@@ -1622,8 +1626,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         }
     }
     
-    func rewardedAdClosed() {
-        print("rewardedAdClosed")
+    func rewardedAdClosed()
+    {
         _bgPlayer.setMusicVolume(volume: 0.1)
         _rewardedAd.reloadRewardedAd()
         
@@ -1638,31 +1642,28 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 // _statusBar.updateStageCoins(coins: _coins, amountToUpdate: coinsEarnd)
                 if _popUpWindow._middleLabel != nil
                 {
-                    _popUpWindow._middleLabel.text = "EARNED:" + String(_coins)
+                    _popUpWindow._middleLabel.text = "EARNED: " + String(_coins)
                 }
             }
         _coins = 0
         }
         else if _ufoSprite._life == 0
         {
-            print("CONTINUE GAME")
             self.resumeGame()
         }
         else
         {
-            print("GO HOME")
-            self.homeButtonAction()
+            self.pauseButtonAction()
         }
     }
     
     func interAdClosed()
     {
-        print("INTER ADS SHOWED SUCCESSFULY")
         _bgPlayer.setMusicVolume(volume: 0.1)
         // need to act like reward received
         if _needToShowInterAds
         {
-            self.homeButtonAction()
+            self.pauseButtonAction()
             _rewardedAd.reloadRewardedAd()
         }
         else
@@ -1673,11 +1674,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
     }
     
-    func didNotReceiveInterAd() {
-        print("GO HOME - no ads")
+    func didNotReceiveInterAd()
+    {
         _bgPlayer.setMusicVolume(volume: 0.1)
         _rewardedAd.reloadRewardedAd()
-        self.homeButtonAction()
+        self.pauseButtonAction()
     }
     
     //////////////////////////////////////>> ADS HANDLING ////////////////////////////////////////
