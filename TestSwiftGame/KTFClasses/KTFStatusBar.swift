@@ -214,22 +214,14 @@ class KTF_StatusBar: KTF_Sprite {
         scene_.addChild(coinsLabel_)
     }
     
-    func updateStageScore(score:Int)
-    {
-        scoreLabel_.text = String(score)
-        var addToScore = KTF_DISK().getInt(forKey: SAVED_GAME_SCORE)
-        addToScore += score
-        KTF_DISK().saveInt(number: addToScore, forKey: SAVED_GAME_SCORE)
-   }
-    
-    func updateScoreAndSave(addToScore:Int)
+    func updateScore(increaseBy: Int)
     {
         var score = KTF_DISK().getInt(forKey: SAVED_GAME_SCORE)
-        score += addToScore
-        KTF_DISK().saveInt(number: score, forKey: SAVED_GAME_SCORE)
-        scoreLabel_.text = String(score)
+       score += increaseBy
+      KTF_DISK().saveInt(number: score, forKey: SAVED_GAME_SCORE)
+     scoreLabel_.text = String(score)
     }
-    
+
     func updatelevel()
     {
   // lower level or lower stage in game level

@@ -24,6 +24,7 @@ var gameStage_ = KTF_DISK().getInt(forKey: SAVED_GAME_FINISHED_STAGE)
 var gameSelectedLevel_ = KTF_DISK().getInt(forKey: SAVED_GAME_SELECTED_LEVEL)
 var gameSelectedStage_ = KTF_DISK().getInt(forKey: SAVED_GAME_SELECTED_STAGE)
 var gameCoins_ = KTF_DISK().getInt(forKey: SAVED_GAME_COINS)
+//var gameScore_ = KTF_DISK().getInt(forKey: SAVED_GAME_SCORE)
 
 let maxLevelsInGame_ = 13
 let stagesPerLevel_ = 4

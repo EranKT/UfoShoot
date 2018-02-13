@@ -117,6 +117,7 @@
 		AB1F925B1FF6805E00E0BBCD /* enemy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1F92591FF6805E00E0BBCD /* enemy_1.png */; };
 		AB1F925D1FF6E0F800E0BBCD /* ProjectData.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AB1F925C1FF6E0F800E0BBCD /* ProjectData.rtf */; };
 		AB6997972032044F008569F3 /* KTF_Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6997962032044F008569F3 /* KTF_Date.swift */; };
+		AB69979920326CBE008569F3 /* KTF_GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69979820326CBE008569F3 /* KTF_GameCenter.swift */; };
 		AB7113761FFD20EE0095DCFF /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7113751FFD20ED0095DCFF /* stars.png */; };
 		AB7113981FFD37A30095DCFF /* ufo_top_base_0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB71137B1FFD37A30095DCFF /* ufo_top_base_0.png */; };
 		AB7113991FFD37A30095DCFF /* ufo_top_base_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB71137C1FFD37A30095DCFF /* ufo_top_base_1.png */; };
@@ -396,6 +397,7 @@
 		AB1F92591FF6805E00E0BBCD /* enemy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_1.png; sourceTree = "<group>"; };
 		AB1F925C1FF6E0F800E0BBCD /* ProjectData.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ProjectData.rtf; path = TestSwiftGame/ProjectData.rtf; sourceTree = "<group>"; };
 		AB6997962032044F008569F3 /* KTF_Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTF_Date.swift; sourceTree = "<group>"; };
+		AB69979820326CBE008569F3 /* KTF_GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTF_GameCenter.swift; sourceTree = "<group>"; };
 		AB7113751FFD20ED0095DCFF /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars.png; sourceTree = "<group>"; };
 		AB71137B1FFD37A30095DCFF /* ufo_top_base_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_top_base_0.png; sourceTree = "<group>"; };
 		AB71137C1FFD37A30095DCFF /* ufo_top_base_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_top_base_1.png; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				AB7113BE1FFF714C0095DCFF /* KTFStatusBar.swift */,
 				ABED9D7D2005628E004E13D8 /* KTFPopUp.swift */,
 				AB6997962032044F008569F3 /* KTF_Date.swift */,
+				AB69979820326CBE008569F3 /* KTF_GameCenter.swift */,
 			);
 			name = KTFClasses;
 			path = TestSwiftGame/KTFClasses;
@@ -1597,6 +1600,7 @@
 				AB0BF1021FE43A0300D290DE /* KTFAdsSupport.swift in Sources */,
 				AB0BF0CE1FE288DC00D290DE /* GameViewController.swift in Sources */,
 				AB0BF0F51FE3FB8500D290DE /* MainScene.swift in Sources */,
+				AB69979920326CBE008569F3 /* KTF_GameCenter.swift in Sources */,
 				ABD459A7200A769B00FE8212 /* MapScene.swift in Sources */,
 				AB7113BF1FFF714C0095DCFF /* KTFStatusBar.swift in Sources */,
 				AB0BF0FA1FE3FED500D290DE /* CommonDataClass.swift in Sources */,
@@ -1737,7 +1741,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = US6ZQBEH75;
+				DEVELOPMENT_TEAM = 585U2HZ72T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TestSwiftGame/SDK/",
@@ -1746,7 +1750,7 @@
 				INFOPLIST_FILE = TestSwiftGame/Supporting_Classes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.etdigitaldesign.TestSwiftGame.TestSwiftGame;
+				PRODUCT_BUNDLE_IDENTIFIER = com.funkidsrs.UfoSpaceShoot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = DEBUG;
@@ -1760,7 +1764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = US6ZQBEH75;
+				DEVELOPMENT_TEAM = 585U2HZ72T;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TestSwiftGame/SDK/",
@@ -1770,7 +1774,7 @@
 				INFOPLIST_FILE = TestSwiftGame/Supporting_Classes/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.etdigitaldesign.TestSwiftGame.TestSwiftGame;
+				PRODUCT_BUNDLE_IDENTIFIER = com.funkidsrs.UfoSpaceShoot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[arch=*]" = "";
 				SWIFT_VERSION = 4.0;

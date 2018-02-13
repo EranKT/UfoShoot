@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        KTF_GameCenter().initGameCenter(forViewController: self)
         //LOAD BANNER ADS
         KTF_Ads_Banner_Support().showAds(myView: self, atPos:KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         //PRELOAD REWARD AND INTER ADS

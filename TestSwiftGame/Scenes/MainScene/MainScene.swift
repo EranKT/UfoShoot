@@ -95,7 +95,7 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _statusBar = KTF_StatusBar().initStatusBar(scene: self, posIsTop: true)
         _statusBar.populateStatusBar(includeSavedScore:true)
       
-        if !isFirstTimeToday_
+        if isFirstTimeToday_
         {
             isFirstTimeToday_ = false
             dailyBonus_ = (Int(arc4random()%10) + 1) * 100//bonus between 100 - 1000 in 100 jumps

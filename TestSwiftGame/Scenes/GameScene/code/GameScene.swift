@@ -507,7 +507,6 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: bonusSprite)
         bonusSprite.xScale = bonusSprite.xScale / 4
         bonusSprite.yScale = bonusSprite.yScale / 4
-        bonusSprite.zPosition = gameZorder.bonus_bubble.rawValue//rush_scene_z_pos.rush_scene_z_bg.rawValue
         _bonusBubblesSpritesArray.append(bonusSprite)
     }
     //>> BONUS BUBBLE
@@ -699,7 +698,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                         if enemy.frame.contains(rocket.position) {
                             
                             _score += (2 * KTF_DISK().getInt(forKey: SAVED_GAME_UFO))
-                            _statusBar.updateStageScore(score: _score)
+                            _statusBar.updateScore(increaseBy: 2 * KTF_DISK().getInt(forKey: SAVED_GAME_UFO))
                             
                             if enemy.life_ > 0
                             {
@@ -735,8 +734,8 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                             bullet.removeAllActions()
                             bullet.removeFromParent()
                             _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
-                            _statusBar.updateStageScore(score: _score)
-                            
+                            _statusBar.updateScore(increaseBy: KTF_DISK().getInt(forKey: SAVED_GAME_UFO) + 1)
+
                             if enemy.life_ > 0
                             {
                                 enemy.life_ = enemy.life_ - KTF_DISK().getInt(forKey: SAVED_GAME_UFO) - 1
@@ -791,7 +790,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                             {
                                _enemyShipSprite.enemyShipWasHit()
                                 _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
-                                _statusBar.updateStageScore(score: _score)
+                                _statusBar.updateScore(increaseBy: KTF_DISK().getInt(forKey: SAVED_GAME_UFO) + 1)
                             }
                         }
                         else
@@ -825,7 +824,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         for obstacle in _obstaclesSpritesArray
         {
             _score += _obstaclesSpritesArray.count * 5
-            _statusBar.updateStageScore(score: _score)
+            _statusBar.updateScore(increaseBy: _obstaclesSpritesArray.count * 5)
             
             if _obstaclesSpritesArray.count <= 0
             {
@@ -1037,7 +1036,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     bullet.removeFromParent()
                     
                     _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
-                    _statusBar.updateStageScore(score: _score)
+                    _statusBar.updateScore(increaseBy: KTF_DISK().getInt(forKey: SAVED_GAME_UFO) + 1)
                     
                     self.obstacleBlow(obstacle: obstacle)
                     break
@@ -1084,7 +1083,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                     bullet.removeFromParent()
                     
                     _score += KTF_DISK().getInt(forKey: SAVED_GAME_UFO)
-                    _statusBar.updateStageScore(score: _score)
+                    _statusBar.updateScore(increaseBy: KTF_DISK().getInt(forKey: SAVED_GAME_UFO) + 1)
                     
                     self.bonusWasShot(bubble: bubbleSprite)
                     break
@@ -1120,7 +1119,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             for obstacle in _obstaclesSpritesArray
             {
                 _score += _obstaclesSpritesArray.count * 5
-                _statusBar.updateStageScore(score: _score)
+                _statusBar.updateScore(increaseBy: _obstaclesSpritesArray.count * 5)
                 
                 if _obstaclesSpritesArray.count <= 0
                 {
@@ -1134,8 +1133,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 for enemy in _enemiesSpritesArray
                 {
                     _score += 1
-                    _statusBar.updateStageScore(score: _score)
-                    
+                    _statusBar.updateScore(increaseBy: 1)
                     if enemy.life_ > 0
                     {
                         enemy.life_ = enemy.life_ - gameSelectedLevel_ - 1
@@ -1164,12 +1162,11 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 if _enemyShipSprite.isEnabled
                 {
                     _score += 1
-                    _statusBar.updateStageScore(score: _score)
+                    _statusBar.updateScore(increaseBy: 1)
                     
                     if _enemyShipSprite.life_ > 0
                     {
                         _enemyShipSprite.enemyShipWasHit()
-                        print("BOMB +1")
                     }
                     else
                     {
