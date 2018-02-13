@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 import AudioToolbox
 
-
+/*
 enum rush_scene_z_pos: CGFloat
 {
     case rush_scene_z_bg = 0
@@ -22,6 +22,7 @@ enum rush_scene_z_pos: CGFloat
     case rush_scene_z_popUpWindow
 
 }
+*/
 enum RUSH_SCENE_INDEX: Int
 {
     case BG = 0
@@ -113,7 +114,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _animatedBG.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.BG.rawValue][0]),
                                                   PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.BG.rawValue][1]))
         self.addChild(_animatedBG)
-        _animatedBG.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
+        _animatedBG.zPosition = gameZorder.rush_scene_z_bg.rawValue//rush_scene_z_pos.rush_scene_z_bg.rawValue
         KTF_SCALE().ScaleMyNode(nodeToScale: _animatedBG)
         
         _animatedBG.initScrollElements()
@@ -128,7 +129,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                   PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.PAUSE_BUTTON.rawValue][1]))
         self.addChild(_pauseButton)
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _pauseButton)
-        _pauseButton.zPosition = rush_scene_z_pos.rush_scene_z_pause_button.rawValue;
+        _pauseButton.zPosition = gameZorder.GENERAL_buttons.rawValue//rush_scene_z_pos.rush_scene_z_pause_button.rawValue;
     }
     
     func initUfo() {
@@ -137,7 +138,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                  PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.UFO.rawValue][1]))
         self.addChild(_ufoSprite)
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _ufoSprite)
-        _ufoSprite.zPosition = rush_scene_z_pos.rush_scene_z_ufo.rawValue;
+        _ufoSprite.zPosition = gameZorder.ufo_base.rawValue//rush_scene_z_pos.rush_scene_z_ufo.rawValue;
         _ufoSprite.isEnabled = false
     }
     /////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  INITIAL SETTINGS
@@ -176,7 +177,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                  PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ROUND_LABEL.rawValue][1]))
         roundLabel.name = "roundLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: roundLabel)
-        roundLabel.zPosition = statusBarZpos_ + 3
+        roundLabel.zPosition = gameZorder.round_label.rawValue//statusBarZpos_ + 3
         roundLabel.alpha = 0
         self.addChild(roundLabel)
         
@@ -283,7 +284,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             let bullet = KTF_Sprite(imageNamed:fileName)
             self.addChild(bullet)
             KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
-            bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
+            bullet.zPosition = gameZorder.GENERAL_bullets.rawValue//rush_scene_z_pos.rush_scene_z_bullets.rawValue
             bullet.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)
             bullet.tag = 0
             _ufoBulletsArray.append(bullet)
@@ -301,7 +302,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         let rocket = KTF_Sprite(imageNamed:fileName)
         self.addChild(rocket)
         KTF_SCALE().ScaleMyNode(nodeToScale: rocket)
-        rocket.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
+        rocket.zPosition = gameZorder.GENERAL_bullets.rawValue//rush_scene_z_pos.rush_scene_z_bullets.rawValue
         rocket.position = _ufoSprite.getBulletPosPerType(index: realBulletIndexForPos)
         rocket.tag = 1
         _ufoBulletsArray.append(rocket)
@@ -355,7 +356,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             enemy.position = KTF_POS().posInPrc(PrcX: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ENEMY.rawValue][0]),
                                                 PrcY: CGFloat(RUSH_SCENE_POS[RUSH_SCENE_INDEX.ENEMY.rawValue][1]))
             KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: enemy)
-            enemy.zPosition = rush_scene_z_pos.rush_scene_z_enemy.rawValue
+            enemy.zPosition = gameZorder.enemy.rawValue//rush_scene_z_pos.rush_scene_z_enemy.rawValue
             _enemiesSpritesArray.append(enemy)
 
             enemy.animateEnemyToPlace(itemTag: i, amountIndex: amount, withLife: withLife, canShoot: canShoot)
@@ -376,7 +377,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         let bullet = KTF_Sprite(imageNamed:fileName)
         self.addChild(bullet)
         KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
-        bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
+        bullet.zPosition = gameZorder.GENERAL_bullets.rawValue//rush_scene_z_pos.rush_scene_z_bullets.rawValue
         bullet.position = enemy.position
         bullet.tag = 0
         _enemyBulletsArray.append(bullet)
@@ -417,7 +418,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _enemyShipSprite)
         _enemyShipSprite.xScale *= 2
         _enemyShipSprite.yScale *= 2
-        _enemyShipSprite.zPosition = rush_scene_z_pos.rush_scene_z_enemy.rawValue;
+        _enemyShipSprite.zPosition = gameZorder.enemy_ship.rawValue//rush_scene_z_pos.rush_scene_z_enemy.rawValue;
         _enemyShipSprite.isEnabled = false
     }
     /////>> ENEMY SPACE SHIP
@@ -446,7 +447,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             let bullet = KTF_Sprite(imageNamed:fileName)
             self.addChild(bullet)
             KTF_SCALE().ScaleMyNode(nodeToScale: bullet)
-            bullet.zPosition = rush_scene_z_pos.rush_scene_z_bullets.rawValue
+            bullet.zPosition = gameZorder.GENERAL_bullets.rawValue//rush_scene_z_pos.rush_scene_z_bullets.rawValue
             bullet.position = _enemyShipSprite.getBulletPosPerType(index: realBulletIndexForPos)
             bullet.tag = 0
             _enemyShipBulletsArray.append(bullet)
@@ -489,7 +490,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         self.addChild(obstacleSprite)
         obstacleSprite.initObstacle()
         KTF_SCALE().ScaleMyNode(nodeToScale: obstacleSprite)
-        obstacleSprite.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
+        obstacleSprite.zPosition = gameZorder.obstacles.rawValue//rush_scene_z_pos.rush_scene_z_bg.rawValue
         _obstaclesSpritesArray.append(obstacleSprite)
     }
     //>> OBSTACLES
@@ -500,12 +501,13 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         let bonusBubbleFileName = BonusBubbleSprite().getFileName()
         let bonusSprite = BonusBubbleSprite(imageNamed: bonusBubbleFileName)
         self.addChild(bonusSprite)
+        bonusSprite.zPosition = gameZorder.bonus_image.rawValue
         bonusSprite.name = bonusBubbleFileName
         bonusSprite.initBonusBubble()
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: bonusSprite)
         bonusSprite.xScale = bonusSprite.xScale / 4
         bonusSprite.yScale = bonusSprite.yScale / 4
-        bonusSprite.zPosition = rush_scene_z_pos.rush_scene_z_bg.rawValue
+        bonusSprite.zPosition = gameZorder.bonus_bubble.rawValue//rush_scene_z_pos.rush_scene_z_bg.rawValue
         _bonusBubblesSpritesArray.append(bonusSprite)
     }
     //>> BONUS BUBBLE
@@ -532,26 +534,30 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                 }
             }
         }
+        else
+        {
         
         for touch in touches {
             let location = touch.location(in: self)
                  if _pauseButton.contains(location)
                {
                  self.pauseGame()
-            }
+                 }
                  else
                  {
                 _ufoSprite.position = location
             }
             
         }
+        }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            
-            if (_ufoSprite.contains(location) ||  !_pauseButton.contains(location))
+
+            if (_ufoSprite.contains(location) && _popUpWindow == nil)
             {
                 _ufoSprite.position = location
             }
@@ -1188,7 +1194,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                         isParentFullScreen: false,
                                                         PrcX: 50,
                                                         PrcY: 50)//_ufoSprite.position
-            ufoShield.zPosition = ufo_z_pos.ufo_shieldZorder.rawValue
+            ufoShield.zPosition = gameZorder.ufo_shield.rawValue//ufo_z_pos.ufo_shieldZorder.rawValue
             ufoShield.name = BUBBLE_FILES_PREFIX
             _ufoSprite.addChild(ufoShield)
             _countDownForBonusActive = BONUS_TIME
@@ -1247,7 +1253,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             
             physicsWorld.gravity = CGVector(dx: 0, dy: -1)
             let coin = KTF_Sprite(imageNamed: "space_coin")
-            coin.zPosition = 1
+            coin.zPosition = gameZorder.coins.rawValue//1
             coin.position = pos
             coin.physicsBody = SKPhysicsBody(circleOfRadius: coin.size.height / 10.0)
             coin.physicsBody?.isDynamic = true
@@ -1356,7 +1362,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             //     particles.particleColorBlueRange = 1.0
             //   particles.particleColorGreenRange = 1.0
             //    particles.particleSpeed = 0.5
-            particles.zPosition = 1000
+            particles.zPosition = gameZorder.GENERAL_particles.rawValue//1000
             addChild(particles)
             
             particles.run(SKAction.sequence(
@@ -1524,7 +1530,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _popUpWindow.isEnabled = true
         _popUpWindow.position = KTF_POS().posInPrc(PrcX: 50, PrcY: 50)
         KTF_SCALE().ScaleMyNode(nodeToScale: _popUpWindow)
-        _popUpWindow.zPosition = rush_scene_z_pos.rush_scene_z_popUpWindow.rawValue
+        _popUpWindow.zPosition = gameZorder.popup_window_bg.rawValue//rush_scene_z_pos.rush_scene_z_popUpWindow.rawValue
         
         self.addChild(_popUpWindow)
     }
@@ -1632,7 +1638,7 @@ class GameScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _rewardedAd.reloadRewardedAd()
         
         if _isStageDone
-        {
+        {//TODO: fix if coins received if reward was not accepted
             for _ in 0..._coins
             {
                 let coinsEarnd = 1

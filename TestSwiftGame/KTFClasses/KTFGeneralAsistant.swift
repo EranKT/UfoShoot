@@ -294,6 +294,31 @@ class KTF_DISK {
         }
     }
 
+    
+    // SAVE DATE
+    func saveDate(date:Date, forKey:String) {
+        
+        var key = identity
+        key.append(forKey)
+        
+        defaults.set(date, forKey: key)
+        defaults.synchronize()
+    }
+    
+    // GET DATE
+    func getDate(forKey:String) -> Date{
+        
+        var item = Date()
+        var key = identity
+        key.append(forKey)
+        
+        if defaults.value(forKey: key) != nil
+        {
+            item = defaults.object(forKey: key) as! Date
+        }
+            return item
+       }
+
 }
 
 class KTF_GRAY_IMAGE: UIImage {

@@ -49,8 +49,8 @@ class AnimatedBg: KTF_Sprite {
             let spriteMiddle = KTF_Sprite(imageNamed:fileName)
             let spriteUp = KTF_Sprite(imageNamed:fileName)
 
-            spriteMiddle.zPosition = CGFloat((i + 1)*100)
-            spriteUp.zPosition = CGFloat((i + 1)*100)
+            spriteMiddle.zPosition = gameZorder.animatedBg.rawValue * CGFloat(i) + gameZorder.animatedBg.rawValue//(i + 1)*100)
+            spriteUp.zPosition = gameZorder.animatedBg.rawValue * CGFloat(i) + gameZorder.animatedBg.rawValue//CGFloat((i + 1)*100)
 
             _spritesArray_middle.append(spriteMiddle)
             _spritesArray_from_up.append(spriteUp)

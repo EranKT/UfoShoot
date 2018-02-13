@@ -12,19 +12,6 @@ import SpriteKit
 // MISSING PLANETS FOR 5 MORE LEVELS (20)
 // ADD ANIMATION FOR WHEN STAGE FINISHED
 
-
-enum map_scene_z_pos: CGFloat
-{
-    case z_bg = 0
-    case z_title
-    case z_nav_buttons
-    case z_home_button
-    case z_play_button
-    case z_root_lines
-    case z_planets
-    case z_popUpWindow
-}
-
 let MAP_SCENE_POS_LIST = [
     [50.0, 50.0],   //0 BG
     [50.0, 83],   //1 TITLE
@@ -96,7 +83,7 @@ class MapScene: SKScene
                                                PrcY: CGFloat(MAP_SCENE_POS_LIST[0][1]))
         KTF_SCALE().ScaleMyNode(nodeToScale: _bgSprite)
         self.addChild(_bgSprite)
-        _bgSprite.zPosition = map_scene_z_pos.z_bg.rawValue;
+        _bgSprite.zPosition = gameZorder.map_scene_z_bg.rawValue//map_scene_z_pos.z_bg.rawValue;
     }
     
     // ADD HOME BUTTON
@@ -106,11 +93,11 @@ class MapScene: SKScene
                                                    PrcY: CGFloat(MAP_SCENE_POS_LIST[4][1]))
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _homeButton)
         self.addChild(_homeButton)
-        _homeButton.zPosition = map_scene_z_pos.z_home_button.rawValue;
+        _homeButton.zPosition = gameZorder.GENERAL_buttons.rawValue//map_scene_z_pos.z_home_button.rawValue;
  
         let homeImage = KTF_Sprite(imageNamed: "home_button")
         homeImage.position = KTF_POS().posInNodePrc(node: _homeButton, isParentFullScreen: false, PrcX: 50, PrcY: 50)
-        homeImage.zPosition = map_scene_z_pos.z_home_button.rawValue;
+        homeImage.zPosition = gameZorder.GENERAL_buttons_image.rawValue//map_scene_z_pos.z_home_button.rawValue;
         _homeButton.addChild(homeImage)
         self.ButtonFlashAnimation(sprite: _homeButton)   }
     
@@ -121,11 +108,11 @@ class MapScene: SKScene
                                                   PrcY: CGFloat(MAP_SCENE_POS_LIST[5][1]))
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _playButton)
         self.addChild(_playButton)
-        _playButton.zPosition = map_scene_z_pos.z_play_button.rawValue;
+        _playButton.zPosition = gameZorder.GENERAL_buttons.rawValue//map_scene_z_pos.z_play_button.rawValue;
  
         let playImage = KTF_Sprite(imageNamed: "play_button")
         playImage.position = KTF_POS().posInNodePrc(node: _playButton, isParentFullScreen: false, PrcX: 50, PrcY: 50)
-        playImage.zPosition = map_scene_z_pos.z_play_button.rawValue + 1;
+        playImage.zPosition = gameZorder.GENERAL_buttons_image.rawValue//map_scene_z_pos.z_play_button.rawValue + 1;
         _playButton.addChild(playImage)
         self.ButtonFlashAnimation(sprite: _playButton)   }
  
@@ -152,8 +139,8 @@ class MapScene: SKScene
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _leftNavButton)
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _rightNavButton)
         
-        _leftNavButton.zPosition = map_scene_z_pos.z_nav_buttons.rawValue
-        _rightNavButton.zPosition = map_scene_z_pos.z_nav_buttons.rawValue
+        _leftNavButton.zPosition = gameZorder.GENERAL_buttons.rawValue//map_scene_z_pos.z_nav_buttons.rawValue
+        _rightNavButton.zPosition = gameZorder.GENERAL_buttons.rawValue//map_scene_z_pos.z_nav_buttons.rawValue
     }
 
     // add label
@@ -180,7 +167,7 @@ class MapScene: SKScene
 
         _titleLabel.name = "levelTitle"
         KTF_SCALE().ScaleMyNode(nodeToScale: _titleLabel)
-        _titleLabel.zPosition = map_scene_z_pos.z_title.rawValue
+        _titleLabel.zPosition = gameZorder.GENERAL_title.rawValue//map_scene_z_pos.z_title.rawValue
         self.addChild(_titleLabel)
     }
 
@@ -201,7 +188,7 @@ class MapScene: SKScene
             planet = KTF_Sprite(imageNamed: planetName)
             planet.position = KTF_POS().posInPrc(PrcX: posX, PrcY: posY)
             KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: planet)
-            planet.zPosition = map_scene_z_pos.z_planets.rawValue
+            planet.zPosition = gameZorder.map_scene_z_planets.rawValue//map_scene_z_pos.z_planets.rawValue
             planet.tag = index + 1
             _currentPlanetsArray.append(planet)
             self.addChild(planet)
@@ -244,7 +231,7 @@ class MapScene: SKScene
             blackLine.anchorPoint = CGPoint(x: 0.5, y: 0.0)
             blackLine.zRotation = lineAngle
             KTF_SCALE().ScaleMyNode(nodeToScale: blackLine)
-        blackLine.zPosition = map_scene_z_pos.z_root_lines.rawValue
+        blackLine.zPosition = gameZorder.map_scene_z_root_lines.rawValue//map_scene_z_pos.z_root_lines.rawValue
            _rootLinesArray.append(blackLine)
             self.addChild(blackLine)
              blackLine.alpha = blackLine.alpha*0.2
@@ -268,7 +255,7 @@ class MapScene: SKScene
             colorLine.position = p1//linePos
             colorLine.zRotation = lineAngle
             KTF_SCALE().ScaleMyNode(nodeToScale: colorLine)
-        colorLine.zPosition = map_scene_z_pos.z_root_lines.rawValue
+        colorLine.zPosition = gameZorder.map_scene_z_root_lines.rawValue//map_scene_z_pos.z_root_lines.rawValue
             _rootColorLinesArray.append(colorLine)
             // Y scale of colored line set to 0
             self.addChild(colorLine)
@@ -435,7 +422,7 @@ func openUfoSelectionPopUp()
     
    _ufoMenuBg = KTF_Sprite(texture: texture, size: windowSize)
     _ufoMenuBg.position = menuPos
-    _ufoMenuBg.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+    _ufoMenuBg.zPosition = gameZorder.scroll_menu_bg.rawValue//main_menu_z_pos.main_menu_z_ufo_menu.rawValue
    KTF_SCALE().ScaleMyNode(nodeToScale: _ufoMenuBg)
     self.addChild(_ufoMenuBg)
     
@@ -444,7 +431,7 @@ func openUfoSelectionPopUp()
                                        pos: menuPos,
                                        actionForImagePress:#selector(self.playSavedStage))
     _ufoMenu.position = CGPoint(x:0, y:0)
-    _ufoMenu.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+    _ufoMenu.zPosition = gameZorder.scroll_menu.rawValue//main_menu_z_pos.main_menu_z_ufo_menu.rawValue
     self.addChild(_ufoMenu)
     }
     
@@ -507,13 +494,6 @@ func openUfoSelectionPopUp()
         _leftNavButton.removeFromParent()
         _titleLabel.removeFromParent()
 
-      /*
-        if _popUpWindow != nil
-        {
-            _popUpWindow.removeAllActions()
-            _popUpWindow.removeFromParent()
-        }
-     */
         KTF_Sound_Engine().playSound(fileName: "ufo_pass")
         
         if let view = self.view {

@@ -32,6 +32,7 @@ let UFO_CLASS_POS_LIST = [
     [0, -50],    //JET
 ]
 // OBJECTS Z ORDER
+/*
 enum ufo_z_pos: CGFloat
 {
     case ufo_jetZorder = -3
@@ -43,6 +44,7 @@ enum ufo_z_pos: CGFloat
     case ufo_hoodZorder
     case ufo_lightsZorder
 }
+*/
 // OBJECTS TAG NAME
 enum ufo_tags: String
 {
@@ -128,7 +130,7 @@ class UFOSprite: KTF_Sprite {
         baseBack.position  = KTF_POS().posInNodePrc(node:self, isParentFullScreen: false,
                                                 PrcX: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_BACK.rawValue][0]),
                                                 PrcY: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_BACK.rawValue][1]))
-   baseBack.zPosition = ufo_z_pos.ufo_baseBackZorder.rawValue
+   baseBack.zPosition = gameZorder.ufo_base.rawValue//ufo_z_pos.ufo_baseBackZorder.rawValue
         baseBack.name = ufo_tags.UFOObjectsTagBaseBack.rawValue
 
         self.addChild(baseBack)
@@ -140,7 +142,7 @@ class UFOSprite: KTF_Sprite {
         hood.position  = KTF_POS().posInNodePrc(node:self, isParentFullScreen: true,
                                                 PrcX:CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_HOOD.rawValue][0]),
                                                 PrcY:CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_HOOD.rawValue][1]))
-        hood.zPosition = ufo_z_pos.ufo_hoodZorder.rawValue
+        hood.zPosition = gameZorder.ufo_hood.rawValue//ufo_z_pos.ufo_hoodZorder.rawValue
         hood.name = ufo_tags.UFOObjectsTagHood.rawValue
         
         self.addChild(hood)
@@ -170,7 +172,7 @@ class UFOSprite: KTF_Sprite {
         
         driver.xScale = driver.xScale * scale;
         driver.yScale = driver.yScale * scale;
-        driver.zPosition = ufo_z_pos.ufo_driverZorder.rawValue
+        driver.zPosition = gameZorder.ufo_driver.rawValue//ufo_z_pos.ufo_driverZorder.rawValue
         driver.name = ufo_tags.UFOObjectsTagDriver_smile.rawValue
 
         UFOSprite._ufoBase.addChild(driver)
@@ -187,7 +189,7 @@ class UFOSprite: KTF_Sprite {
         
         driverShout.xScale = driverShout.xScale * scale;
         driverShout.yScale = driverShout.yScale * scale;
-        driverShout.zPosition = ufo_z_pos.ufo_driverZorder.rawValue
+        driverShout.zPosition = gameZorder.ufo_driver.rawValue//ufo_z_pos.ufo_driverZorder.rawValue
         driverShout.name = ufo_tags.UFOObjectsTagDriver_shout.rawValue
 
         UFOSprite._ufoBase.addChild(driverShout)
@@ -212,7 +214,7 @@ class UFOSprite: KTF_Sprite {
             lightSprite.position = KTF_POS().posInNodePrc(node:self, isParentFullScreen: false,
                                                       PrcX: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_LIGHTS.rawValue][0]),
                                                       PrcY: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_LIGHTS.rawValue][1]))
-            lightSprite.zPosition = ufo_z_pos.ufo_lightsZorder.rawValue
+            lightSprite.zPosition = gameZorder.ufo_lights.rawValue//ufo_z_pos.ufo_lightsZorder.rawValue
             
             lightsTagName.append(String(i))
             lightSprite.name = lightsTagName
@@ -449,7 +451,7 @@ class UFOSpriteTopView: KTF_Sprite {
             _lightsSprite.position = KTF_POS().posInNodePrc(node:self, isParentFullScreen: false,
                                                       PrcX: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_LIGHTS.rawValue][0]),
                                                       PrcY: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_LIGHTS.rawValue][1]))
-            _lightsSprite.zPosition = ufo_z_pos.ufo_lightsZorder.rawValue
+            _lightsSprite.zPosition = gameZorder.ufo_lights.rawValue//ufo_z_pos.ufo_lightsZorder.rawValue
             
             lightsTagName.append(String(ufoIndex))
             _lightsSprite.name = lightsTagName
@@ -466,7 +468,10 @@ class UFOSpriteTopView: KTF_Sprite {
                                                             PrcX: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_JET.rawValue][0]),
                                                             PrcY: CGFloat(UFO_CLASS_POS_LIST[UFO_OBJ_INDEX.UFO_JET.rawValue][1]))
         //_jetParticles.particlePositionRange.dx = 100
-            _jetParticles.zPosition = self.zPosition - 10
+            _jetParticles.particleZPosition = 10//gameZorder.ufo_jet.rawValue//self.zPosition - 10
+        print("NON VALUE",gameZorder.ufo_jet)
+        print("RAW VALUE",gameZorder.ufo_jet.rawValue)
+        print("HASH VALUE",gameZorder.ufo_jet.hashValue)
             self.addChild(_jetParticles)
     }
     

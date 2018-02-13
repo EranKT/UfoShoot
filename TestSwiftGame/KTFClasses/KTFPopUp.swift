@@ -8,12 +8,12 @@
 
 import Foundation
 import SpriteKit
-
+/*
 enum popup_items_Zposition:CGFloat {
     case popUpLabel = 100
     case popUpButton
 }
-
+*/
 
 enum POPUP_WINDOW_SIZE:Int{
     case full_size = 0
@@ -132,7 +132,7 @@ class KTF_POPUP: KTF_Sprite
        closeButton_.position = self.getPosForIndex(posIndex: POPUP_ITEMS_POS_INDEX.popUP_CLOSE_BUTTON.rawValue,
                                                    forItem:closeButton_)
         self.addChild(closeButton_)
-        closeButton_.zPosition = popup_items_Zposition.popUpButton.rawValue
+        closeButton_.zPosition = gameZorder.popup_window_close_button.rawValue //popup_items_Zposition.popUpButton.rawValue
       //  closeButton_.xScale *= popUpScaleFactorX_
       //  closeButton_.yScale *= popUpScaleFactorY_
     }
@@ -150,11 +150,11 @@ class KTF_POPUP: KTF_Sprite
         _topLabel.text = top
         _topLabel.colorBlendFactor = 1.0
         _topLabel.fontColor = UIColor.red
-        _topLabel.fontSize = 120 * popUpScaleFactorX_
+        _topLabel.fontSize = 100 * popUpScaleFactorX_
         _topLabel.position =  self.getPosForIndex(posIndex: topPos.rawValue,
                                                   forItem:_topLabel)
         
-        _topLabel.zPosition = popup_items_Zposition.popUpLabel.rawValue
+        _topLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
         self.addChild(_topLabel)
         }
 
@@ -164,11 +164,11 @@ class KTF_POPUP: KTF_Sprite
             _middleLabel.text = middle
             _middleLabel.colorBlendFactor = 1.0
             _middleLabel.fontColor = UIColor.red
-            _middleLabel.fontSize = 120 * popUpScaleFactorX_
+            _middleLabel.fontSize = 80 * popUpScaleFactorX_
             _middleLabel.position =  self.getPosForIndex(posIndex: middlePos.rawValue,
                                                          forItem:_middleLabel)
             
-            _middleLabel.zPosition = popup_items_Zposition.popUpLabel.rawValue
+            _middleLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
             self.addChild(_middleLabel)
         }
 
@@ -178,11 +178,11 @@ class KTF_POPUP: KTF_Sprite
             _bottomLabel.text = bottom
             _bottomLabel.colorBlendFactor = 1.0
             _bottomLabel.fontColor = UIColor.red
-            _bottomLabel.fontSize = 120 * popUpScaleFactorX_
+            _bottomLabel.fontSize = 80 * popUpScaleFactorX_
             _bottomLabel.position =  self.getPosForIndex(posIndex: bottomPos.rawValue,
                                                          forItem:_bottomLabel)
             
-            _bottomLabel.zPosition = popup_items_Zposition.popUpLabel.rawValue
+            _bottomLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
             self.addChild(_bottomLabel)
         }
 }
@@ -194,7 +194,7 @@ class KTF_POPUP: KTF_Sprite
        _image = KTF_Sprite(imageNamed: imageName)
         _image.position = self.getPosForIndex(posIndex: imagePos.rawValue, forItem:_image)
         
-        _image.zPosition = popup_items_Zposition.popUpLabel.rawValue
+        _image.zPosition = gameZorder.popup_window_image.rawValue//popup_items_Zposition.popUpLabel.rawValue
         self.addChild(_image)
         _image.xScale *= popUpScaleFactorX_
         _image.yScale *= popUpScaleFactorX_
@@ -218,7 +218,7 @@ class KTF_POPUP: KTF_Sprite
             _firstButton.position = self.getPosForIndex(posIndex: FirstButtonPos.rawValue,
                                                         forItem:_firstButton)
                 
-            _firstButton.zPosition = popup_items_Zposition.popUpButton.rawValue
+            _firstButton.zPosition = gameZorder.popup_window_button_bg.rawValue//popup_items_Zposition.popUpButton.rawValue
             self.addChild(_firstButton)
 
             // ADD IMAGE TO BUTTON
@@ -229,7 +229,7 @@ class KTF_POPUP: KTF_Sprite
                                                                  isParentFullScreen: false,
                                                                  PrcX: 50,
                                                                  PrcY: 50)
-            imageOnFirstButton.zPosition = popup_items_Zposition.popUpButton.rawValue + 1
+            imageOnFirstButton.zPosition = gameZorder.popup_window_button_image.rawValue//popup_items_Zposition.popUpButton.rawValue + 1
             _firstButton.addChild(imageOnFirstButton)
         }
    else
@@ -244,7 +244,7 @@ class KTF_POPUP: KTF_Sprite
             _secondButton.position = self.getPosForIndex(posIndex: SecondButtonPos.rawValue,
                                                          forItem:_secondButton)
             
-            _secondButton.zPosition = popup_items_Zposition.popUpButton.rawValue
+            _secondButton.zPosition = gameZorder.popup_window_button_bg.rawValue//popup_items_Zposition.popUpButton.rawValue
             self.addChild(_secondButton)
        
             // ADD IMAGE TO BUTTON
@@ -255,7 +255,7 @@ class KTF_POPUP: KTF_Sprite
                                                                  isParentFullScreen: false,
                                                                  PrcX: 50,
                                                                  PrcY: 50)
-            imageOnSecondButton.zPosition = popup_items_Zposition.popUpButton.rawValue + 1
+            imageOnSecondButton.zPosition = gameZorder.popup_window_button_image.rawValue//popup_items_Zposition.popUpButton.rawValue + 1
             _secondButton.addChild(imageOnSecondButton)
       }
         else
@@ -288,7 +288,7 @@ class KTF_POPUP: KTF_Sprite
             _timerLabel.position =  self.getPosForIndex(posIndex: timerPos.rawValue,
                                                         forItem:_timerLabel)
             
-            _timerLabel.zPosition = popup_items_Zposition.popUpLabel.rawValue
+            _timerLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
             self.addChild(_timerLabel)
             _timer = Timer.scheduledTimer(timeInterval: TimeInterval(1) , target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
        }

@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
-
+/*
 enum main_menu_z_pos: CGFloat
 {
     typealias RawValue = CGFloat
@@ -23,7 +23,7 @@ enum main_menu_z_pos: CGFloat
     case main_menu_z_ufo_menu = 50
     case main_menu_z_popUpWindow = 100
 }
-
+*/
 let MAIN_SCENE_POS_LIST = [
     [50.0, 50.0],   //0 BG
     [50.0, 75.0],   //1 TITLE
@@ -41,14 +41,19 @@ enum main_menu_pop_up_type: Int
     case not_available_yet
 }
 
-class MainScene: SKScene {
+class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_SupportDelegate {
  
     // DECLARE CLASS OBJECTS
     private var _mapButton = KTF_Sprite(imageNamed: "map_button")
     private var _playButton = KTF_Sprite(imageNamed: "pop_up_button")
     private var rateButton = KTF_Sprite(imageNamed: "rate_button")
     var _ufoMenu = KTF_Scroll()
+
     var _popUpWindow: KTF_POPUP!
+    var _rewardedAd: KTF_Ads_Rewarded_Support!
+    var _interAd: KTF_Ads_Inter_Support!
+    var _didReceiveReward = false
+    let _bgPlayer = KTF_MusicPlayer.sharedInstance()
 
     var _statusBar: KTF_StatusBar!
 
@@ -69,15 +74,14 @@ class MainScene: SKScene {
         KTF_DISK().saveInt(number: gameSelectedLevel_, forKey: SAVED_GAME_SELECTED_LEVEL)
         KTF_DISK().saveInt(number: gameSelectedStage_, forKey: SAVED_GAME_SELECTED_STAGE)
         KTF_DISK().saveBool(isTrue: false, forKey: SAVED_IS_CHANGING_STAGE)
-        KTF_DISK().saveInt(number: 5000, forKey: SAVED_GAME_COINS)
-
+   
         KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
         
         self.addBgImage()
         self.addMapButton()
         self.addTitleImage()
         self.addPlayButton()
-      //  self.setPopUpWindow()
+
         let menuPos = KTF_POS().posInPrc(PrcX: CGFloat(MAIN_SCENE_POS_LIST[4][0]),
                                         PrcY: CGFloat(MAIN_SCENE_POS_LIST[4][1]))
         _ufoMenu = _ufoMenu.initScrollMenu(scene: self,
@@ -85,12 +89,20 @@ class MainScene: SKScene {
                                            pos: menuPos,
                                            actionForImagePress:#selector(self.playButtonPressed))
         _ufoMenu.position = CGPoint(x:0, y:0)
-        _ufoMenu.zPosition = main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+        _ufoMenu.zPosition = gameZorder.scroll_menu_bg.rawValue//main_menu_z_pos.main_menu_z_ufo_menu.rawValue
         self.addChild(_ufoMenu)
   
         _statusBar = KTF_StatusBar().initStatusBar(scene: self, posIsTop: true)
         _statusBar.populateStatusBar(includeSavedScore:true)
-        
+      
+        if !isFirstTimeToday_
+        {
+            isFirstTimeToday_ = false
+            dailyBonus_ = (Int(arc4random()%10) + 1) * 100//bonus between 100 - 1000 in 100 jumps
+            gameCoins_ = gameCoins_ + dailyBonus_
+            KTF_DISK().saveInt(number: gameCoins_, forKey: SAVED_GAME_COINS)
+            self.setPopUpWindow(type: 3)
+        }
     }
 // LOAD SCENE
     override func sceneDidLoad() {}
@@ -107,7 +119,7 @@ class MainScene: SKScene {
                                                PrcY: CGFloat(MAIN_SCENE_POS_LIST[0][1]))
         KTF_SCALE().ScaleMyNode(nodeToScale: bgSprite)
         self.addChild(bgSprite)
-        bgSprite.zPosition = main_menu_z_pos.main_menu_z_bg.rawValue;
+        bgSprite.zPosition = gameZorder.main_menu_z_bg.rawValue //main_menu_z_pos.main_menu_z_bg.rawValue;
     }
     // ADD TITLE
     func addTitleImage()
@@ -117,7 +129,7 @@ class MainScene: SKScene {
                                                   PrcY: CGFloat(MAIN_SCENE_POS_LIST[1][1]))
         KTF_SCALE().ScaleMyNode(nodeToScale: titleSprite)
         self.addChild(titleSprite)
-        titleSprite.zPosition = main_menu_z_pos.main_menu_z_title.rawValue;
+        titleSprite.zPosition = gameZorder.GENERAL_title.rawValue//main_menu_z_pos.main_menu_z_title.rawValue;
     }
     // ADD map BUTTON
     func addMapButton()
@@ -126,7 +138,7 @@ class MainScene: SKScene {
                                                    PrcY: CGFloat(MAIN_SCENE_POS_LIST[2][1]))
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _mapButton)
         self.addChild(_mapButton)
-        _mapButton.zPosition = main_menu_z_pos.main_menu_z_map_button.rawValue;
+        _mapButton.zPosition = gameZorder.GENERAL_buttons.rawValue//main_menu_z_pos.main_menu_z_map_button.rawValue;
         self.ButtonFlashAnimation(sprite: _mapButton)
     }
     
@@ -137,11 +149,11 @@ class MainScene: SKScene {
                                                    PrcY: CGFloat(MAIN_SCENE_POS_LIST[3][1]))
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _playButton)
         self.addChild(_playButton)
-    _playButton.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue;
+    _playButton.zPosition = gameZorder.GENERAL_buttons.rawValue//main_menu_z_pos.main_menu_z_play_button.rawValue;
 
         let playImage = KTF_Sprite(imageNamed: "play_button")
         playImage.position = KTF_POS().posInNodePrc(node: _playButton, isParentFullScreen: false, PrcX: 50, PrcY: 50)
-        playImage.zPosition = main_menu_z_pos.main_menu_z_play_button.rawValue + 1;
+        playImage.zPosition = gameZorder.GENERAL_buttons.rawValue//main_menu_z_pos.main_menu_z_play_button.rawValue + 1;
         _playButton.addChild(playImage)
         self.ButtonFlashAnimation(sprite: _playButton)
  }
@@ -185,9 +197,7 @@ class MainScene: SKScene {
                     }
                     else
                     {
-                        _popUpWindow.isEnabled = false
-                        _popUpWindow.removeFromParent()
-                        _popUpWindow = nil
+                        self.closePopupWindow()
                     }
                 return
             }
@@ -254,12 +264,22 @@ class MainScene: SKScene {
     
     // REPLACE SCENE TO GAME SCENE
     @objc func playButtonPressed() {
+        let mutableGameBoughtList = KTF_DISK().getArray(forKey: SAVED_GAME_BOUGHT_UFO_LIST) as! [Int]
+        for ufoIndex in mutableGameBoughtList
+        {
+            if ufoIndex == _ufoMenu._currentItemIndex
+            {
+                let selectedUfoIndex = _ufoMenu._currentItemIndex
+                KTF_DISK().saveInt(number: selectedUfoIndex!, forKey: SAVED_GAME_UFO)
+            break
+            }
+        }
 
-        let selectedUfoIndex = _ufoMenu._currentItemIndex
       
-        KTF_DISK().saveInt(number: selectedUfoIndex!, forKey: SAVED_GAME_UFO)
-       _playButton.removeAllChildren()
+        _playButton.removeAllChildren()
+        
         KTF_Sound_Engine().playSoundWithVolume(fileName: "alien_scared", volume: 0.5)
+       
         if let view = self.view {
             self.removeAllActions()
             KTF_FILES_COUNT().removeAllChildrenForScene(scene: self)
@@ -275,33 +295,27 @@ class MainScene: SKScene {
     
     // OPEN MY APPS LIST ON THE APP STORE
     func moreButtonPressed() {
+        //TODO:
     }
     
     // OPEN THIS APP ON THE APP STORE
     func rateButtonPressed() {
+        //TODO:
     }
     //////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> BUTTONS ACTIONS
-    func openPopUpForState(index:Int) {
-        
-        
-        
-    }
-    //SET BUYING METHOD
-    //SET POPUPS FOR GAME SCENE
     
-    //POP UP OPTIONS:
-    // GAME SCENE ---- // WATCH&PAY&TIMER // PAY&TIMER //{ THIS CAN BE IN MAIN MENU EARNED- WATCH*2 // PLAY NEXT // HOME
     func setPopUpWindow(type:Int){
         print("START POPUP ACCORDING TO STATUS")
 
     ////IF ITEM CAN BE BOUGHT
         let windowSize = POPUP_WINDOW_SIZE.middle_size
+        let closeButtonSel = "closePopupWindow"
         var topText = "GET"
         let topPos = POPUP_ITEMS_POS_INDEX.posUP_MIDDLE
         var centerText = ""
         let middlePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
         var bottomText = String(priceFactor_ * _ufoMenu._currentItemIndex)
-        let bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
+        var bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
         var imageName = "ufo_top_base_" + String(_ufoMenu._currentItemIndex)
         var imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_MIDDLE
         var imageSel = "buyUfo"
@@ -311,9 +325,46 @@ class MainScene: SKScene {
         var SecondButtonImage = "space_coin"
         var SecondButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
         var secondButtonSel = "buyUfo"
+        var timer = 0
+        var timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
+        var timerSel = ""// close popup
         
-        switch type {
 
+        switch type {
+        case 2: //IF GOT REWARD
+            topText = ""
+            centerText = "Bonus - " + String(dailyBonus_ * 2) + "  Space Coins"
+            bottomText = ""
+            bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
+            imageName = ""
+            imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
+            imageSel = ""
+            FirstButtonImage = ""
+            FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
+            firstButtonSel = ""
+            SecondButtonImage = ""
+            secondButtonSel = ""
+            timer = 4
+            timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
+            timerSel = "closePopupWindow"
+            break
+        case 3: //IF FIRST TIME TODAY
+            topText = "WELCOME BACK"
+            centerText = "Bonus - " + String(dailyBonus_) + "  Space Coins"
+            bottomText = "Watch X2"
+            bottomPos = POPUP_ITEMS_POS_INDEX.posDOWN_LEFT
+            imageName = ""
+            imagePos = POPUP_ITEMS_POS_INDEX.posMIDDLE_RIGHT
+            imageSel = ""
+            FirstButtonImage = "pop_up_rewarded_button"
+            FirstButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_MIDDLE
+            firstButtonSel = "presentRewardedAd"
+            SecondButtonImage = ""
+            secondButtonSel = ""
+            timer = 10
+            timerPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
+            timerSel = "closePopupWindow"
+            break
         case 4://IF ITEM TOO EXPENSIVE
              topText = "COLLECT MORE COINS"
              centerText = ""
@@ -342,13 +393,12 @@ class MainScene: SKScene {
              SecondButtonPos = POPUP_ITEMS_POS_INDEX.posDOWN_RIGHT
              secondButtonSel = ""
             break
-            
         default:
             print("error not need to open pop up")
         }
 
         _popUpWindow = KTF_POPUP().initPopupWindow(size: windowSize,
-                                                   forScene: self, closeButtonAction: "",
+                                                   forScene: self, closeButtonAction: closeButtonSel,
                                                    top: topText, topPos: topPos,
                                                    middle: centerText, middlePos: middlePos,
                                                    bottom: bottomText, bottomPos: bottomPos,
@@ -360,15 +410,23 @@ class MainScene: SKScene {
                                                    SecondButtonImage: SecondButtonImage,
                                                    SecondButtonPos: SecondButtonPos,
                                                    actionForSecondButtonPress: secondButtonSel,
-                                                   timerInSeconds: 0,
-                                                   timerPos: SecondButtonPos,
-                                                   actionForTimerFinished: "")
+                                                   timerInSeconds: timer,
+                                                   timerPos: timerPos,
+                                                   actionForTimerFinished: timerSel)
 
         _popUpWindow.isEnabled = true
         _popUpWindow.position = KTF_POS().posInPrc(PrcX: 50, PrcY: 50)
         KTF_SCALE().ScaleMyNode(nodeToScale: _popUpWindow)
-        _popUpWindow.zPosition = main_menu_z_pos.main_menu_z_popUpWindow.rawValue
+        _popUpWindow.zPosition = gameZorder.popup_window_bg.rawValue//main_menu_z_pos.main_menu_z_popUpWindow.rawValue
         self.addChild(_popUpWindow)
+    }
+
+    @objc func closePopupWindow()
+    {
+        if _popUpWindow == nil {return}
+        _popUpWindow.isEnabled = false
+        _popUpWindow.removeFromParent()
+        _popUpWindow = nil
     }
     
    @objc func buyUfo()
@@ -413,24 +471,70 @@ class MainScene: SKScene {
         particles.removeFromParent()
     }
     
+    
+    
+    //////////////////////////////////////<< ADS HANDLING ////////////////////////////////////////
+    
+    @objc func presentRewardedAd()
+    {
+        _bgPlayer.setMusicVolume(volume: 0.01)
+        _rewardedAd = KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self)
+        _rewardedAd.delegate = self
+        if _popUpWindow == nil {return}
+       _popUpWindow.removeFromParent()
+        _popUpWindow = nil
+    }
+    
+    
+    func rewardedFinishSuccessfuly()
+    {
+        _didReceiveReward = true
+    }
+    
+    func rewardedAdClosed()
+    {
+        _bgPlayer.setMusicVolume(volume: 0.1)
+        _rewardedAd.reloadRewardedAd()
+        if _didReceiveReward
+        {
+            gameCoins_ = gameCoins_ + dailyBonus_
+            KTF_DISK().saveInt(number: gameCoins_, forKey: SAVED_GAME_COINS)
+            _didReceiveReward = false
+           self.setPopUpWindow(type: 2)
+        }
+    }
+    
+    func interAdClosed()
+    {
+        // need to act like reward received
+            self.rewardedFinishSuccessfuly()
+            self.rewardedAdClosed()
+    }
+    
+    func didNotReceiveInterAd()
+    {
+        self.rewardedAdClosed()
+    }
+    
+    //////////////////////////////////////>> ADS HANDLING ////////////////////////////////////////
+    
+    
+    
     func cleanScene()
     {
         _mapButton.removeAllActions()
         _mapButton.removeFromParent()
         
-        //TODO:CHECK IF ALL CHILDREN REMOVED IN CLASS
         _playButton.removeAllActions()
         _playButton.removeFromParent()
         
         rateButton.removeAllActions()
         rateButton.removeFromParent()
         
-        //TODO:CHECK IF ALL CHILDREN REMOVED IN CLASS
         _ufoMenu.removeAllActions()
         _ufoMenu.removeAllChildren()
         _ufoMenu.removeFromParent()
 
-        //TODO:CHECK IF ALL CHILDREN REMOVED IN CLASS
         if _popUpWindow != nil
         {
             _popUpWindow.removeAllActions()

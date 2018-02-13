@@ -116,6 +116,7 @@
 		AB1F925A1FF6805E00E0BBCD /* enemy_0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1F92581FF6805E00E0BBCD /* enemy_0.png */; };
 		AB1F925B1FF6805E00E0BBCD /* enemy_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB1F92591FF6805E00E0BBCD /* enemy_1.png */; };
 		AB1F925D1FF6E0F800E0BBCD /* ProjectData.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AB1F925C1FF6E0F800E0BBCD /* ProjectData.rtf */; };
+		AB6997972032044F008569F3 /* KTF_Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6997962032044F008569F3 /* KTF_Date.swift */; };
 		AB7113761FFD20EE0095DCFF /* stars.png in Resources */ = {isa = PBXBuildFile; fileRef = AB7113751FFD20ED0095DCFF /* stars.png */; };
 		AB7113981FFD37A30095DCFF /* ufo_top_base_0.png in Resources */ = {isa = PBXBuildFile; fileRef = AB71137B1FFD37A30095DCFF /* ufo_top_base_0.png */; };
 		AB7113991FFD37A30095DCFF /* ufo_top_base_1.png in Resources */ = {isa = PBXBuildFile; fileRef = AB71137C1FFD37A30095DCFF /* ufo_top_base_1.png */; };
@@ -394,6 +395,7 @@
 		AB1F92581FF6805E00E0BBCD /* enemy_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_0.png; sourceTree = "<group>"; };
 		AB1F92591FF6805E00E0BBCD /* enemy_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy_1.png; sourceTree = "<group>"; };
 		AB1F925C1FF6E0F800E0BBCD /* ProjectData.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ProjectData.rtf; path = TestSwiftGame/ProjectData.rtf; sourceTree = "<group>"; };
+		AB6997962032044F008569F3 /* KTF_Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KTF_Date.swift; sourceTree = "<group>"; };
 		AB7113751FFD20ED0095DCFF /* stars.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stars.png; sourceTree = "<group>"; };
 		AB71137B1FFD37A30095DCFF /* ufo_top_base_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_top_base_0.png; sourceTree = "<group>"; };
 		AB71137C1FFD37A30095DCFF /* ufo_top_base_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo_top_base_1.png; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				AB7113B81FFDFD1A0095DCFF /* KTFScroll.swift */,
 				AB7113BE1FFF714C0095DCFF /* KTFStatusBar.swift */,
 				ABED9D7D2005628E004E13D8 /* KTFPopUp.swift */,
+				AB6997962032044F008569F3 /* KTF_Date.swift */,
 			);
 			name = KTFClasses;
 			path = TestSwiftGame/KTFClasses;
@@ -1597,6 +1600,7 @@
 				ABD459A7200A769B00FE8212 /* MapScene.swift in Sources */,
 				AB7113BF1FFF714C0095DCFF /* KTFStatusBar.swift in Sources */,
 				AB0BF0FA1FE3FED500D290DE /* CommonDataClass.swift in Sources */,
+				AB6997972032044F008569F3 /* KTF_Date.swift in Sources */,
 				AB1F92551FF670D300E0BBCD /* EnemySprite.swift in Sources */,
 				AB0BF2D61FF1C8E200D290DE /* GameScene.swift in Sources */,
 				AB7113B91FFDFD1A0095DCFF /* KTFScroll.swift in Sources */,

@@ -31,8 +31,11 @@ class GameViewController: UIViewController {
         //PRELOAD REWARD AND INTER ADS
         KTF_Ads_Rewarded_Support().preloadRewardAds(myView: self)
         KTF_Ads_Inter_Support().preloadInterAds(myView: self)
+        KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
         
-           KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
+        isFirstTimeToday_ = KTF_Date().isFirstTimeToday()
+
+        KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
 
         let scene:SKScene = MainScene(size: UIScreen.main.bounds.size)
         scene.scaleMode = .resizeFill

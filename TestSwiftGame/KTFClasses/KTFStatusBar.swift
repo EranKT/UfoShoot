@@ -20,7 +20,7 @@ let SCORE_BAR_BG_FILE = "score_bar_bg"
 let SCORE_BG_FILE = "score_bg"
 let COIN_IMAGE_FILE = "space_coin"
 
-let statusBarZpos_ = CGFloat(1000)
+//let statusBarZpos_ = CGFloat(1000)
 
 let scoreBgPos_ = CGPoint(x: KTF_StatusBar.statusBar_.scoreBg_.frame.width*0.6,
                           y: KTF_StatusBar.statusBar_.position.y -
@@ -71,7 +71,7 @@ class KTF_StatusBar: KTF_Sprite {
         
         KTF_StatusBar.statusBar_.scene_ = scene
         KTF_StatusBar.statusBar_.scene_.addChild(KTF_StatusBar.statusBar_)
-        KTF_StatusBar.statusBar_.zPosition = statusBarZpos_
+        KTF_StatusBar.statusBar_.zPosition = gameZorder.statusBar_bg.rawValue//statusBarZpos_
         KTF_SCALE().ScaleMyNode(nodeToScale: KTF_StatusBar.statusBar_)
         var pos:CGPoint
         if posIsTop
@@ -101,7 +101,7 @@ class KTF_StatusBar: KTF_Sprite {
         //SCORE BG
         KTF_SCALE().ScaleMyNode(nodeToScale: scoreBg_)
         scoreBg_.position =  scoreBgPos_
-        scoreBg_.zPosition = statusBarZpos_ + 1
+        scoreBg_.zPosition = gameZorder.statusBar_scoreBg.rawValue//statusBarZpos_ + 1
         scene_.addChild(scoreBg_)
         
         //SCORE TITLE LABEL
@@ -114,7 +114,7 @@ class KTF_StatusBar: KTF_Sprite {
         scoreTitleLabel.position = scoreTitleLabelPos_
         scoreTitleLabel.name = "scoreTitleLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: scoreTitleLabel)
-        scoreTitleLabel.zPosition = statusBarZpos_ + 2
+        scoreTitleLabel.zPosition = gameZorder.statusBar_scoreTitle.rawValue//statusBarZpos_ + 2
         scene_.addChild(scoreTitleLabel)
         
         //SCORE LABEL
@@ -131,7 +131,7 @@ class KTF_StatusBar: KTF_Sprite {
         scoreLabel_.position = scorePos_
         scoreLabel_.name = "score"
         KTF_SCALE().ScaleMyNode(nodeToScale: scoreLabel_)
-        scoreLabel_.zPosition = statusBarZpos_ + 3
+        scoreLabel_.zPosition = gameZorder.statusBar_score.rawValue//statusBarZpos_ + 3
         scene_.addChild(scoreLabel_)
     }
 
@@ -139,7 +139,7 @@ class KTF_StatusBar: KTF_Sprite {
         //LEVEL BG
         KTF_SCALE().ScaleMyNode(nodeToScale: levelBg_)
         levelBg_.position =  levelBgPos_
-        levelBg_.zPosition = statusBarZpos_ + 1
+        levelBg_.zPosition = gameZorder.statusBar_levelBg.rawValue//statusBarZpos_ + 1
         scene_.addChild(levelBg_)
         
         //LEVEL TITLE LABEL
@@ -151,7 +151,7 @@ class KTF_StatusBar: KTF_Sprite {
         levelTitleLabel.position = levelTitleLabelPos_
         levelTitleLabel.name = "levelTitleLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: levelTitleLabel)
-        levelTitleLabel.zPosition = statusBarZpos_ + 2
+        levelTitleLabel.zPosition = gameZorder.statusBar_levelTitle.rawValue//statusBarZpos_ + 2
         scene_.addChild(levelTitleLabel)
         
         //LEVEL LABEL
@@ -164,7 +164,7 @@ class KTF_StatusBar: KTF_Sprite {
         levelLabel_.position = levelPos_
         levelLabel_.name = "level"
         KTF_SCALE().ScaleMyNode(nodeToScale: levelLabel_)
-        levelLabel_.zPosition = statusBarZpos_ + 3
+        levelLabel_.zPosition = gameZorder.statusBar_level.rawValue//statusBarZpos_ + 3
         scene_.addChild(levelLabel_)
     }
     
@@ -172,7 +172,7 @@ class KTF_StatusBar: KTF_Sprite {
         //COINS BG
         KTF_SCALE().ScaleMyNode(nodeToScale: coinsBg_)
         coinsBg_.position =  coinsBgPos_
-        coinsBg_.zPosition = statusBarZpos_ + 1
+        coinsBg_.zPosition = gameZorder.statusBar_coinsBg.rawValue//statusBarZpos_ + 1
         scene_.addChild(coinsBg_)
         
         //COINS IMAGE
@@ -180,7 +180,7 @@ class KTF_StatusBar: KTF_Sprite {
         coinsImage_.xScale = coinsImage_.xScale*0.8
         coinsImage_.yScale = coinsImage_.yScale*0.8
         coinsImage_.position =  coinsImagePos_
-        coinsImage_.zPosition = statusBarZpos_ + 1
+        coinsImage_.zPosition = gameZorder.statusBar_coinsImage.rawValue//statusBarZpos_ + 1
         scene_.addChild(coinsImage_)
         
         //COINS TITLE LABEL
@@ -192,7 +192,7 @@ class KTF_StatusBar: KTF_Sprite {
         coinsTitleLabel.position = coinsTitleLabelPos_
         coinsTitleLabel.name = "coinsTitleLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: coinsTitleLabel)
-        coinsTitleLabel.zPosition = statusBarZpos_ + 2
+        coinsTitleLabel.zPosition = gameZorder.statusBar_coinsTitle.rawValue//statusBarZpos_ + 2
         scene_.addChild(coinsTitleLabel)
         
         //COINS LABEL
@@ -210,7 +210,7 @@ class KTF_StatusBar: KTF_Sprite {
         coinsLabel_.position = coinsPos_
         coinsLabel_.name = "coins"
         KTF_SCALE().ScaleMyNode(nodeToScale: coinsLabel_)
-        coinsLabel_.zPosition = statusBarZpos_ + 3
+        coinsLabel_.zPosition = gameZorder.statusBar_coins.rawValue//statusBarZpos_ + 3
         scene_.addChild(coinsLabel_)
     }
     

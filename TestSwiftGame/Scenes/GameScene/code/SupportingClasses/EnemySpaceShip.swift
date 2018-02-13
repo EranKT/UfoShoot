@@ -20,12 +20,14 @@ let ENEMY_SHIP_CLASS_POS_LIST = [
     [50, 80],    //life bar
 ]
 // OBJECTS Z ORDER
+/*
 enum enemyShip_z_pos: CGFloat
 {
     case enemyShip_lightsZorder = 1
     case enemyShip_lifeBarBgZorder
     case enemyShip_lifeBarZorder
 }
+*/
 // OBJECTS TAG NAME
 enum enemyShip_tags: String
 {
@@ -77,7 +79,7 @@ class EnemySpaceShip: KTF_Sprite {
         _lightsSprite.position = KTF_POS().posInNodePrc(node:self, isParentFullScreen: false,
                                                         PrcX: CGFloat(ENEMY_SHIP_CLASS_POS_LIST[ENEMY_SHIP_OBJ_INDEX.ENEMY_SHIP_LIGHTS.rawValue][0]),
                                                         PrcY: CGFloat(ENEMY_SHIP_CLASS_POS_LIST[ENEMY_SHIP_OBJ_INDEX.ENEMY_SHIP_LIGHTS.rawValue][1]))
-        _lightsSprite.zPosition = enemyShip_z_pos.enemyShip_lightsZorder.rawValue
+        _lightsSprite.zPosition = gameZorder.enemy_ship_lights.rawValue//gameZorder.enemy_ship_lights.rawValue//enemyShip_z_pos.enemyShip_lightsZorder.rawValue
         
         lightsTagName.append(String(enemyShipIndex))
         _lightsSprite.name = lightsTagName
@@ -97,7 +99,7 @@ class EnemySpaceShip: KTF_Sprite {
                                                         PrcX: CGFloat(ENEMY_SHIP_CLASS_POS_LIST[ENEMY_SHIP_OBJ_INDEX.ENEMY_SHIP_LIFE_BAR.rawValue][0]),
                                                         PrcY: CGFloat(ENEMY_SHIP_CLASS_POS_LIST[ENEMY_SHIP_OBJ_INDEX.ENEMY_SHIP_LIFE_BAR.rawValue][1]))
     */
-        _lifeBarBgSprite.zPosition = enemyShip_z_pos.enemyShip_lifeBarBgZorder.rawValue
+        _lifeBarBgSprite.zPosition = gameZorder.enemy_ship_lifeBarBg.rawValue//enemyShip_z_pos.enemyShip_lifeBarBgZorder.rawValue
     //    KTF_SCALE().ScaleMyNode(nodeToScale: _lifeBarBgSprite)
         self.addChild(_lifeBarBgSprite)
         
@@ -108,7 +110,7 @@ class EnemySpaceShip: KTF_Sprite {
                                                            PrcX: CGFloat(ENEMY_SHIP_CLASS_POS_LIST[ENEMY_SHIP_OBJ_INDEX.ENEMY_SHIP_LIFE_BAR.rawValue][0]),
                                                            PrcY: CGFloat(ENEMY_SHIP_CLASS_POS_LIST[ENEMY_SHIP_OBJ_INDEX.ENEMY_SHIP_LIFE_BAR.rawValue][1]))
       */
-        _lifeBarSprite.zPosition = enemyShip_z_pos.enemyShip_lifeBarZorder.rawValue
+        _lifeBarSprite.zPosition = gameZorder.enemy_ship_lifeBar.rawValue//enemyShip_z_pos.enemyShip_lifeBarZorder.rawValue
         //    KTF_SCALE().ScaleMyNode(nodeToScale: _lifeBarBgSprite)
       _lifeBarScaleXUnit = _lifeBarSprite.xScale/CGFloat(life_)
         self.addChild(_lifeBarSprite)
