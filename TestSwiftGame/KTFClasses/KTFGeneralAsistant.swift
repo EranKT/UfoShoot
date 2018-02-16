@@ -16,7 +16,7 @@ class KTFGeneralAsistant: SKScene {
 }
 
 class KTF_WIN_SIZE {
-    
+    //return win size
     func getWinSize() -> CGSize {
         
         let screenSize = UIScreen.main.bounds.size
@@ -28,7 +28,7 @@ class KTF_WIN_SIZE {
 
 class KTF_POS
 {
-    
+    // return pos in screen (use precentage input)
     func posInPrc(PrcX: CGFloat ,PrcY: CGFloat) -> CGPoint {
         
         let screenSize = UIScreen.main.bounds.size
@@ -41,6 +41,7 @@ class KTF_POS
         return point
     }
     
+    // return relative pos inside parent node
     func posInNodePrc(node: SKNode, isParentFullScreen:Bool, PrcX: CGFloat ,PrcY: CGFloat) -> CGPoint {
        
         let screenSize = CGSize.init(width: node.frame.size.width, height: node.frame.size.height)
@@ -57,7 +58,10 @@ class KTF_POS
         {
             x = screenSize.width * PrcX / 100 * node.xScale / 100
             y = screenSize.height * PrcY / 100 * node.yScale / 100
-            
+            let a = screenSize.width * PrcX * node.xScale / 200
+            let b = screenSize.height * PrcY * node.yScale / 200
+            print("X&Y:", x, y)
+            print("A&B:", a, b)
         }
         
         let point = CGPoint(x:x, y:y)
@@ -66,6 +70,7 @@ class KTF_POS
         
     }
     
+  // return relative pos inside parent node
     func posInRelativeScalesNodePrc(node: SKNode, PrcX: CGFloat ,PrcY: CGFloat) -> CGPoint {
         
         let screenSize = CGSize.init(width: node.frame.size.width, height: node.frame.size.height)
@@ -95,6 +100,7 @@ class KTF_POS
 
 class KTF_SCALE
 {
+    // scale node relatively to screen size
     func ScaleMyNode(nodeToScale:SKNode) {
         
         let winSize = UIScreen.main.bounds
@@ -110,7 +116,8 @@ class KTF_SCALE
             nodeToScale.yScale = winSize.height / 2048
         }
     }
-    
+  
+     // scale node relatively to screen's shorter screen side
     func ScaleMyNodeRelatively(nodeToScale:SKNode) {
         
         let winSize = UIScreen.main.bounds
@@ -130,25 +137,26 @@ class KTF_SCALE
 }
 
 class KTF_DeviceType {
-    
+    // return bool - true for iPhone
     func isiPhone() -> Bool {
         //iPhone or iPad
         let model = UIDevice.current.model
         
-      //  print("device type=\(model)")
-if model == "iPhone"
-{
-        return true
+        //  print("device type=\(model)")
+        if model == "iPhone"
+        {
+            return true
         }
         else
-{
-    return false
+        {
+            return false
         }
     }
 }
 
 class KTF_CONVERT
 {
+    // convert input of degrees and return the radians value
     func degreesToRadians(degrees:CGFloat) -> CGFloat {
         let radians = degrees * 0.0174533
         return radians
@@ -157,7 +165,7 @@ class KTF_CONVERT
 
 
 class KTF_FILES_COUNT {
-    
+    // count group of files with the same prefix when last character is running number
     func countGroupOfFiles(prefix: String, sufix: String, firstNumber: Int) -> Int {
         var itemFileName: String
         var foundAllFiles = false
@@ -186,7 +194,7 @@ class KTF_FILES_COUNT {
     }
 }
 
-
+//handle saved data using UserDefault
 class KTF_DISK {
     
     let defaults: UserDefaults = UserDefaults.standard
@@ -223,7 +231,6 @@ class KTF_DISK {
     
     // SAVE INT
     func saveInt(number:Int, forKey:String) {
-        
         
         var key = identity
             key.append(forKey)
@@ -293,7 +300,6 @@ class KTF_DISK {
             return []
         }
     }
-
     
     // SAVE DATE
     func saveDate(date:Date, forKey:String) {
@@ -322,9 +328,9 @@ class KTF_DISK {
 }
 
 class KTF_GRAY_IMAGE: UIImage {
+    //get UIImage and return the image in gray scale (returned image does not have transparancy - transparent area return black)
     func convertImageToGrayScale(image:UIImage) -> UIImage
     {
-    
     // Create image rectangle with current image width/height
         let imageRect = CGRect.init(x: 0, y: 0, width: image.size.width, height: image.size.height)
     
@@ -345,11 +351,10 @@ class KTF_GRAY_IMAGE: UIImage {
     // Return the new grayscale image
     return newImage;
     }
-
 }
 
 
-////////BEZIER
+////////<< BEZIER - not working need to fix
 // Bezier cubic formula:
 //    ((1 - t) + t)3 = 1
 // Expands to…
@@ -373,7 +378,6 @@ class KTF_GRAY_IMAGE: UIImage {
     
 }
 
-
 public struct _ktfBezierConfig {
     //! end position of the bezier
     var endPosition: CGPoint
@@ -391,12 +395,8 @@ class KTF_BEZIER_BY
     var _withTime: TimeInterval!
     var _startPos: CGPoint!
     
-    
-    
-    
-    func startTimer(withConfig:_ktfBezierConfig, andTarget:SKNode, withTime: CGFloat) {
-        
-        
+    func startTimer(withConfig:_ktfBezierConfig, andTarget:SKNode, withTime: CGFloat)
+    {
         _andTarget = andTarget
         _withConfig = withConfig
         _withTime = TimeInterval(withTime)
@@ -422,13 +422,11 @@ class KTF_BEZIER_BY
     @objc func loop()
     {
         self.update(target_: _andTarget, startPosition_: _startPos, config_: _withConfig, t: _withTime)
-        
     }
 
   //  var config_: _ktfBezierConfig!
    // var target_: SKNode!
    // var startPosition_: CGPoint!
-    
     
     func startBezier(withConfig:_ktfBezierConfig, andTarget:SKNode)
     {
@@ -466,3 +464,5 @@ class KTF_BEZIER_BY
         target_.position = CGPoint.init(x: startPosition_.x + currentPos.x, y: startPosition_.y + currentPos.y)
    }
 }
+////////>> BEZIER - not working need to fix
+

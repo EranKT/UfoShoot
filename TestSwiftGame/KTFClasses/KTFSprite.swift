@@ -11,11 +11,10 @@ import SpriteKit
 
 
 class KTF_Sprite: SKSpriteNode {
-
+    
     open var tag: Int!
     open var isEnabled: Bool!
     open var price: Int!
-
     
     override func removeFromParent() {        
         super.removeFromParent()

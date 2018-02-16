@@ -88,6 +88,7 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                            prefix: "ufo_top_base_",
                                            pos: menuPos,
                                            actionForImagePress:#selector(self.playButtonPressed))
+        //TODO: check if really needed on any device
         _ufoMenu.position = CGPoint(x:0, y:0)
         _ufoMenu.zPosition = gameZorder.scroll_menu_bg.rawValue//main_menu_z_pos.main_menu_z_ufo_menu.rawValue
         self.addChild(_ufoMenu)

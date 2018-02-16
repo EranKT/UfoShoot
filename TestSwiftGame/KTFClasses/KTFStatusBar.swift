@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+//ADD STATUS BAR ON TOP OR BOTTOM OF SCREEN
+// each element is optional to add - score//level//coins
+// all elements are positioned automaticly relative to graphic file size
 
 let STATUSBAR_POS_UP = CGPoint.init(x: KTF_WIN_SIZE().getWinSize().width / 2,
              y: KTF_WIN_SIZE().getWinSize().height - KTF_StatusBar.statusBar_.frame.height/2)
@@ -19,8 +22,6 @@ let STATUSBAR_POS_DOWN = CGPoint.init(x: KTF_WIN_SIZE().getWinSize().width / 2,
 let SCORE_BAR_BG_FILE = "score_bar_bg"
 let SCORE_BG_FILE = "score_bg"
 let COIN_IMAGE_FILE = "space_coin"
-
-//let statusBarZpos_ = CGFloat(1000)
 
 let scoreBgPos_ = CGPoint(x: KTF_StatusBar.statusBar_.scoreBg_.frame.width*0.6,
                           y: KTF_StatusBar.statusBar_.position.y -
@@ -66,12 +67,13 @@ class KTF_StatusBar: KTF_Sprite {
     
     var scene_: SKScene!
     
-    func initStatusBar(scene:SKScene, posIsTop:Bool ) -> KTF_StatusBar {
- KTF_StatusBar.statusBar_ = KTF_StatusBar(imageNamed: SCORE_BAR_BG_FILE)
+    func initStatusBar(scene:SKScene, posIsTop:Bool ) -> KTF_StatusBar
+    {
+        KTF_StatusBar.statusBar_ = KTF_StatusBar(imageNamed: SCORE_BAR_BG_FILE)
         
         KTF_StatusBar.statusBar_.scene_ = scene
         KTF_StatusBar.statusBar_.scene_.addChild(KTF_StatusBar.statusBar_)
-        KTF_StatusBar.statusBar_.zPosition = gameZorder.statusBar_bg.rawValue//statusBarZpos_
+        KTF_StatusBar.statusBar_.zPosition = gameZorder.statusBar_bg.rawValue
         KTF_SCALE().ScaleMyNode(nodeToScale: KTF_StatusBar.statusBar_)
         var pos:CGPoint
         if posIsTop
@@ -93,15 +95,13 @@ class KTF_StatusBar: KTF_Sprite {
         self.addScoreToBar(title: "SCORE", includeSavedScore:includeSavedScore)
         self.addLevelToBar(title: "LEVEL")
         self.addCoinsToBar(title: "SPACE COINS", includeSavedScore:includeSavedScore)
-        // add level with label
-        // add coins count with icon
     }
     
     func addScoreToBar(title:String, includeSavedScore:Bool) {
         //SCORE BG
         KTF_SCALE().ScaleMyNode(nodeToScale: scoreBg_)
         scoreBg_.position =  scoreBgPos_
-        scoreBg_.zPosition = gameZorder.statusBar_scoreBg.rawValue//statusBarZpos_ + 1
+        scoreBg_.zPosition = gameZorder.statusBar_scoreBg.rawValue
         scene_.addChild(scoreBg_)
         
         //SCORE TITLE LABEL
@@ -110,11 +110,10 @@ class KTF_StatusBar: KTF_Sprite {
         scoreTitleLabel.colorBlendFactor = 1.0
         scoreTitleLabel.color = UIColor.red
         scoreTitleLabel.fontSize = 50
-    //    print("BG FRAME:",scoreBg_.frame)
         scoreTitleLabel.position = scoreTitleLabelPos_
         scoreTitleLabel.name = "scoreTitleLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: scoreTitleLabel)
-        scoreTitleLabel.zPosition = gameZorder.statusBar_scoreTitle.rawValue//statusBarZpos_ + 2
+        scoreTitleLabel.zPosition = gameZorder.statusBar_scoreTitle.rawValue
         scene_.addChild(scoreTitleLabel)
         
         //SCORE LABEL
@@ -131,7 +130,7 @@ class KTF_StatusBar: KTF_Sprite {
         scoreLabel_.position = scorePos_
         scoreLabel_.name = "score"
         KTF_SCALE().ScaleMyNode(nodeToScale: scoreLabel_)
-        scoreLabel_.zPosition = gameZorder.statusBar_score.rawValue//statusBarZpos_ + 3
+        scoreLabel_.zPosition = gameZorder.statusBar_score.rawValue
         scene_.addChild(scoreLabel_)
     }
 
@@ -139,7 +138,7 @@ class KTF_StatusBar: KTF_Sprite {
         //LEVEL BG
         KTF_SCALE().ScaleMyNode(nodeToScale: levelBg_)
         levelBg_.position =  levelBgPos_
-        levelBg_.zPosition = gameZorder.statusBar_levelBg.rawValue//statusBarZpos_ + 1
+        levelBg_.zPosition = gameZorder.statusBar_levelBg.rawValue
         scene_.addChild(levelBg_)
         
         //LEVEL TITLE LABEL
@@ -151,7 +150,7 @@ class KTF_StatusBar: KTF_Sprite {
         levelTitleLabel.position = levelTitleLabelPos_
         levelTitleLabel.name = "levelTitleLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: levelTitleLabel)
-        levelTitleLabel.zPosition = gameZorder.statusBar_levelTitle.rawValue//statusBarZpos_ + 2
+        levelTitleLabel.zPosition = gameZorder.statusBar_levelTitle.rawValue
         scene_.addChild(levelTitleLabel)
         
         //LEVEL LABEL
@@ -164,7 +163,7 @@ class KTF_StatusBar: KTF_Sprite {
         levelLabel_.position = levelPos_
         levelLabel_.name = "level"
         KTF_SCALE().ScaleMyNode(nodeToScale: levelLabel_)
-        levelLabel_.zPosition = gameZorder.statusBar_level.rawValue//statusBarZpos_ + 3
+        levelLabel_.zPosition = gameZorder.statusBar_level.rawValue
         scene_.addChild(levelLabel_)
     }
     
@@ -172,7 +171,7 @@ class KTF_StatusBar: KTF_Sprite {
         //COINS BG
         KTF_SCALE().ScaleMyNode(nodeToScale: coinsBg_)
         coinsBg_.position =  coinsBgPos_
-        coinsBg_.zPosition = gameZorder.statusBar_coinsBg.rawValue//statusBarZpos_ + 1
+        coinsBg_.zPosition = gameZorder.statusBar_coinsBg.rawValue
         scene_.addChild(coinsBg_)
         
         //COINS IMAGE
@@ -180,7 +179,7 @@ class KTF_StatusBar: KTF_Sprite {
         coinsImage_.xScale = coinsImage_.xScale*0.8
         coinsImage_.yScale = coinsImage_.yScale*0.8
         coinsImage_.position =  coinsImagePos_
-        coinsImage_.zPosition = gameZorder.statusBar_coinsImage.rawValue//statusBarZpos_ + 1
+        coinsImage_.zPosition = gameZorder.statusBar_coinsImage.rawValue
         scene_.addChild(coinsImage_)
         
         //COINS TITLE LABEL
@@ -192,7 +191,7 @@ class KTF_StatusBar: KTF_Sprite {
         coinsTitleLabel.position = coinsTitleLabelPos_
         coinsTitleLabel.name = "coinsTitleLabel"
         KTF_SCALE().ScaleMyNode(nodeToScale: coinsTitleLabel)
-        coinsTitleLabel.zPosition = gameZorder.statusBar_coinsTitle.rawValue//statusBarZpos_ + 2
+        coinsTitleLabel.zPosition = gameZorder.statusBar_coinsTitle.rawValue
         scene_.addChild(coinsTitleLabel)
         
         //COINS LABEL
@@ -206,11 +205,10 @@ class KTF_StatusBar: KTF_Sprite {
         coinsLabel_.colorBlendFactor = 1.0
         coinsLabel_.color = UIColor.red
         coinsLabel_.fontSize = 80
-      //  print("CHECK THIS",coinsBg_.yScale, coinsLabel_.fontSize)
         coinsLabel_.position = coinsPos_
         coinsLabel_.name = "coins"
         KTF_SCALE().ScaleMyNode(nodeToScale: coinsLabel_)
-        coinsLabel_.zPosition = gameZorder.statusBar_coins.rawValue//statusBarZpos_ + 3
+        coinsLabel_.zPosition = gameZorder.statusBar_coins.rawValue
         scene_.addChild(coinsLabel_)
     }
     
@@ -269,7 +267,6 @@ class KTF_StatusBar: KTF_Sprite {
         KTF_DISK().saveInt(number: savedCoins, forKey: SAVED_GAME_COINS)
         
     }
-
     
     func updateCoinsAndSave(addToCoins:Int, shouldUpdateStatusBar:Bool, animated:Bool)
     {
@@ -284,7 +281,6 @@ class KTF_StatusBar: KTF_Sprite {
         //save new coins
         KTF_DISK().saveInt(number: gameCoins_, forKey: SAVED_GAME_COINS)
         // update coins label
-        // DISABLE THIS LINE WHEN BUYING LIFE DURING GAME TO PREVENT SHOWING SAVED COINS
         if shouldUpdateStatusBar
         {
             coinsLabel_.text = String(gameCoins_)

@@ -8,12 +8,6 @@
 
 import Foundation
 import SpriteKit
-/*
-enum popup_items_Zposition:CGFloat {
-    case popUpLabel = 100
-    case popUpButton
-}
-*/
 
 enum POPUP_WINDOW_SIZE:Int{
     case full_size = 0
@@ -40,10 +34,9 @@ enum POPUP_ITEMS_POS_INDEX:Int {
     case posDOWN_RIGHT
 }
 
-/// FIX INIT LIKE UFO
+
 class KTF_POPUP: KTF_Sprite
 {
-    // NEED TO MAKE timer
     static var _popUpInstance: KTF_POPUP!
 
     var closeButton_: KTF_Sprite!
@@ -65,9 +58,6 @@ class KTF_POPUP: KTF_Sprite
     var _timer: Timer!
     var _timerSelector:String!
 
- // FIX POSITIONS
-
-    // CREATE CLOSE BUTTON
     func initPopupWindow(size:POPUP_WINDOW_SIZE,
                          forScene:SKScene!,
                          closeButtonAction:String,
@@ -126,15 +116,14 @@ class KTF_POPUP: KTF_Sprite
         self.yScale *= KTF_POPUP._popUpInstance.popUpScaleFactorY_
         
     }
+    
     func addCloseButton()
     {
         closeButton_ = KTF_Sprite(imageNamed: "pop_up_close_button")
        closeButton_.position = self.getPosForIndex(posIndex: POPUP_ITEMS_POS_INDEX.popUP_CLOSE_BUTTON.rawValue,
                                                    forItem:closeButton_)
         self.addChild(closeButton_)
-        closeButton_.zPosition = gameZorder.popup_window_close_button.rawValue //popup_items_Zposition.popUpButton.rawValue
-      //  closeButton_.xScale *= popUpScaleFactorX_
-      //  closeButton_.yScale *= popUpScaleFactorY_
+        closeButton_.zPosition = gameZorder.popup_window_close_button.rawValue
     }
     
     func addLabels(top:String,
@@ -154,7 +143,7 @@ class KTF_POPUP: KTF_Sprite
         _topLabel.position =  self.getPosForIndex(posIndex: topPos.rawValue,
                                                   forItem:_topLabel)
         
-        _topLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
+        _topLabel.zPosition = gameZorder.popup_window_label.rawValue
         self.addChild(_topLabel)
         }
 
@@ -168,7 +157,7 @@ class KTF_POPUP: KTF_Sprite
             _middleLabel.position =  self.getPosForIndex(posIndex: middlePos.rawValue,
                                                          forItem:_middleLabel)
             
-            _middleLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
+            _middleLabel.zPosition = gameZorder.popup_window_label.rawValue
             self.addChild(_middleLabel)
         }
 
@@ -182,7 +171,7 @@ class KTF_POPUP: KTF_Sprite
             _bottomLabel.position =  self.getPosForIndex(posIndex: bottomPos.rawValue,
                                                          forItem:_bottomLabel)
             
-            _bottomLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
+            _bottomLabel.zPosition = gameZorder.popup_window_label.rawValue
             self.addChild(_bottomLabel)
         }
 }
@@ -194,7 +183,7 @@ class KTF_POPUP: KTF_Sprite
        _image = KTF_Sprite(imageNamed: imageName)
         _image.position = self.getPosForIndex(posIndex: imagePos.rawValue, forItem:_image)
         
-        _image.zPosition = gameZorder.popup_window_image.rawValue//popup_items_Zposition.popUpLabel.rawValue
+        _image.zPosition = gameZorder.popup_window_image.rawValue
         self.addChild(_image)
         _image.xScale *= popUpScaleFactorX_
         _image.yScale *= popUpScaleFactorX_
@@ -218,18 +207,16 @@ class KTF_POPUP: KTF_Sprite
             _firstButton.position = self.getPosForIndex(posIndex: FirstButtonPos.rawValue,
                                                         forItem:_firstButton)
                 
-            _firstButton.zPosition = gameZorder.popup_window_button_bg.rawValue//popup_items_Zposition.popUpButton.rawValue
+            _firstButton.zPosition = gameZorder.popup_window_button_bg.rawValue
             self.addChild(_firstButton)
 
             // ADD IMAGE TO BUTTON
             let imageOnFirstButton = KTF_Sprite(imageNamed: FirstButtonImage)
-      //      imageOnFirstButton.xScale *= popUpScaleFactorX_
-      //      imageOnFirstButton.yScale *= popUpScaleFactorX_
             imageOnFirstButton.position = KTF_POS().posInNodePrc(node: _firstButton,
                                                                  isParentFullScreen: false,
                                                                  PrcX: 50,
                                                                  PrcY: 50)
-            imageOnFirstButton.zPosition = gameZorder.popup_window_button_image.rawValue//popup_items_Zposition.popUpButton.rawValue + 1
+            imageOnFirstButton.zPosition = gameZorder.popup_window_button_image.rawValue
             _firstButton.addChild(imageOnFirstButton)
         }
    else
@@ -244,18 +231,16 @@ class KTF_POPUP: KTF_Sprite
             _secondButton.position = self.getPosForIndex(posIndex: SecondButtonPos.rawValue,
                                                          forItem:_secondButton)
             
-            _secondButton.zPosition = gameZorder.popup_window_button_bg.rawValue//popup_items_Zposition.popUpButton.rawValue
+            _secondButton.zPosition = gameZorder.popup_window_button_bg.rawValue
             self.addChild(_secondButton)
        
             // ADD IMAGE TO BUTTON
             let imageOnSecondButton = KTF_Sprite(imageNamed: SecondButtonImage)
-         //   imageOnSecondButton.xScale *= popUpScaleFactorX_
-         //   imageOnSecondButton.yScale *= popUpScaleFactorX_
            imageOnSecondButton.position = KTF_POS().posInNodePrc(node: _secondButton,
                                                                  isParentFullScreen: false,
                                                                  PrcX: 50,
                                                                  PrcY: 50)
-            imageOnSecondButton.zPosition = gameZorder.popup_window_button_image.rawValue//popup_items_Zposition.popUpButton.rawValue + 1
+            imageOnSecondButton.zPosition = gameZorder.popup_window_button_image.rawValue
             _secondButton.addChild(imageOnSecondButton)
       }
         else
@@ -288,7 +273,7 @@ class KTF_POPUP: KTF_Sprite
             _timerLabel.position =  self.getPosForIndex(posIndex: timerPos.rawValue,
                                                         forItem:_timerLabel)
             
-            _timerLabel.zPosition = gameZorder.popup_window_label.rawValue//popup_items_Zposition.popUpLabel.rawValue
+            _timerLabel.zPosition = gameZorder.popup_window_label.rawValue
             self.addChild(_timerLabel)
             _timer = Timer.scheduledTimer(timeInterval: TimeInterval(1) , target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
        }
@@ -342,9 +327,7 @@ class KTF_POPUP: KTF_Sprite
             {
                 if _closeButtonSelector != ""
                 {
-              //  self.stopTimer()
                 scene_.perform(NSSelectorFromString(_closeButtonSelector))
-                print("CLOSE BUTTON PRESSED")
                 return
                 }
                 self.stopTimer()
@@ -357,7 +340,6 @@ class KTF_POPUP: KTF_Sprite
                 {
                     self.stopTimer()
                     scene_.perform(NSSelectorFromString(_imageSelector))
-                    print("IMAGE BUTTON PRESSED")
                     return
                 }
             }
@@ -368,7 +350,6 @@ class KTF_POPUP: KTF_Sprite
                 {
                     self.stopTimer()
                     scene_.perform(NSSelectorFromString(_firstButtonSelector))
-                    print("FIRST BUTTON PRESSED")
                     return
          }
             }
@@ -379,7 +360,6 @@ class KTF_POPUP: KTF_Sprite
             {
                 self.stopTimer()
                 scene_.perform(NSSelectorFromString(_secondButtonSelector))
-                print("SECOND BUTTON PRESSED")
                 return
           }
             }
@@ -437,12 +417,7 @@ class KTF_POPUP: KTF_Sprite
         return itemPos
     }
     
-    
     //TIMER
-    
- 
-    
- 
     override func removeFromParent()
     {
         if KTF_POPUP._popUpInstance._topLabel != nil

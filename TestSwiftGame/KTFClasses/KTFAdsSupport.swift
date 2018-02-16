@@ -23,10 +23,19 @@ enum KTF_Ads_Type: Int
     case KTF_Ads_Type_Rewarded
 }
 /*
- TO CONTROL FROM OTHER CLASSES:
- //   KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
- //   KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self)
- //     KTF_Ads_Inter_Support().presentInterAds()
+ //PRELOAD REWARD AND INTER ADS
+ KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
+
+ HANDLE ADS:
+ //BANNER:
+//// KTF_Ads_Banner_Support().showAds(myView: self, atPos:KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
+//// KTF_Ads_Banner_Support().setAdsPos(atPos: KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
+ REWARDED:
+ KTF_Ads_Rewarded_Support().preloadRewardAds(myView: self) - in viewController
+ //   KTF_Ads_Rewarded_Support().presentRewardAdFor(scene: self) - from any scene
+ INTER:
+ KTF_Ads_Inter_Support().preloadInterAds(myView: self) - in viewController
+//     KTF_Ads_Inter_Support().presentInterAds() - from any class
  */
 
 class KTF_Ads_Banner_Support: SKNode, GADBannerViewDelegate {

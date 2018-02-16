@@ -18,10 +18,29 @@ let lockName_ = "lock_image"
 import Foundation
 import SpriteKit
 
+/* HOW TO IMPLEMENT:
+ INIT:
+ var _menu = KTF_Scroll()
+
+ _menu = _menu.initScrollMenu(scene: self,
+                              prefix: "ufo_top_base_",
+                              pos: KTF_POS().posInPrc(PrcX: 50, PrcY: 50),
+                              actionForImagePress: #selector(self.playButtonPressed))
+ _menu.position = CGPoint(x:0, y:0)
+ _menu.zPosition = gameZorder.scroll_menu_bg.rawValue//main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+ self.addChild(_ufoMenu)
+ 
+ TAKE OVER TOUCH HANDLE:
+
+ let menuSelection = _menu.touchesStarted(touches, with: event) - returns Int
+    return
+ 
+ _ufoMenu._currentItemIndex - index of item in the center 
+*/
+
 class KTF_Scroll: SKSpriteNode {
     
     var _menuItemsArray: [KTF_Sprite] = [KTF_Sprite]()
- //   var _savedItemsArray: [KTF_Sprite] = [KTF_Sprite]()
     var _scene:SKScene!
     
     var _itemSize: CGSize!
@@ -36,10 +55,11 @@ class KTF_Scroll: SKSpriteNode {
     
     
     //INIT SCROLL MENU
-    func initScrollMenu(scene:SKScene,
-                        prefix:String,
-                        pos:CGPoint,
-                        actionForImagePress:Selector) -> KTF_Scroll {
+    func initScrollMenu(scene:SKScene, // scene to present
+                        prefix:String, // file name prefix for items to populate the menu
+                        pos:CGPoint,   // center position for the menu
+                        actionForImagePress:Selector // action for selecting item in the menu
+        ) -> KTF_Scroll {
 
         KTF_Scroll._scrollMenu._scene = scene
         KTF_Scroll._scrollMenu._centerPosition = pos
@@ -58,13 +78,14 @@ class KTF_Scroll: SKSpriteNode {
     }
 
     //ADD ITEMS TO MENU
-    func populateMenu(prefix:String) {
-        
+    // using saved array for available items
+    //dark and add lock to not available items
+    func populateMenu(prefix:String)
+    {
         var itemFileName:String
-        
         var itemSprite = KTF_Sprite()
+        var mutableGameBoughtList = KTF_DISK().getArray(forKey: SAVED_GAME_BOUGHT_UFO_LIST) as! [Int]
         
-        var mutableGameBoughtList = KTF_DISK().getArray(forKey: SAVED_GAME_BOUGHT_UFO_LIST) as! [Int] // for buy test:[Int] = []
         for i in 0...KTF_Scroll._scrollMenu._itemsCount-1 {
             
             itemFileName = prefix + String(i)
@@ -102,10 +123,9 @@ class KTF_Scroll: SKSpriteNode {
                     self.addLockToUfo(ufo:itemSprite)
             }
         }
-  
-        
     }
 
+    // add lock image to non available items
     func addLockToUfo(ufo:KTF_Sprite)
     {
         let lockImage = KTF_Sprite(imageNamed: lockName_)
@@ -117,7 +137,8 @@ class KTF_Scroll: SKSpriteNode {
 
     func removeLockFromUfo(ufo:KTF_Sprite)
     {
-        //TODO: remove lock when ufo bought
+        //remove lock when ufo bought
+        // for now no need because menu is refreshed by Game Class when item bought
     }
     
     // SET INITIAL MENU ITEM
@@ -127,7 +148,7 @@ class KTF_Scroll: SKSpriteNode {
 
         KTF_Scroll._scrollMenu._scene.addChild(itemSpriteMiddle)
         itemSpriteMiddle.position = KTF_Scroll._scrollMenu._centerPosition
-        itemSpriteMiddle.zPosition = gameZorder.scroll_menu_items.rawValue//main_menu_z_pos.main_menu_z_ufo_menu.rawValue
+        itemSpriteMiddle.zPosition = gameZorder.scroll_menu_items.rawValue
         itemSpriteMiddle.alpha = 1.0
         
         KTF_Scroll._scrollMenu.setTitleLabelToMenu(currentItem: itemSpriteMiddle)
@@ -245,6 +266,7 @@ class KTF_Scroll: SKSpriteNode {
         KTF_Scroll._scrollMenu.setStatusLabelToMenu(currentItem: itemSpriteLeft)
     }
     
+    // ADD TEXT LABEL ABOVE ITEM
     func setTitleLabelToMenu(currentItem: KTF_Sprite) {
       
         if (KTF_Scroll._scrollMenu.childNode(withName: "top") != nil)
@@ -286,6 +308,7 @@ class KTF_Scroll: SKSpriteNode {
         
     }
     
+     // ADD TEXT LABEL UNDER ITEM
     func setStatusLabelToMenu(currentItem: KTF_Sprite) {
         
         if (KTF_Scroll._scrollMenu.childNode(withName: "bottom") != nil)
@@ -340,6 +363,7 @@ class KTF_Scroll: SKSpriteNode {
 
     }
     
+    // TOUCHES HANDELER TAKE CONTROL FROM SCENE
      func touchesStarted(_ touches: Set<UITouch>, with event: UIEvent?) -> Int{
         
         for touch in touches {
@@ -362,26 +386,27 @@ class KTF_Scroll: SKSpriteNode {
             else if selectedUfo.contains(location)
             {
                 if selectedUfo.isEnabled
-                {//SELECT OWNED UFO
+                {//SELECT AVAILABLE UFO
                     _scene.perform(_itemSelector) 
                     return 2
                 }
                 else if selectedUfo.tag <= gameLevel_ - 1
                 {
                     if price <= gameCoins_
-                    {//IF ITEM CAN BE BOUGHT
-                 print("open GET pop up")
+                    {
+                        //IF ITEM CAN BE BOUGHT
+                 print("open GET popup")
                     return 3
                     }
                     else
                     {//IF ITEM TOO EXPENSIVE
-                        print("open NO ENOUGH pop up")
+                        print("open NO ENOUGH popup")
                         return 4
                     }
                 }
                 else
                 {//IF ITEM WAIT TO FINISH LEVEL
-                 print("open WAIT FOR LEVEL pop up", selectedUfo.tag,gameLevel_, price, gameCoins_)
+                 print("open WAIT FOR LEVEL popup", selectedUfo.tag,gameLevel_, price, gameCoins_)
                     return 5
                 }
             }
@@ -393,26 +418,7 @@ class KTF_Scroll: SKSpriteNode {
         return 7
     }
     
-    
-    
     override func removeFromParent() {
-/*
-        _rightNavButton.removeFromParent()
-        _leftNavButton.removeFromParent()
-       
-        if KTF_Scroll._scrollMenu._menuItemsArray.count > 0
-        {
-        for item in _menuItemsArray
-        {
-            if item.parent != nil
-            {
-            item.removeFromParent()
-            }
-            
-        }
-        
-        _menuItemsArray.removeAll()
-        }*/
         super.removeFromParent()
     }
 }
