@@ -11,9 +11,29 @@ import SpriteKit
 
 class KTFGeneralAsistant: SKScene {
 
+    func moreButtonPressed()
+    {  UIApplication.shared.openURL(URL.init(string:"itms-apps://itunes.apple.com/artist/eran-tager/id903651784")!)
+    }
     
-
+    func rateMeButtonPressed()
+    {
+        var urlStr: URL
+    
+    if #available(iOS 7.0, *)
+    {
+  //  urlStr = "itms-apps://itunes.apple.com/app/id"
+        urlStr = URL.init(string:"itms-apps://itunes.apple.com/app/id"+APP_ID)!
+      //  urlStr.appendingPathComponent("itms-apps://itunes.apple.com/app/id"+APP_ID)
+    }
+    else
+    {
+        urlStr = URL.init(string:"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id="+APP_ID+"&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software")!
+    }
+    UIApplication.shared.openURL(urlStr)
+    }
 }
+
+let WIN_SIZE = KTF_WIN_SIZE().getWinSize
 
 class KTF_WIN_SIZE {
     //return win size
@@ -134,6 +154,33 @@ class KTF_SCALE
         }
     }
     
+    
+    func scaleFloat(floatToScale:CGFloat, isX:Bool) -> CGFloat {
+        
+        var screenDefultSize: CGPoint
+        var myFloat: CGFloat
+        var prc: CGFloat
+        
+        if WIN_SIZE().width > WIN_SIZE().height
+        {
+            screenDefultSize = CGPoint(x:2048, y:1536)
+        }
+        else
+        {
+            screenDefultSize = CGPoint(x:1536, y:2048)
+        }
+        if isX
+        {
+         prc = floatToScale / (screenDefultSize.x / 100.0);
+        myFloat = WIN_SIZE().width / 100 * prc
+        }
+        else
+        {
+            prc = floatToScale / (screenDefultSize.y / 100.0);
+            myFloat = WIN_SIZE().height / 100 * prc
+        }
+        return myFloat
+    }
 }
 
 class KTF_DeviceType {
@@ -353,116 +400,144 @@ class KTF_GRAY_IMAGE: UIImage {
     }
 }
 
+let BEIZER_ARC_SIZE_X = KTF_SCALE().scaleFloat(floatToScale: 10, isX: true)
+let BEIZER_ARC_SIZE_Y = KTF_SCALE().scaleFloat(floatToScale: 150, isX: true)
 
-////////<< BEZIER - not working need to fix
-// Bezier cubic formula:
-//    ((1 - t) + t)3 = 1
-// Expands to…
-//   (1 - t)3 + 3t(1-t)2 + 3t2(1 - t) + t3 = 1
-
- extension CGFloat {
-    static func bezierat(a: CGFloat, b: CGFloat, c: CGFloat, d: CGFloat, t: TimeInterval) -> CGFloat {
-        
-        let time = Float(t)
-        let first = CGFloat(powf(1-time,3)) * a
-        let secondFloat = CGFloat(powf(1-time,2))
-        let timeCGFloat = CGFloat(time)
-        let second = 3*timeCGFloat*secondFloat*b
-        let thirdCGFloat = CGFloat(powf(time,2))
-        let third = 3*thirdCGFloat*(1-timeCGFloat)*c
-        let forthFloat = CGFloat(powf(time,3))
-        let forth = forthFloat*d
-        
-        return (first + second + third + forth);
-    }
-    
-}
-
-public struct _ktfBezierConfig {
-    //! end position of the bezier
-    var endPosition: CGPoint
-    //! Bezier control point 1
-    var controlPoint_1: CGPoint
-    //! Bezier control point 2
-    var controlPoint_2: CGPoint
-}
-
-class KTF_BEZIER_BY
+class KTF_BEZIER
 {
-    var timer: Timer?
-    var _withConfig: _ktfBezierConfig!
-    var _andTarget: SKNode!
-    var _withTime: TimeInterval!
-    var _startPos: CGPoint!
-    
-    func startTimer(withConfig:_ktfBezierConfig, andTarget:SKNode, withTime: CGFloat)
+    func beizerNode(node:SKNode, to:CGPoint)
     {
-        _andTarget = andTarget
-        _withConfig = withConfig
-        _withTime = TimeInterval(withTime)
-        _startPos = andTarget.position
+        // create a bezier path that defines our curve
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 16,y: 239))
+        path.addCurve(to:CGPoint(x: 301, y: 239),
+                      controlPoint1: CGPoint(x: 136, y: 373),
+                      controlPoint2: CGPoint(x: 178, y: 110))
         
-        if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: TimeInterval(withTime),
-                                         target: self,
-                                         selector: #selector(self.loop),
-                                         userInfo: nil,
-                                         repeats: true)
-        }
-    
-    }
-    
-    func stopTimer() {
-        if timer != nil {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-    
-    @objc func loop()
-    {
-        self.update(target_: _andTarget, startPosition_: _startPos, config_: _withConfig, t: _withTime)
+        // use the beizer path in an action
+        node.run(SKAction.follow(path.cgPath,
+                                        asOffset: false,
+                                        orientToPath: true,
+                                        speed: 30.0))
     }
 
-  //  var config_: _ktfBezierConfig!
-   // var target_: SKNode!
-   // var startPosition_: CGPoint!
-    
-    func startBezier(withConfig:_ktfBezierConfig, andTarget:SKNode)
+    func beizerNode(node:SKNode,endPoint:CGPoint, shouldRotate:Bool, andSpeed:Float)
     {
-        //  config_ = withConfig
-      //  target_ = andTarget
-    //  let startPosition = andTarget.position
-        KTF_BEZIER_BY().startTimer(withConfig: withConfig, andTarget: andTarget, withTime: 0.2)
-      /*  KTF_BEZIER_BY().startTimer(forMethod: KTF_BEZIER_BY().update(target_: andTarget,
-                                                                     startPosition_: startPosition,
-                                                                     config_: withConfig,
-                                                                     t: 0.2),
-                                   withTime: 0.2)
-        */
-      //  KTF_BEZIER_BY().startTimer(forMethod: KTF_BEZIER_BY().update(config_: withConfig, t: 0.2), withTime: 0.2)
+        // create a bezier path that defines our curve
+        
+        let firstControlPoint = self.calculateFirstBeizerCheckPoint(startPoint: node.position, endPoint: endPoint)
+        let secondControlPoint = self.calculateSecondBeizerCheckPoint(startPoint: node.position, endPoint: endPoint)
+
+        let path = UIBezierPath()
+        path.move(to: node.position)// CGPoint(x: 16,y: 239))
+        path.addCurve(to:endPoint,//CGPoint(x: 301, y: 239),
+                      controlPoint1: firstControlPoint,//CGPoint(x: 136, y: 373),
+                      controlPoint2: secondControlPoint)
+        
+        // use the beizer path in an action
+        node.run(SKAction.follow(path.cgPath,
+                                        asOffset: false,
+                                        orientToPath: shouldRotate,
+                                        speed: CGFloat(andSpeed)))
     }
- 
+
+    func calculateFirstBeizerCheckPoint(startPoint:CGPoint, endPoint:CGPoint) -> CGPoint {
     
-    func update(target_:SKNode, startPosition_:CGPoint, config_:_ktfBezierConfig, t:TimeInterval)
+        var firstCheckPoint: CGPoint!
+        var distX: CGFloat
+        var distY: CGFloat
+    
+    if (startPoint.x > endPoint.x)
     {
-//print("updatePos")
-        let xa = CGFloat(0);
-    let xb = config_.controlPoint_1.x;
-    let xc = config_.controlPoint_2.x;
-    let xd = config_.endPosition.x;
+    distX = (startPoint.x - endPoint.x) / 4;
     
-    let ya = CGFloat(0);
-    let yb = config_.controlPoint_1.y;
-    let yc = config_.controlPoint_2.y;
-    let yd = config_.endPosition.y;
+    if (startPoint.y > endPoint.y)
+    {
+    firstCheckPoint.x = startPoint.x - distX - BEIZER_ARC_SIZE_X;
+    }
+    else
+    {
+    firstCheckPoint.x = startPoint.x - distX - BEIZER_ARC_SIZE_X;
+    }
+    }
+    else
+    {
+    distX = (endPoint.x - startPoint.x) / 4;
     
-        let x = CGFloat.bezierat(a: xa, b: xb, c: xc, d: xd, t: t);
-        let y = CGFloat.bezierat(a: ya, b: yb, c: yc, d: yd, t: t);
-        let currentPos = CGPoint.init(x: x, y: y)
-    //    print(x, y)
-        target_.position = CGPoint.init(x: startPosition_.x + currentPos.x, y: startPosition_.y + currentPos.y)
-   }
+    if (startPoint.y < endPoint.y)
+    {
+    firstCheckPoint.x = startPoint.x + distX - BEIZER_ARC_SIZE_X;
+    }
+    else
+    {
+    firstCheckPoint.x = startPoint.x + distX + BEIZER_ARC_SIZE_X;
+    }
+    }
+    
+    if (startPoint.y > endPoint.y)
+    {
+    distY = (startPoint.y - endPoint.y) / 4;
+    
+    firstCheckPoint.y = startPoint.y - distY + BEIZER_ARC_SIZE_Y;
+    }
+    else
+    {
+    distY = (endPoint.y - startPoint.y) / 4;
+    
+    firstCheckPoint.y = startPoint.y + distY + BEIZER_ARC_SIZE_Y;
+    }
+    
+    return firstCheckPoint;
+    }
+
+    func calculateSecondBeizerCheckPoint(startPoint:CGPoint, endPoint:CGPoint) -> CGPoint {
+        
+        var secondCheckPoint: CGPoint!
+        var distX: CGFloat
+        var distY: CGFloat
+        
+        if (startPoint.x > endPoint.x)
+        {
+            distX = (startPoint.x - endPoint.x) / 4;
+            
+            if (startPoint.y > endPoint.y)
+            {
+                secondCheckPoint.x = startPoint.x - distX - BEIZER_ARC_SIZE_X;
+            }
+            else
+            {
+                secondCheckPoint.x = startPoint.x - distX - BEIZER_ARC_SIZE_X;
+            }
+        }
+        else
+        {
+            distX = (endPoint.x - startPoint.x) / 4;
+            
+            if (startPoint.y < endPoint.y)
+            {
+                secondCheckPoint.x = startPoint.x + distX - BEIZER_ARC_SIZE_X;
+            }
+            else
+            {
+                secondCheckPoint.x = startPoint.x + distX + BEIZER_ARC_SIZE_X;
+            }
+        }
+        
+        if (startPoint.y > endPoint.y)
+        {
+            distY = (startPoint.y - endPoint.y) / 4;
+            
+            secondCheckPoint.y = startPoint.y - distY + BEIZER_ARC_SIZE_Y;
+        }
+        else
+        {
+            distY = (endPoint.y - startPoint.y) / 4;
+            
+            secondCheckPoint.y = startPoint.y + distY + BEIZER_ARC_SIZE_Y;
+        }
+        
+        return secondCheckPoint;
+    }
 }
 ////////>> BEZIER - not working need to fix
 

@@ -9,28 +9,14 @@
 import UIKit
 import SpriteKit
 import GameplayKit
-/*
-enum main_menu_z_pos: CGFloat
-{
-    typealias RawValue = CGFloat
-    
-    case main_menu_z_bg = 0
-    case main_menu_z_play_button = 1
-    case main_menu_z_map_button = 2
-    case main_menu_z_title = 3
-    case main_menu_z_more_button = 4
-    case main_menu_z_rate_button = 5
-    case main_menu_z_ufo_menu = 50
-    case main_menu_z_popUpWindow = 100
-}
-*/
+
 let MAIN_SCENE_POS_LIST = [
     [50.0, 50.0],   //0 BG
     [50.0, 75.0],   //1 TITLE
     [20, 20],    //2 map
     [80, 20.0],    //3 PLAY
-    [50.0, 47.0],    //4 MENU
-    [50.0, 50.0],    //5 MORE
+    [15, 10.0],    //4 MENU
+    [85, 10.0],    //5 MORE
     [50.0, 50.0]    //6 RATE
 ]
 
@@ -46,7 +32,8 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
     // DECLARE CLASS OBJECTS
     private var _mapButton = KTF_Sprite(imageNamed: "map_button")
     private var _playButton = KTF_Sprite(imageNamed: "pop_up_button")
-    private var rateButton = KTF_Sprite(imageNamed: "rate_button")
+    private var _rateButton = KTF_Sprite(imageNamed: "rate_button")
+    private var _moreButton = KTF_Sprite(imageNamed: "more_button")
     var _ufoMenu = KTF_Scroll()
 
     var _popUpWindow: KTF_POPUP!
@@ -130,8 +117,27 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                   PrcY: CGFloat(MAIN_SCENE_POS_LIST[1][1]))
         KTF_SCALE().ScaleMyNode(nodeToScale: titleSprite)
         self.addChild(titleSprite)
-        titleSprite.zPosition = gameZorder.GENERAL_title.rawValue//main_menu_z_pos.main_menu_z_title.rawValue;
+        titleSprite.zPosition = gameZorder.GENERAL_title.rawValue
     }
+    func addBaseButtons()
+    {
+        // MORE BUTTON
+        _moreButton.position = KTF_POS().posInPrc(PrcX: CGFloat(MAIN_SCENE_POS_LIST[5][0]),
+                                                  PrcY: CGFloat(MAIN_SCENE_POS_LIST[5][1]))
+        KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _moreButton)
+        self.addChild(_moreButton)
+        _moreButton.zPosition = gameZorder.GENERAL_buttons.rawValue
+        self.ButtonFlashAnimation(sprite: _moreButton)
+   
+        // RATE BUTTON
+        _rateButton.position = KTF_POS().posInPrc(PrcX: CGFloat(MAIN_SCENE_POS_LIST[6][0]),
+                                                  PrcY: CGFloat(MAIN_SCENE_POS_LIST[6][1]))
+        KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _rateButton)
+        self.addChild(_rateButton)
+        _rateButton.zPosition = gameZorder.GENERAL_buttons.rawValue
+        self.ButtonFlashAnimation(sprite: _rateButton)
+    }
+    
     // ADD map BUTTON
     func addMapButton()
     {
@@ -139,7 +145,7 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                    PrcY: CGFloat(MAIN_SCENE_POS_LIST[2][1]))
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _mapButton)
         self.addChild(_mapButton)
-        _mapButton.zPosition = gameZorder.GENERAL_buttons.rawValue//main_menu_z_pos.main_menu_z_map_button.rawValue;
+        _mapButton.zPosition = gameZorder.GENERAL_buttons.rawValue
         self.ButtonFlashAnimation(sprite: _mapButton)
     }
     
@@ -150,11 +156,11 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
                                                    PrcY: CGFloat(MAIN_SCENE_POS_LIST[3][1]))
         KTF_SCALE().ScaleMyNodeRelatively(nodeToScale: _playButton)
         self.addChild(_playButton)
-    _playButton.zPosition = gameZorder.GENERAL_buttons.rawValue//main_menu_z_pos.main_menu_z_play_button.rawValue;
+    _playButton.zPosition = gameZorder.GENERAL_buttons.rawValue
 
         let playImage = KTF_Sprite(imageNamed: "play_button")
         playImage.position = KTF_POS().posInNodePrc(node: _playButton, isParentFullScreen: false, PrcX: 50, PrcY: 50)
-        playImage.zPosition = gameZorder.GENERAL_buttons.rawValue//main_menu_z_pos.main_menu_z_play_button.rawValue + 1;
+        playImage.zPosition = gameZorder.GENERAL_buttons.rawValue
         _playButton.addChild(playImage)
         self.ButtonFlashAnimation(sprite: _playButton)
  }
@@ -224,6 +230,14 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
             {
                 self.mapButtonPressed()
             }
+            else if _moreButton.contains(location)
+            {
+                KTFGeneralAsistant().moreButtonPressed()
+            }
+            else if _rateButton.contains(location)
+            {
+                KTFGeneralAsistant().rateMeButtonPressed()
+            }
             else if !_ufoMenu.contains(location)
             {
                 self.particlesAction(pos:location)
@@ -262,9 +276,13 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
            self.cleanScene()
         }
     }
-    
+   
     // REPLACE SCENE TO GAME SCENE
     @objc func playButtonPressed() {
+
+      //  KTF_BEZIER().beizerNode(node: _playButton, endPoint: KTF_POS().posInPrc(PrcX: 10, PrcY: 50), shouldRotate: true, andSpeed: 50)
+        
+      //  return
         let mutableGameBoughtList = KTF_DISK().getArray(forKey: SAVED_GAME_BOUGHT_UFO_LIST) as! [Int]
         for ufoIndex in mutableGameBoughtList
         {
@@ -529,8 +547,10 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         _playButton.removeAllActions()
         _playButton.removeFromParent()
         
-        rateButton.removeAllActions()
-        rateButton.removeFromParent()
+        _rateButton.removeAllActions()
+        _rateButton.removeFromParent()
+        _moreButton.removeAllActions()
+        _moreButton.removeFromParent()
         
         _ufoMenu.removeAllActions()
         _ufoMenu.removeAllChildren()
@@ -544,7 +564,7 @@ class MainScene: SKScene, KTF_Ads_Rewarded_SupportDelegate, KTF_Ads_Inter_Suppor
         
       super.removeFromParent()
   }
-    
+ 
 }
 
 

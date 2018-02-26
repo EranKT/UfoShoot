@@ -3,7 +3,7 @@
 //
 //  Created by EKT DIGIDESIGN on 12/15/17.
 //  Copyright © 2017 EKT DIGIDESIGN. All rights reserved.
-
+let APP_ID = ""
 class AdmobKeys {
     // APP ID
     func APP_ID() -> String

@@ -34,9 +34,14 @@ enum POPUP_ITEMS_POS_INDEX:Int {
     case posDOWN_RIGHT
 }
 
+private let _TESTpopUpInstance = KTF_POPUP()
 
 class KTF_POPUP: KTF_Sprite
 {
+    public class func sharedInstance() -> KTF_POPUP {
+        return _TESTpopUpInstance
+    }
+    
     static var _popUpInstance: KTF_POPUP!
 
     var closeButton_: KTF_Sprite!
@@ -114,7 +119,6 @@ class KTF_POPUP: KTF_Sprite
     {
         self.xScale *= KTF_POPUP._popUpInstance.popUpScaleFactorX_
         self.yScale *= KTF_POPUP._popUpInstance.popUpScaleFactorY_
-        
     }
     
     func addCloseButton()
@@ -417,7 +421,6 @@ class KTF_POPUP: KTF_Sprite
         return itemPos
     }
     
-    //TIMER
     override func removeFromParent()
     {
         if KTF_POPUP._popUpInstance._topLabel != nil

@@ -22,9 +22,10 @@ class GameViewController: UIViewController {
     override func loadView() {
         self.view = SKView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("DID LOAD")
         KTF_GameCenter().initGameCenter(forViewController: self)
         //LOAD BANNER ADS
         KTF_Ads_Banner_Support().showAds(myView: self, atPos:KTF_Ads_Position.KTF_Ads_Position_bottom_middle)
@@ -36,10 +37,14 @@ class GameViewController: UIViewController {
         isFirstTimeToday_ = KTF_Date().isFirstTimeToday()
 
         KTF_DISK().saveInt(number: 0, forKey: SAVED_GAME_UFO)
+        
+        self.loadMyScene()
+    }
 
+     func loadMyScene()
+    {
         let scene:SKScene = MainScene(size: UIScreen.main.bounds.size)
         scene.scaleMode = .resizeFill
-        
         
         if let view = self.view as! SKView? {
             
@@ -48,8 +53,9 @@ class GameViewController: UIViewController {
             view.presentScene(scene, transition: transition)
             view.ignoresSiblingOrder = true
         }
+        
     }
-
+    
     override var shouldAutorotate: Bool {
         return true
     }
